@@ -1,5 +1,6 @@
 import styles from "./css/Login.module.css"
 import { Route, useNavigate } from "react-router-dom";
+import KakaoLoginButton from "./KakaoLoginButton";
 
 export default function Login() {
     const navigate = useNavigate();
@@ -23,7 +24,7 @@ export default function Login() {
                     }></img>
                     </div>
                     <div>
-                    <img alt="loginbutton" src="img/certi_kakao_login_s.png" style={{paddingRight:'10%'}} onClick={navigateToMain}></img>
+                    <KakaoLoginButton/>
                     </div>
                 </div>
             </div>
