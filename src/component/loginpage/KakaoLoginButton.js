@@ -4,7 +4,6 @@ const KAKAO_AUTH_URL=`https://kauth.kakao.com/oauth/authorize?client_id=${proces
 const KakaoLoginButton = () => {
     return (
         <a href={KAKAO_AUTH_URL}>
-            console.log({KAKAO_AUTH_URL})
             <img alt="loginbutton" src="img/certi_kakao_login_s.png" style={{paddingRight:'10%'}} ></img>
         </a>
         
