@@ -1,3 +1,14 @@
+.container {
+    width: 400px;
+    height: fit-content;
+
+    z-index: 999;
+
+    position: absolute;
+
+    background-color: 'white';
+}
+
 .modal {
     display: none;
     position: fixed;
@@ -9,3 +20,34 @@
     background-color: #1F1F1F;
 }
 
+.modal > section {
+    width: 90%;
+    max-width: 400px;
+    border-radius: 0.3rem;
+    background-color: #1F1F1F;
+    animation: modal-show 0.3s;
+    overflow: hidden;
+}
+
+.modal.openModal {
+    display: list-item;
+    animation: modal-bg-show 0.3s;
+}
+
+@keyframes modal-show {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes modal-bg-show {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
