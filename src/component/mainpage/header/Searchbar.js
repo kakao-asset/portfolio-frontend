@@ -6,6 +6,8 @@ import { Stocks } from "./Stocks";
 import styles from "./css/SearchList.module.css"
 import { Comments } from "./Coments";
 import CommentRow from "./ComentRow";
+import { Link } from "react-router-dom";
+
 
 export default function Searchbar() {
     const [search, setSearch] = useState("");
@@ -40,7 +42,7 @@ export default function Searchbar() {
                     content: {
                         position: 'relative',
                         top: '40px',
-                        left: '1070px',
+                        left: '1095px',
                         overflow: 'auto',
                         borderRadius: '4px',
                         width: '600px',
@@ -66,7 +68,9 @@ export default function Searchbar() {
                     }}></input>
                     <ul className={styles.searchList}>
                         {Stocks.filter(searchStock=>searchStock.sName.toLowerCase().includes(search.toLowerCase())).map((searchStock)=>(
-                             <li key={searchStock.id} className={styles.searchItem}>{searchStock.sName}</li>
+                             <li key={searchStock.id} className={styles.searchItem} onClick={
+                                <Link to={"/detail/" +(searchStock.id)}></Link>
+                             }>{searchStock.sName}</li>
                         ))}
                     </ul>
                     <div style={{marginTop: '200px', marginLeft: '20px', marginBottom: '30px', display: 'flex'}}>
