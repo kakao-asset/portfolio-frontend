@@ -6,7 +6,7 @@ export default function MainSearch({searchStock}){
 
     return (
         <div>
-            <p1 style={{color: 'white'}}>{searchStock.sName}</p1>
+            <p1 style={{color: 'white'}}>{searchStock[id].sName}</p1>
         </div>
     );
 }

@@ -7,13 +7,22 @@ import styles from "./css/SearchList.module.css"
 import { Comments } from "./Coments";
 import CommentRow from "./ComentRow";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { boardNewSearch } from "../../../module/boardNewReducer";
 
 
 export default function Searchbar() {
+    const dispatch = useDispatch();
+
     const [search, setSearch] = useState("");
     const [modalIsOpen, setModalIsOpen] = useState(false);;
     const onChange = (e) => {
         setSearch(e.target.value);
+    }
+
+    const onSearch = (content) => {
+        dispatch(boardNewSearch(content));
+        setSearch('');
     }
 
 
@@ -66,21 +75,23 @@ export default function Searchbar() {
                         left: '10px',
                         right: '10px'
                     }}></input>
-                    <ul className={styles.searchList}>
-                        {Stocks.filter(searchStock=>searchStock.sName.toLowerCase().includes(search.toLowerCase())).map((searchStock)=>(
-                             <li key={searchStock.id} className={styles.searchItem} onClick={
-                                <Link to={"/detail/" +(searchStock.id)}></Link>
-                             }>{searchStock.sName}</li>
-                        ))}
-                    </ul>
-                    <div style={{marginTop: '200px', marginLeft: '20px', marginBottom: '30px', display: 'flex'}}>
+                    {Stocks.filter(searchStock => searchStock.sName.toLowerCase().includes(search.toLowerCase())).map((searchStock) => (
+                        <SearchRow key={searchStock.id} searchTarget={searchStock} className={styles.searchItem} 
+                            onClick={() => {
+                                onSearch(searchStock);
+                                <Link to={"/detail/"+searchStock.id}></Link>
+
+                            }
+                        }></SearchRow>
+                    ))}
+                    <div style={{ marginTop: '200px', marginLeft: '20px', marginBottom: '30px', display: 'flex' }}>
                         {Comments.map(comment => (
-                        <CommentRow key={comment.id} comment={comment}></CommentRow>
+                            <CommentRow key={comment.id} comment={comment}></CommentRow>
                         ))}
                     </div>
 
                 </div>
-                
+
             </Modal>
         </>
     );
