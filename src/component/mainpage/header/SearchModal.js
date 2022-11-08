@@ -1,4 +1,4 @@
-import sampledata from "./sampledata.json"
+import sampledata from "./Stocks"
 import styles from "./css/Modal.module.css"
 import Modal from 'react-modal'
 

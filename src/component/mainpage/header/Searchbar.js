@@ -1,8 +1,11 @@
 import { useState } from "react";
 import SearchModal from "./SearchModal";
 import Modal from 'react-modal';
-import sampledata from "./sampledata.json"
 import SearchRow from "./SearchRow";
+import { Stocks } from "./Stocks";
+import styles from "./css/SearchList.module.css"
+import { Comments } from "./Coments";
+import CommentRow from "./ComentRow";
 
 export default function Searchbar() {
     const [search, setSearch] = useState("");
@@ -11,28 +14,6 @@ export default function Searchbar() {
         setSearch(e.target.value);
     }
 
-
-    const searchData = [
-        {
-            "stocks": [
-                {
-                    "id": 0,
-                    "sName": ["네이버", "naver"]
-                },
-                {
-                    "id": 1,
-                    "sName": ["카카오", "kakao"]
-                },
-                {
-                    "id": 2,
-                    "sName": ["삼성", "samsung"]
-                }
-
-            ]
-        }
-    ];
-
-    const searchList = [...searchData];
 
     return (
         <>
@@ -59,11 +40,11 @@ export default function Searchbar() {
                     content: {
                         position: 'relative',
                         top: '40px',
-                        left: '1100px',
+                        left: '1070px',
                         overflow: 'auto',
                         borderRadius: '4px',
                         width: '600px',
-                        height: '700px',
+                        height: 'fit-content',
                         background: '#1F1F1F'
 
                     }
@@ -83,6 +64,17 @@ export default function Searchbar() {
                         left: '10px',
                         right: '10px'
                     }}></input>
+                    <ul className={styles.searchList}>
+                        {Stocks.filter(searchStock=>searchStock.sName.toLowerCase().includes(search.toLowerCase())).map((searchStock)=>(
+                             <li key={searchStock.id} className={styles.searchItem}>{searchStock.sName}</li>
+                        ))}
+                    </ul>
+                    <div style={{marginTop: '200px', marginLeft: '20px', marginBottom: '30px', display: 'flex'}}>
+                        {Comments.map(comment => (
+                        <CommentRow key={comment.id} comment={comment}></CommentRow>
+                        ))}
+                    </div>
+
                 </div>
                 
             </Modal>
