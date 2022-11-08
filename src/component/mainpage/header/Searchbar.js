@@ -8,7 +8,6 @@ import { Comments } from "./Coments";
 import CommentRow from "./ComentRow";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { boardNewSearch } from "../../../module/boardNewReducer";
 
 
 export default function Searchbar() {
@@ -77,12 +76,7 @@ export default function Searchbar() {
                     }}></input>
                     {Stocks.filter(searchStock => searchStock.sName.toLowerCase().includes(search.toLowerCase())).map((searchStock) => (
                         <SearchRow key={searchStock.id} searchTarget={searchStock} className={styles.searchItem} 
-                            onClick={() => {
-                                onSearch(searchStock);
-                                <Link to={"/detail/"+searchStock.id}></Link>
-
-                            }
-                        }></SearchRow>
+                        ></SearchRow>
                     ))}
                     <div style={{ marginTop: '200px', marginLeft: '20px', marginBottom: '30px', display: 'flex' }}>
                         {Comments.map(comment => (

@@ -4,11 +4,27 @@ import Login from './component/loginpage/Login';
 import Main from './component/mainpage/Main';
 import MainSearch from './component/searchpage/MainSearch';
 import { useSelector } from 'react-redux';
-
+import { connect } from "react-redux";
+import { useEffect, useState } from 'react';
 
 function App() {
 
-  const searchStock = useSelector(state => state.inputData.content);
+  const mapStateToProps = state => {
+    return {
+      searchData : state.searchData,
+    };
+  };
+
+  const SearchPage = ({ searchData })=>{
+    const [search, setSearhTarget] = useState([]);
+
+    useEffect(()=>{
+      if (searchData.length !== 0){
+        setSearhTarget(searchData);
+      }
+    }
+    )
+  }
 
   return (
     <div className='App'>
@@ -16,7 +32,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/main" element={<Main />} />
-        <Route path="/detail/:id" element={<MainSearch searchStock={searchStock}></MainSearch>} />
+        {/* <Route path="/detail/:id" element={<MainSearch searchStock={searchStock}></MainSearch>} /> */}
       </Routes>
     </BrowserRouter>
     </div>
