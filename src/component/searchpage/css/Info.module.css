@@ -1,0 +1,19 @@
+.box {
+    background-color: #2F3138;
+    width: 100%;
+    height: 700px;
+}
+
+.sellButton {
+    background-color: #57C083;
+    width: fit-content;
+    height: 30px;
+    border-radius: 4px;
+    margin-top: 20px;
+    margin-right: 15px;
+    padding-left: 40px;
+    padding-right: 40px;
+    text-align: center;
+    padding-top: 5px;
+    color: white;
+}

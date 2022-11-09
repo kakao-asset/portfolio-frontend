@@ -9,22 +9,7 @@ import { useEffect, useState } from 'react';
 
 function App() {
 
-  const mapStateToProps = state => {
-    return {
-      searchData : state.searchData,
-    };
-  };
 
-  const SearchPage = ({ searchData })=>{
-    const [search, setSearhTarget] = useState([]);
-
-    useEffect(()=>{
-      if (searchData.length !== 0){
-        setSearhTarget(searchData);
-      }
-    }
-    )
-  }
 
   return (
     <div className='App'>
@@ -32,7 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/main" element={<Main />} />
-        {/* <Route path="/detail/:id" element={<MainSearch searchStock={searchStock}></MainSearch>} /> */}
+        <Route path="/detail" element={<MainSearch/>}/>
       </Routes>
     </BrowserRouter>
     </div>

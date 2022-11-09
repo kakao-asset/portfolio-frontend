@@ -8,6 +8,7 @@ import { Comments } from "./Coments";
 import CommentRow from "./ComentRow";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
+import { changeSearch } from "../../../store";
 
 
 export default function Searchbar() {
@@ -19,10 +20,6 @@ export default function Searchbar() {
         setSearch(e.target.value);
     }
 
-    const onSearch = (content) => {
-        dispatch(boardNewSearch(content));
-        setSearch('');
-    }
 
 
     return (

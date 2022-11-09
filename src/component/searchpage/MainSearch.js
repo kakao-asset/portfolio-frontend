@@ -1,12 +1,18 @@
-import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import Header from "../mainpage/header/Header";
+import Info from "./Info";
 
-export default function MainSearch({searchStock}){
-
-    let {id} = useParams();
+export default function MainSearch(){
+    
 
     return (
+        
         <div>
-            <p1 style={{color: 'white'}}>{searchStock[id].sName}</p1>
+            <Header>
+            </Header>
+            <Info>
+            </Info>
+
         </div>
     );
 }
