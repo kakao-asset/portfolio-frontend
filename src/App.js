@@ -6,6 +6,8 @@ import MainSearch from './component/searchpage/MainSearch';
 import { useSelector } from 'react-redux';
 import { connect } from "react-redux";
 import { useEffect, useState } from 'react';
+import KakaoOauth from './component/loginpage/KakaoOauth';
+import Test from './component/loginpage/Test';
 
 function App() {
 
@@ -18,6 +20,8 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/main" element={<Main />} />
         <Route path="/detail" element={<MainSearch/>}/>
+        <Route path="/oauth/kakao" element={<KakaoOauth/>}/>
+        <Route path="/test" element={<Test/>}/>
       </Routes>
     </BrowserRouter>
     </div>
