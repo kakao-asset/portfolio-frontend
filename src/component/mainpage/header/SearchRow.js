@@ -22,7 +22,7 @@ import { connect } from "react-redux";
         const searchStock = useSelector((store) => store.searchTarget);
 
         return (
-            <div style={{marginTop: '40px', marginBotton: '20px'}}>
+            <div style={{marginTop: '45px', marginBotton: '20px'}}>
                 <div style={{display: 'flex', marginLeft: '30px'}}>
                     <button onClick={()=> {
                         console.log(searchTarget);

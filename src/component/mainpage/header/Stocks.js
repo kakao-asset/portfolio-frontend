@@ -1,15 +1,15 @@
 export const Stocks = [
         {
             "id":1,
-            "sName": "naver"
+            "sName": "NAVER"
         },
         {
             "id":2,
-            "sName": "kakao"
+            "sName": "KAKAO"
         },
         {
             "id":3,
-            "sName": "samsung"
+            "sName": "SAMSUNG"
         }
 
     ]

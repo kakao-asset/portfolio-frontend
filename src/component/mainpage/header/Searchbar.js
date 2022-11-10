@@ -38,6 +38,7 @@ export default function Searchbar() {
                 bottom: '5px',
                 color: 'white'
             }}></input>
+            
             <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}
                 style={{
                     overlay: {
@@ -71,10 +72,13 @@ export default function Searchbar() {
                         left: '10px',
                         right: '10px'
                     }}></input>
-                    {Stocks.filter(searchStock => searchStock.sName.toLowerCase().includes(search.toLowerCase())).map((searchStock) => (
+                    <div style={{paddingTop: '30px'}}>
+                        {Stocks.filter(searchStock => searchStock.sName.toUpperCase().includes(search.toUpperCase())).map((searchStock) => (
                         <SearchRow key={searchStock.id} searchTarget={searchStock} className={styles.searchItem} 
                         ></SearchRow>
                     ))}
+                    </div>
+
                     <div style={{ marginTop: '200px', marginLeft: '20px', marginBottom: '30px', display: 'flex' }}>
                         {Comments.map(comment => (
                             <CommentRow key={comment.id} comment={comment}></CommentRow>

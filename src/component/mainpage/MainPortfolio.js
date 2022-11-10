@@ -3,6 +3,7 @@ import Budget from "./maincomponent/Budget"
 import ProfitLoss from "./maincomponent/ProfitLoss";
 import News from "./maincomponent/News";
 import Ranking from "./maincomponent/Ranking";
+import DropDown from "./maincomponent/row/DropDown";
 
 export default function MainPortfolio() {
     return (
@@ -22,10 +23,10 @@ export default function MainPortfolio() {
             {<ProfitLoss></ProfitLoss>}
             {<News></News>}
         </div>
-            <div>
-            <h3 style={{color: 'white', paddingTop: '10px', marginLeft:'20px', marginTop: '50px'}}>~와 관련된 업종</h3>
-            <Ranking></Ranking>
+            <div style={{display: 'flex'}}>
+                <h3 style={{color: 'white', paddingTop: '10px', marginLeft:'20px', marginTop: '50px'}}>와 관련된 업종</h3>
             </div>
+            <Ranking></Ranking>
         </div>
     );
 }
