@@ -219,7 +219,7 @@ export default function Ranking(){
                     paddingTop: '13px',
                     paddingBottom: '13px',
                     paddingLeft: '10px',
-                    paddingRight: '40px',
+                    paddingRight: '20px',
                     borderColor: '#1F1F1F',
                     borderRadius: '2px',
                     border: '0px'                 
@@ -237,6 +237,19 @@ export default function Ranking(){
                    }}>{foreTradeisSort? 
                     <VscChevronUp></VscChevronUp> :
                     <VscChevronDown></VscChevronDown>}</button>
+
+                <button style={{
+                    marginLeft:'100px',
+                    width: 'fit-content',
+                    backgroundColor: '#1F1F1F',
+                    color: '#E0E0E0',
+                    paddingTop: '13px',
+                    paddingBottom: '13px',
+                    paddingLeft: '40px',
+                    paddingRight: '40px',
+                    borderColor: '#1F1F1F',
+                    border: '0px'                 
+                   }}>기준 커스텀</button>
             </div>
             <RankingTable columns={columns} data={rankingData}></RankingTable>
         </div>

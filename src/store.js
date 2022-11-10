@@ -12,7 +12,7 @@ const currentSearch = {
 export const reducer = (state = currentSearch, action) => {
     if (action.type === 'SET_SEARCH'){
         return {
-            ...state, searchTarget: action.payload
+            ...state, searchTarget: action.searchTarget
         }
     } else {
         return state;
