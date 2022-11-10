@@ -116,8 +116,8 @@ export default function Ranking(){
 
                 <button  onClick={flucRateSetIsClick} style={{
                     width: 'fit-content',
-                    backgroundColor: '#1F1F1F',
-                    color: '#E0E0E0',
+                    backgroundColor: flucRateisClick? 'white':'#1F1F1F',
+                    color: flucRateisClick? 'black':'#E0E0E0',
                     paddingTop: '13px',
                     paddingBottom: '13px',
                     paddingLeft: '45px',
@@ -141,8 +141,8 @@ export default function Ranking(){
 
                 <button onClick={tradeVolSetIsClick} style={{
                     width: 'fit-content',
-                    backgroundColor: '#1F1F1F',
-                    color: '#E0E0E0',
+                    backgroundColor: tradeVolisClick? 'white':'#1F1F1F',
+                    color: tradeVolisClick? 'black':'#E0E0E0',
                     paddingTop: '13px',
                     paddingBottom: '13px',
                     paddingLeft: '45px',
@@ -165,8 +165,8 @@ export default function Ranking(){
 
                 <button onClick={tradeAmountSetIsClick} style={{
                     width: 'fit-content',
-                    backgroundColor: '#1F1F1F',
-                    color: '#E0E0E0',
+                    backgroundColor: tradeAmountisClick? 'white':'#1F1F1F',
+                    color: tradeAmountisClick? 'black':'#E0E0E0',
                     paddingTop: '13px',
                     paddingBottom: '13px',
                     paddingLeft: '47px',
@@ -189,8 +189,8 @@ export default function Ranking(){
 
                 <button onClick={marketCapSetIsClick} style={{
                     width: 'fit-content',
-                    backgroundColor: '#1F1F1F',
-                    color: '#E0E0E0',
+                    backgroundColor: marketCapisClick? 'white':'#1F1F1F',
+                    color: marketCapisClick? 'black':'#E0E0E0',
                     paddingTop: '13px',
                     paddingBottom: '13px',
                     paddingLeft: '35px',
@@ -214,8 +214,8 @@ export default function Ranking(){
 
                 <button onClick={foreTradeSetIsClick} style={{
                     width: 'fit-content',
-                    backgroundColor: '#1F1F1F',
-                    color: '#E0E0E0',
+                    backgroundColor: foreTradeisClick? 'white':'#1F1F1F',
+                    color: foreTradeisClick? 'black':'#E0E0E0',
                     paddingTop: '13px',
                     paddingBottom: '13px',
                     paddingLeft: '10px',
