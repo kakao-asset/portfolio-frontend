@@ -26,7 +26,7 @@ export default function PieChart(){
                   "price": 90000,
                 },
               ]}
-              margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
+              margin={{ top: 40, left: 20, right: 230, bottom: 80,  }}
               innerRadius={0.5}
               padAngle={0.7}
               cornerRadius={0}
@@ -64,25 +64,26 @@ export default function PieChart(){
                   },
               ]}
               legends={[
-                  {
-                      anchor: 'right',
-                      direction: 'column',
+
+                  {    
+                      anchor: 'bottom',
+                      direction: 'row',
                       justify: false,
-                      translateX: 100,
-                      translateY: 20,
-                      itemsSpacing: 30,
-                      itemWidth: 100,
+                      translateX: 20,
+                      translateY: 70,
+                      itemsSpacing: 10,
+                      itemWidth: 80,
                       itemHeight: 18,
                       itemTextColor: '#999',
                       itemDirection: 'left-to-right',
-                      itemOpacity: '1, 4',
+                      itemOpacity: '1',
                       symbolSize: 15,
                       symbolShape: 'circle',
                       effects: [
                           {
                               on: 'hover',
                               style: {
-                                  itemTextColor: '#000'
+                                  itemTextColor: '#FFF'
                               }
                           }
                       ]

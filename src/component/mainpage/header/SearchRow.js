@@ -3,8 +3,8 @@ import { Route, useNavigate } from "react-router-dom";
 
 
     export default function SearchRow  ({searchTarget})  {
-
-        const stockName = searchTarget.sName;
+        // const stockName = searchTarget.sName;
+        const stockName = searchTarget.name;
         const navigate = useNavigate();
         const navigateToDetail = () => {
             navigate("/detail");
@@ -23,7 +23,7 @@ import { Route, useNavigate } from "react-router-dom";
                             setSearchTargetToLocal(searchTarget);}} style={{
                             color: 'white', 
                             display: 'block', 
-                            width: '100px',
+                            width: 'fit-content',
                             backgroundColor: '#1F1F1F',
                             border: 'none',
                             fontSize: '20px'

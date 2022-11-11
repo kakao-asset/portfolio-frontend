@@ -9,6 +9,8 @@ import CommentRow from "./ComentRow";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { changeSearch } from "../../../store";
+import { TestData } from "../../../data/TestData";
+import axios from 'axios';
 
 
 export default function Searchbar() {
@@ -73,10 +75,17 @@ export default function Searchbar() {
                         right: '10px'
                     }}></input>
                     <div style={{paddingTop: '30px'}}>
-                        {Stocks.filter(searchStock => searchStock.sName.toUpperCase().includes(search.toUpperCase())).map((searchStock) => (
+                        
+                        {/* {Stocks.filter(searchStock => searchStock.sName.toUpperCase().includes(search.toUpperCase())).map((searchStock) => (
                         <SearchRow key={searchStock.id} searchTarget={searchStock} className={styles.searchItem} 
                         ></SearchRow>
+                    ))} */}
+
+                        {TestData.filter(searchStock => searchStock.name.replace(" ","").toUpperCase().includes(search.replace(" ","").toUpperCase())).map((searchStock) => (
+                        <SearchRow key={searchStock.symbolCode} searchTarget={searchStock} className={styles.searchItem} 
+                        ></SearchRow>
                     ))}
+                    
                     </div>
 
                     <div style={{ marginTop: '200px', marginLeft: '20px', marginBottom: '30px', display: 'flex' }}>
