@@ -8,6 +8,7 @@ import { Route, useNavigate } from "react-router-dom";
         const navigate = useNavigate();
         const navigateToDetail = () => {
             navigate("/detail");
+            window.location.reload();
         }
 
         const setSearchTargetToLocal = (searchTarget) => {
