@@ -89,6 +89,9 @@ export default function Ranking(){
 
     return(
         <div className={styles.box}>
+            <div>
+
+            </div>
             <h3 style={{color: 'white', paddingTop: '40px', paddingLeft: '40px'}}>전기 전자</h3>
             <div style={{display: 'flex', paddingTop: '20px', paddingLeft: '110px'}}>
                 <button style={{
@@ -238,6 +241,7 @@ export default function Ranking(){
                     <VscChevronUp></VscChevronUp> :
                     <VscChevronDown></VscChevronDown>}</button>
 
+            <div>
                 <button style={{
                     marginLeft:'100px',
                     width: 'fit-content',
@@ -250,6 +254,13 @@ export default function Ranking(){
                     borderColor: '#1F1F1F',
                     border: '0px'                 
                    }}>기준 커스텀</button>
+                
+                <button>등락률</button>
+                <button>거래량</button>
+                <button>거래대금</button>
+                <button>시가총액</button>
+                <button>외국인</button>
+            </div>
             </div>
             <RankingTable columns={columns} data={rankingData}></RankingTable>
         </div>

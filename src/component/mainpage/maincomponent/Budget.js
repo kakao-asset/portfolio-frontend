@@ -21,7 +21,7 @@ export default function Budget() {
 
     ];
     return (
-        <div className={styles.box}>
+        <div className={styles.box} style={{overflow: 'auto'}}>
             <div style={{marginTop: '80px', marginLeft: '20px'}}>
                     {myStocks.map(budget => (
                         <BudgetRow key={budget.id} budget={budget}></BudgetRow>

@@ -17,7 +17,7 @@ export default function Searchbar() {
     const dispatch = useDispatch();
 
     const [search, setSearch] = useState("");
-    const [modalIsOpen, setModalIsOpen] = useState(false);;
+    const [modalIsOpen, setModalIsOpen] = useState(false);
     const onChange = (e) => {
         setSearch(e.target.value);
     }
@@ -44,7 +44,7 @@ export default function Searchbar() {
             <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}
                 style={{
                     overlay: {
-                        position: 'fixed',
+                        position: 'absolute',
                         backgroundColor: 'rgba(255, 255, 255, 0)'
                     },
                     content: {
