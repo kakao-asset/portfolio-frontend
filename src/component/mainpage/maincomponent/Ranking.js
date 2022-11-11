@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import RankingTable from "./RankingTable";
 import { rankingColumn } from "./RankingColumn";
 import { rankingData } from "./RankingData";
+import RankingCustom from "./RankingCustom";
 
 export default function Ranking(){
     // 등락률 버튼 제어
@@ -89,12 +90,9 @@ export default function Ranking(){
 
     return(
         <div className={styles.box}>
-            <div>
-
-            </div>
             <h3 style={{color: 'white', paddingTop: '40px', paddingLeft: '40px'}}>전기 전자</h3>
             <div style={{display: 'flex', paddingTop: '20px', paddingLeft: '110px'}}>
-                <button style={{
+                {/* <button style={{
                     width: 'fit-content',
                     backgroundColor: '#1F1F1F',
                     color: '#E0E0E0',
@@ -239,30 +237,10 @@ export default function Ranking(){
                     border: '0px'                 
                    }}>{foreTradeisSort? 
                     <VscChevronUp></VscChevronUp> :
-                    <VscChevronDown></VscChevronDown>}</button>
-
-            <div>
-                <button style={{
-                    marginLeft:'100px',
-                    width: 'fit-content',
-                    backgroundColor: '#1F1F1F',
-                    color: '#E0E0E0',
-                    paddingTop: '13px',
-                    paddingBottom: '13px',
-                    paddingLeft: '40px',
-                    paddingRight: '40px',
-                    borderColor: '#1F1F1F',
-                    border: '0px'                 
-                   }}>기준 커스텀</button>
-                
-                <button>등락률</button>
-                <button>거래량</button>
-                <button>거래대금</button>
-                <button>시가총액</button>
-                <button>외국인</button>
+                    <VscChevronDown></VscChevronDown>}</button> */}
+            <RankingTable columns={rankingColumn} data={rankingData}></RankingTable>
+            <RankingCustom></RankingCustom>
             </div>
-            </div>
-            <RankingTable columns={columns} data={rankingData}></RankingTable>
         </div>
     );
 }
