@@ -2,6 +2,9 @@ import Header from "./header/Header";
 import MainPortfolio from "./MainPortfolio";
 
 export default function Main() {
+    // 사용자가 보유한 주식 목록 - DB에서 가져옴 
+    // useState 로 변경 필요
+    // 지금은 stockHold에 임시 데이터 넣어서 작업 중
     const stockHold = [
         {
             name: '포스코스틸리온',

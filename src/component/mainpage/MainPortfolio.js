@@ -14,7 +14,7 @@ export default function MainPortfolio({stockHold}) {
             </div>
         <div style={{display: "flex"}}>
             {<Portfolio stockHold={stockHold}></Portfolio>}
-            {<Budget></Budget>}
+            {<Budget stockHold={stockHold}></Budget>}
         </div>
         <div style={{marginTop: '10px', display: 'flex'}}>
             <h3 style={{color: 'white', paddingTop: '10px', marginLeft:'20px'}}>손익(타임라인)</h3>

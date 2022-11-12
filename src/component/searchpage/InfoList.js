@@ -9,7 +9,7 @@ import React from "react";
         const lowPrice = stockInfo.lowPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
         return (
-            <div style={{marginTop: '40px', marginBotton: '100px', display: 'flex'}}>
+            <div style={{marginTop: '40px', marginBotton: '20px', display: 'flex'}}>
                 <div style={{marginLeft: '30px'}}>
                     <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>전일 종가</span>
                     <span style={{color: 'white', paddingLeft: '20px', display: 'block', fontSize: '20px'}}>{oldPrice}원</span>
