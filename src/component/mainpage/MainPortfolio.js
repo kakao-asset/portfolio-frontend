@@ -9,13 +9,17 @@ import MyBudgetRow from "./maincomponent/row/MyBudgetRow";
 
 export default function MainPortfolio({stockHold}) {
 
+    // 업종별 랭킹 란 보유 주식 선택 모달 state
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
+    // 업종별 랭킹 란 선택 주식 데이터 가져오는 부분
     var rankingStock = localStorage.getItem('rankingStock');
     const rankingSeletedStock = JSON.parse(rankingStock);
 
+    // 업종별 랭킹 란 선택 주식
     var selectedRankingStockName;
 
+    // 보유 주식 중 가장 많이 가지고 있는 주식 찾는 부분
     var maxIndex = 0;
     var maxValue = stockHold[0].value;
     for(var i=1; i<stockHold.length; i++){
@@ -25,14 +29,12 @@ export default function MainPortfolio({stockHold}) {
         }
     }
 
-    
-    console.log(rankingSeletedStock.rankingTarget.name);
+    // 업종별 랭킹 란 선택 주식 데이터가 없을 시 보유 주식 중 가장 많이 가지고 있는 주식 이름으로
     if (rankingSeletedStock.rankingTarget.name===''){
         selectedRankingStockName = stockHold[maxIndex].name;
     } else {
         selectedRankingStockName = rankingSeletedStock.rankingTarget.name;
     }
-    console.log(selectedRankingStockName);
     
 
     return (
@@ -72,6 +74,7 @@ export default function MainPortfolio({stockHold}) {
                     }}>{selectedRankingStockName}</button>
                 <h3 style={{color: 'white', paddingTop: '10px', marginLeft:'10px', marginTop: '50px'}}>관련된 업종</h3>
 
+                {/* 업종별 랭킹 란 보유 주식 선택 모달 */}
                 <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)} ariaHideApp={false}
                 style={{
                     overlay: {
@@ -80,7 +83,7 @@ export default function MainPortfolio({stockHold}) {
                     },
                     content: {
                         position: 'relative',
-                        top: '1350px',
+                        top: '1310px',
                         left: '30px',
                         overflow: 'auto',
                         borderRadius: '4px',
@@ -96,8 +99,10 @@ export default function MainPortfolio({stockHold}) {
                     ))}
                 </Modal>
             </div>
+
             {/* 업종별 랭킹 영역 */}
-            <Ranking></Ranking>
+            {/* Ranking 컴포넌트에 업종별 랭킹 란 현재 선택된 주식 이름 props로 넘겨주기 */}
+            <Ranking selectedRankingStockName={selectedRankingStockName}></Ranking>
         </div>
     );
 }
