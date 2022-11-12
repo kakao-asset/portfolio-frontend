@@ -2,9 +2,9 @@ import React from "react";
     export default function InfoList  ({stockInfo})  {
         // 천 원 단위 점 찍어주는 거 
         // toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") 
-        const oldPrice = stockInfo.oldPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        const startPrice = stockInfo.startPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        const stockQuantity = stockInfo.stockQuantity.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        const oldPrice = stockInfo.prevClosingPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        const startPrice = stockInfo.openingPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        const stockQuantity = stockInfo.accTradeVolume.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         const highPrice = stockInfo.highPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         const lowPrice = stockInfo.lowPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 

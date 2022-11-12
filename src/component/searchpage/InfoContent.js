@@ -3,10 +3,12 @@ import styles from "./css/InfoContent.module.css"
 
     export default function InfoContent  ({stockInfo})  {
 
-        const currentPrice = stockInfo.currentPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        // 현재가
+        console.log(stockInfo.tradePrice);
+        const currentPrice = stockInfo.tradePrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         
-        var c = Number(stockInfo.currentPrice);
-        var o = Number(stockInfo.oldPrice); 
+        var c = Number(stockInfo.tradePrice);
+        var o = Number(stockInfo.prevClosingPrice); 
 
         return (
             <div style={{display: 'flex', marginLeft: '50px'}}>

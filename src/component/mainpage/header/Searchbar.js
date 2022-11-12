@@ -1,20 +1,14 @@
 import { useState } from "react";
-import SearchModal from "./SearchModal";
 import Modal from 'react-modal';
 import SearchRow from "./SearchRow";
-import { Stocks } from "./Stocks";
 import styles from "./css/SearchList.module.css"
 import { Comments } from "./Coments";
 import CommentRow from "./ComentRow";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
-import { changeSearch } from "../../../store";
-import { TestData } from "../../../data/TestData";
-import axios from 'axios';
+import { TestStockData } from "../../../data/TestStockData";
+// 장 시작 때 받아온 데이터 정보로 사용하면 될 거 같음
 
 
 export default function Searchbar() {
-    const dispatch = useDispatch();
 
     const [search, setSearch] = useState("");
     const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -75,13 +69,8 @@ export default function Searchbar() {
                         right: '10px'
                     }}></input>
                     <div style={{paddingTop: '30px'}}>
-                        
-                        {/* {Stocks.filter(searchStock => searchStock.sName.toUpperCase().includes(search.toUpperCase())).map((searchStock) => (
-                        <SearchRow key={searchStock.id} searchTarget={searchStock} className={styles.searchItem} 
-                        ></SearchRow>
-                    ))} */}
-
-                        {TestData.filter(searchStock => searchStock.name.replace(" ","").toUpperCase().includes(search.replace(" ","").toUpperCase())).map((searchStock) => (
+                    
+                        {TestStockData.filter(searchStock => searchStock.name.replace(" ","").toUpperCase().includes(search.replace(" ","").toUpperCase())).map((searchStock) => (
                         <SearchRow key={searchStock.symbolCode} searchTarget={searchStock} className={styles.searchItem} 
                         ></SearchRow>
                     ))}
