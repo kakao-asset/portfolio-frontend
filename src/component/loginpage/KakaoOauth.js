@@ -5,7 +5,7 @@ export default function KakaoOauth(){
     console.log(code);
     axios({
         method: "GET",
-        url: `http://localhost:8080/oauth/kakao?code=${code}`
+        url: `http://localhost:8080/api/oauth/kakao?code=${code}`
     })
     .then((res) => {
         console.log(res); // 토큰이 넘어올 것임
@@ -24,7 +24,7 @@ export default function KakaoOauth(){
         console.log("소셜로그인 에러", err);
         window.alert("로그인에 실패하였습니다.");
 
-        document.location.href = "/test" // 로그인 실패하면 로그인화면으로 돌려보냄
+        document.location.href = "/" // 로그인 실패하면 로그인화면으로 돌려보냄
     })
     return(<></>);
 }
