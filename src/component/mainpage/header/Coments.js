@@ -1,3 +1,4 @@
+// 인기 종목 임시 데이터
 export const Comments = [
     {
         "id":1,

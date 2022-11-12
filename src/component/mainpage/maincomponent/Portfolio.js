@@ -5,14 +5,18 @@ import { StockData } from "../../../data/StockData";
 
 export default function Portfolio({stockHold}){
 
+    var totalAsset = 0;
 
+    for (var i=0; i<stockHold.length; i++){
+        totalAsset += stockHold[i].value * stockHold[i].avgPrice;
+    }
 
     return (
         <div>
             <div className={styles.box}>
                 <div>
                     <div style={{height: "25px"}}></div>
-                    <p1 style={{marginLeft: '20px', color: "white"}}>자산구성</p1>
+                    <p1 style={{marginLeft: '30px', color: "white"}}>자산구성</p1>
                 </div>
                     <div style={{display: 'flex'}}>
                         <PieChart stockHold={stockHold}></PieChart>
@@ -25,8 +29,10 @@ export default function Portfolio({stockHold}){
                 
 
                 <div style={{display: "flex"}}>
-                    <p1 style={{marginLeft: '20px', color: "white", paddingTop: "50px"}}>총 자산</p1>
-                    <h3 style={{marginLeft: '10%', color: "white", paddingTop: "30px", paddingBottom: "30px"}}>111</h3>
+                    {/* 총 자산은 현재 보유 주식 실시간 데이터의 현재가 X 보유 개수 */}
+                    {/* 지금은 보유 주식 평단가 X 보유 개수로 계산 */}
+                    <p1 style={{marginLeft: '30px', color: "white", paddingTop: "53px"}}>총 자산</p1>
+                    <h3 style={{marginLeft: '5%', color: "white", paddingTop: "30px", paddingBottom: "30px"}}>{totalAsset.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</h3>
                 </div>
             </div>
         </div>

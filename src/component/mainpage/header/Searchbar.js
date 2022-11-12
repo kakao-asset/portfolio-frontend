@@ -16,8 +16,6 @@ export default function Searchbar() {
         setSearch(e.target.value);
     }
 
-
-
     return (
         <>
             <input type="text" onClick={() => setModalIsOpen(true)} style={{
@@ -35,6 +33,7 @@ export default function Searchbar() {
                 color: 'white'
             }}></input>
             
+            {/* 검색바 클릭 시 하단에 생성되는 검색 모달 */}
             <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}
                 style={{
                     overlay: {
@@ -82,9 +81,7 @@ export default function Searchbar() {
                             <CommentRow key={comment.id} comment={comment}></CommentRow>
                         ))}
                     </div>
-
                 </div>
-
             </Modal>
         </>
     );

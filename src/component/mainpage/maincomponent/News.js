@@ -2,7 +2,7 @@
 import styles from './css/News.module.css'
 import NewsRow from './row/NewsRow';
 
-export default function News() {
+export default function News({stockHold}) {
 
     const articles = [
         {

@@ -1,103 +1,42 @@
 export const rankingData = [
     {
-        stockName: "삼성전자",
-        currentPrice: "100000",
-        flucRate: "267400",
-        tradeVol: "558612",
-        tradeAmount: "13994815",
+        name: "삼성전자",
+        tradePrice: "100000",
+        prevAccTradeVolumeChangeRate: "20%",
+        accTradeVolume: "558612",
+        accTradePrice: "13994815",
         marketCap: "3689326",
-        foreTrade: "55%"
+        foreignRatio: "55%"
 
     },
     {
-        stockName: "넷마블",
-        currentPrice: "90000",
-        flucRate: "267400",
-        tradeVol: "558612",
-        tradeAmount: "13994815",
-        marketCap: "3689326",
-        foreTrade: "55%"
+        name: "네이버",
+        tradePrice: "130000",
+        prevAccTradeVolumeChangeRate: "-10%",
+        accTradeVolume: "600000",
+        accTradePrice: "14000000",
+        marketCap: "4689326",
+        foreignRatio: "65%"
 
     },
     {
-        stockName: "넥슨",
-        currentPrice: "80000",
-        flucRate: "267400",
-        tradeVol: "558612",
-        tradeAmount: "13994815",
-        marketCap: "3689326",
-        foreTrade: "55%"
+        name: "카카오",
+        tradePrice: "50000",
+        prevAccTradeVolumeChangeRate: "30%",
+        accTradeVolume: "560712",
+        accTradePrice: "11004815",
+        marketCap: "2689326",
+        foreignRatio: "45%"
 
     },
     {
-        stockName: "당근마켓",
-        currentPrice: "60000",
-        flucRate: "267400",
-        tradeVol: "558612",
-        tradeAmount: "13994815",
-        marketCap: "3689326",
-        foreTrade: "55%"
+        name: "쿠팡",
+        tradePrice: "10000",
+        prevAccTradeVolumeChangeRate: "40%",
+        accTradeVolume: "55861",
+        accTradePrice: "3994815",
+        marketCap: "689326",
+        foreignRatio: "25%"
 
-    },
-    {
-        stockName: "쿠팡",
-        currentPrice: "70000",
-        flucRate: "267400",
-        tradeVol: "558612",
-        tradeAmount: "13994815",
-        marketCap: "3689326",
-        foreTrade: "55%"
-
-    },
-    {
-        stockName: "토스",
-        currentPrice: "110000",
-        flucRate: "267400",
-        tradeVol: "558612",
-        tradeAmount: "13994815",
-        marketCap: "3689326",
-        foreTrade: "55%"
-
-    },
-    {
-        stockName: "라인",
-        currentPrice: "130000",
-        flucRate: "267400",
-        tradeVol: "558612",
-        tradeAmount: "13994815",
-        marketCap: "3689326",
-        foreTrade: "55%"
-
-    },
-    {
-        stockName: "크래프톤",
-        currentPrice: "99000",
-        flucRate: "267400",
-        tradeVol: "558612",
-        tradeAmount: "13994815",
-        marketCap: "3689326",
-        foreTrade: "55%"
-
-    },
-    {
-        stockName: "카카오",
-        currentPrice: "40000",
-        flucRate: "267400",
-        tradeVol: "558612",
-        tradeAmount: "13994815",
-        marketCap: "3689326",
-        foreTrade: "55%"
-
-    },
-    {
-        stockName: "네이버",
-        currentPrice: "120000",
-        flucRate: "267400",
-        tradeVol: "558612",
-        tradeAmount: "13994815",
-        marketCap: "3689326",
-        foreTrade: "55%"
-
-    },
-  
-]
+    }   
+];

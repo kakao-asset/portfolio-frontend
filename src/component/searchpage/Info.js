@@ -6,82 +6,28 @@ import InfoList from './InfoList';
 import {TestStockData} from '../../data/TestStockData';
 import React from 'react';
 
-export default function Info(){
+// 현재는 임시 데이터 목록에서 searchStock의 종목코드(symbolCode)와 같은 값 찾아서 해당 정보를 Info 컴포넌트들에게 전달하고 있음
+// 서버 통신 시, api 서버에다가 searchStock의 종목코드를 쿼리로 날려서 실시간 데이터를 받아와서 전달해 주어야 함
 
+export default function Info(){
+    // 로컬 스토리지에 저장되어 있는 searchStock 데이터 가져옴
     var searchStock = localStorage.getItem('searchStock');
     const detailStock = JSON.parse(searchStock);
-    console.log(detailStock);
-    
-    const stockInfo = [
-        {
-            id: 1,
-            stockCode: '001440',
-            stockName: 'NAVER',
-            currentPrice: '169000',
-            oldPrice: '174000',
-            startPrice: '168000',
-            stockQuantity: '1010968',
-            highPrice: '174000',
-            lowPrice: '166000',
-            imgURL: "https://image.rocketpunch.com/company/5466/naver_logo.png?s=400x400&t=inside",
 
-        },
-        {
-            id: 2,
-            stockCode: '035720',
-            stockName: 'KAKAO',
-            currentPrice: '54800',
-            oldPrice: '50800',
-            startPrice: '54500',
-            stockQuantity: '1981582',
-            highPrice: '55100',
-            lowPrice: '53600',
-            imgURL: "https://t1.kakaocdn.net/kakaocorp/corp_thumbnail/Kakao.png",
-        },
-        {
-            id: 3,
-            stockCode: '005930',
-            stockName: 'SAMSUNG',
-            currentPrice: '62900',
-            oldPrice: '60400',
-            startPrice: '63100',
-            stockQuantity: '4350775',
-            highPrice: '63200',
-            lowPrice: '62500',
-            imgURL: "https://cdn.samsung.com/etc/designs/smg/global/imgs/logo-square-letter.png",
-        },
-    ];
+    // ----------------서버에 요청--------------------
+    // detailStock.searchTarget.symbolCode 로 쿼리 날리고 해당하는 정보 받아오기
 
 
-    const stockCode = stockInfo.stockCode;
-    const stockName = stockInfo.stockName;
 
-    // stockInfo.filter(searchStock => searchStock.id.includes(detailStock.searchTarget.id));
-    var index = TestStockData.findIndex(i => i.symbolCode == detailStock.searchTarget.symbolCode);
-    
+    // 임시 데이터 목록에서 같은 값 찾는 부분
+    var index = TestStockData.findIndex(i => i.symbolCode === detailStock.searchTarget.symbolCode);
 
-    console.log(TestStockData[index]);
-    // const selectedStock = TestStockData[index]; 
+
+    // 같은 값 => selectedStock 을 Info의 Header, Content, LineGraph, List에 props로 전달
+    // 수정하면 실시간 데이터 정보 들어가는 변수
     const selectedStock = JSON.parse(JSON.stringify(TestStockData[index]));
-    console.log({selectedStock});
-    console.log("왜 안 되냐고");
-
-    // {TestStockData.filter(searchStock => searchStock.name.replace(" ","").toUpperCase().includes(search.replace(" ","").toUpperCase())).map((searchStock) => (
-    //     <SearchRow key={searchStock.symbolCode} searchTarget={searchStock} className={styles.searchItem} 
-    //     ></SearchRow>
 
     return(
-        // <div style={{marginTop: '50px', marginLeft: '2%', marginRight: '2%', textAlign: 'left', paddingBottom: '50px'}}>
-        //     <div className={styles.box}>
-        //         <div style={{display: 'flex'}}>
-        //                 <InfoHeader key={selectedStock.symbolCode} stockInfo={selectedStock}></InfoHeader>
-        //         </div>
-        //                 <InfoContent key={selectedStock.symbolCode} stockInfo={selectedStock}></InfoContent>
-        //                 <InfoLineGraph></InfoLineGraph>
-        //                 <InfoList key={selectedStock.symbolCode} stockInfo={selectedStock}></InfoList>
-        //     </div>
-        // </div>
-
         <div style={{marginTop: '50px', marginLeft: '2%', marginRight: '2%', textAlign: 'left', paddingBottom: '50px'}}>
             <div className={styles.box}>
                 <div style={{display: 'flex'}}>
@@ -91,8 +37,6 @@ export default function Info(){
                     <InfoLineGraph></InfoLineGraph>
                     <InfoList stockInfo={selectedStock}></InfoList>
             </div>
-        </div>
-
-        
+        </div>        
     );
 }

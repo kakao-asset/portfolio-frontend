@@ -1,5 +1,6 @@
 import React from "react";
-    export default function InfoList  ({stockInfo})  {
+
+export default function InfoList  ({stockInfo})  {
         // 천 원 단위 점 찍어주는 거 
         // toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") 
         const oldPrice = stockInfo.prevClosingPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -24,14 +25,14 @@ import React from "react";
                 </div>
                 <div style={{marginLeft: '30px'}}>
                     <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>최고가</span>
-                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', fontSize: '20px', color: '#57C083'}}>{highPrice}원</span>
+                    <span style={{paddingLeft: '20px', display: 'block', fontSize: '20px', color: '#57C083'}}>{highPrice}원</span>
                 </div>
                 <div style={{marginLeft: '30px'}}>
                     <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>최저가</span>
-                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', fontSize: '20px', color: '#E35277'}}>{lowPrice}원</span>
+                    <span style={{paddingLeft: '20px', display: 'block', fontSize: '20px', color: '#E35277'}}>{lowPrice}원</span>
                 </div>
              </div>
 
 
         );
-    }
+}

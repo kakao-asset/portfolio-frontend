@@ -12,28 +12,19 @@ export default function PieChart({stockHold}){
     // const obj = JSON.parse(stockHold);
     // console.log(obj)
 
-    console.log(stockHold)
-    console.log("zzzz")
-    var stockData = stockHold.map((x) => ({id: x.name, label:[x.name+"\t"+"\t", x.value], value: x.value, price: x.avgPrice}));
+
+    var stockData = stockHold.map((x) => ({id: x.name, label:[x.name+"\t"+"\t", x.value+"주"], value: x.value, price: x.avgPrice}));
     // console.log(stockData);
     
-    console.log("ddddd")
+
     var fillStock = stockHold.map((x) => ({match: {id: x.name}}));
-    console.log("hhh");
-    console.log(fillStock);
+
+
     return (
 
         <div style={{width: '600px', height: '400px'}}>
             <ResponsivePie
               data = {stockData}
-            //   data={[
-            //     {
-            //       "id": "Naver",
-            //       "label": ["Naver"," 450"],
-            //       "value": 450,
-            //       "price": 45000,
-            //     }
-            //   ]}
               margin={{ top: 40, left: 20, right: 230, bottom: 80,  }}
               innerRadius={0.5}
               padAngle={0.7}
@@ -51,36 +42,15 @@ export default function PieChart({stockHold}){
                   ]
               }}
               enableArcLinkLabels={false}
-              //var stockData = stockHold.map((x) => ({name: x.name, label:[x.name, x.value], value: x.value, price: x.avgPrice}));
               fill={fillStock}
-            //   fill={[
-            //       {
-            //           match: {
-            //               id: 'Naver'
-            //           },
-
-            //       },
-            //       {
-            //           match: {
-            //               id: 'Kakao'
-            //           },
-
-            //       },
-            //       {
-            //           match: {
-            //               id: 'Samsung'
-            //           },
-
-            //       },
-            //   ]}
               legends={[
 
                   {    
                       anchor: 'right',
                       direction: 'column',
                       justify: false,
-                      translateX: 20,
-                      translateY: 70,
+                      translateX: 90,
+                      translateY: 10,
                       itemsSpacing: 10,
                       itemWidth: 80,
                       itemHeight: 18,
