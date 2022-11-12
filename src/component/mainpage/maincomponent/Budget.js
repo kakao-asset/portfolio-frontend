@@ -1,7 +1,7 @@
 import styles from "./css/Budget.module.css";
 import BudgetRow from "./row/BudgetRow";
 
-export default function Budget() {
+export default function Budget({stockHold}) {
     const myStocks = [
         {
             id: 1,
@@ -23,8 +23,8 @@ export default function Budget() {
     return (
         <div className={styles.box} style={{overflow: 'auto'}}>
             <div style={{marginTop: '80px', marginLeft: '20px'}}>
-                    {myStocks.map(budget => (
-                        <BudgetRow key={budget.id} budget={budget}></BudgetRow>
+                    {stockHold.map(budget => (
+                        <BudgetRow key={budget.name} budget={budget}></BudgetRow>
                     ))}
             </div>
         </div>

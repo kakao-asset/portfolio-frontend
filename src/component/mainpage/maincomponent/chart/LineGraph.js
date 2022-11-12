@@ -195,6 +195,7 @@ export default function LineGraph() {
             legendPosition: 'middle'
         }}
         axisLeft={{
+            color: 'white',
             orient: 'left',
             tickSize: 5,
             tickPadding: 5,
@@ -223,7 +224,7 @@ export default function LineGraph() {
                 itemDirection: 'left-to-right',
                 itemWidth: 80,
                 itemHeight: 20,
-                itemTextColor: '#999',
+                itemTextColor: '#FFFFFF',
                 itemOpacity: 0.75,
                 symbolSize: 12,
                 symbolShape: 'circle',
