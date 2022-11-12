@@ -3,19 +3,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from './component/loginpage/Login';
 import Main from './component/mainpage/Main';
 import MainSearch from './component/searchpage/MainSearch';
-import { useSelector } from 'react-redux';
-import { connect } from "react-redux";
-import { useEffect, useState } from 'react';
 import KakaoOauth from './component/loginpage/KakaoOauth';
 import TestComponent from './component/mainpage/maincomponent/TestComponent';
 import RankingTable from './component/mainpage/maincomponent/RankingTable';
 import RankingTest from './component/mainpage/maincomponent/RankingTest';
-// import Test from './component/loginpage/Test';
+
 
 function App() {
-
-
-
   return (
     <div className='App'>
     <BrowserRouter>
