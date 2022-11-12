@@ -5,6 +5,7 @@ import RankingTable from "./RankingTable";
 import { rankingColumn } from "./RankingColumn";
 import { rankingData } from "./RankingData";
 import RankingCustom from "./RankingCustom";
+import RankingTest from "./RankingTest";
 
 export default function Ranking(){
     // 등락률 버튼 제어
@@ -238,8 +239,9 @@ export default function Ranking(){
                    }}>{foreTradeisSort? 
                     <VscChevronUp></VscChevronUp> :
                     <VscChevronDown></VscChevronDown>}</button> */}
-            <RankingTable columns={rankingColumn} data={rankingData}></RankingTable>
-            <RankingCustom></RankingCustom>
+            {/* <RankingTable columns={rankingColumn} data={rankingData}></RankingTable> */}
+            <RankingTest></RankingTest>
+            <RankingCustom rankingColumn={rankingColumn} rankingData={rankingData}></RankingCustom>
             </div>
         </div>
     );

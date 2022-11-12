@@ -203,7 +203,7 @@ export default function LineGraph() {
             legendOffset: -40,
             legendPosition: 'middle',
         }}
-        colors={['#458542','#F2C94C','#1D4ED8']}
+        colors={{scheme: 'nivo'}}
         enableGridX={false}
         enableGridY={false}
         pointSize={1}

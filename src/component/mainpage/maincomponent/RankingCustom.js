@@ -124,7 +124,8 @@ export default function RankingCustom(){
            }}>외국인</button><VscChevronRight color="white"></VscChevronRight>
         </ul>
 
-        <Modal isOpen={flucRateisClick} onRequestClose={()=>flucRateOnIsClick(false)} 
+        <Modal isOpen={flucRateisClick && (!tradeVolisClick) && (!tradeAmountisClick) && (!marketCapisClick) && (!foreTradeisClick)} 
+        onRequestClose={()=>flucRateOnIsClick(false)} 
         style={{
             overlay: {
                 position: 'absolute',
@@ -133,7 +134,7 @@ export default function RankingCustom(){
             content: {
                 position: 'relative',
                 top: '1550px',
-                left: '78%',
+                left: '88%',
                 overflow: 'auto',
                 borderRadius: '4px',
                 width: '100px',
@@ -150,7 +151,8 @@ export default function RankingCustom(){
             <button onClick={flucRateSetIsClick} style={{marginLeft: '8px'}}>선택</button>
         </Modal>
 
-        <Modal isOpen={tradeVolisClick} onRequestClose={()=>tradeVolOnIsClick(false)} 
+        <Modal isOpen={tradeVolisClick && (!flucRateisClick) && (!tradeAmountisClick) && (!marketCapisClick) && (!foreTradeisClick)} 
+        onRequestClose={()=>tradeVolOnIsClick(false)} 
         style={{
             overlay: {
                 position: 'absolute',
@@ -159,7 +161,7 @@ export default function RankingCustom(){
             content: {
                 position: 'relative',
                 top: '1610px',
-                left: '78%',
+                left: '88%',
                 overflow: 'auto',
                 borderRadius: '4px',
                 width: '100px',
@@ -176,7 +178,8 @@ export default function RankingCustom(){
             <button onClick={tradeVolSetIsClick} style={{marginLeft: '8px'}}>선택</button>
         </Modal>
 
-        <Modal isOpen={tradeAmountisClick} onRequestClose={()=>tradeAmountOnIsClick(false)} 
+        <Modal isOpen={tradeAmountisClick && (!tradeVolisClick) && (!flucRateisClick) && (!marketCapisClick) && (!foreTradeisClick)} 
+        onRequestClose={()=>tradeAmountOnIsClick(false)} 
         style={{
             overlay: {
                 position: 'absolute',
@@ -184,8 +187,8 @@ export default function RankingCustom(){
             },
             content: {
                 position: 'relative',
-                top: '1680px',
-                left: '78%',
+                top: '1675px',
+                left: '88%',
                 overflow: 'auto',
                 borderRadius: '4px',
                 width: '100px',
@@ -202,7 +205,8 @@ export default function RankingCustom(){
             <button onClick={tradeAmountSetIsClick} style={{marginLeft: '8px'}}>선택</button>
         </Modal>
 
-        <Modal isOpen={marketCapisClick} onRequestClose={()=>marketCapOnIsClick(false)} 
+        <Modal isOpen={marketCapisClick && (!tradeVolisClick) && (!tradeAmountisClick) && (!flucRateisClick) && (!foreTradeisClick)} 
+        onRequestClose={()=>marketCapOnIsClick(false)} 
         style={{
             overlay: {
                 position: 'absolute',
@@ -211,7 +215,7 @@ export default function RankingCustom(){
             content: {
                 position: 'relative',
                 top: '1740px',
-                left: '78%',
+                left: '88%',
                 overflow: 'auto',
                 borderRadius: '4px',
                 width: '100px',
@@ -228,7 +232,8 @@ export default function RankingCustom(){
             <button onClick={marketCapSetIsClick} style={{marginLeft: '8px'}}>선택</button>
         </Modal>
 
-        <Modal isOpen={foreTradeisClick} onRequestClose={()=>foreTradeOnIsClick(false)} 
+        <Modal isOpen={foreTradeisClick && (!tradeVolisClick) && (!tradeAmountisClick) && (!marketCapisClick) && (!flucRateisClick)} 
+        onRequestClose={()=>foreTradeOnIsClick(false)} 
         style={{
             overlay: {
                 position: 'absolute',
@@ -237,7 +242,7 @@ export default function RankingCustom(){
             content: {
                 position: 'relative',
                 top: '1800px',
-                left: '78%',
+                left: '88%',
                 overflow: 'auto',
                 borderRadius: '4px',
                 width: '100px',

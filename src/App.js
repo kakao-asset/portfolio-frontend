@@ -8,6 +8,8 @@ import { connect } from "react-redux";
 import { useEffect, useState } from 'react';
 import KakaoOauth from './component/loginpage/KakaoOauth';
 import TestComponent from './component/mainpage/maincomponent/TestComponent';
+import RankingTable from './component/mainpage/maincomponent/RankingTable';
+import RankingTest from './component/mainpage/maincomponent/RankingTest';
 // import Test from './component/loginpage/Test';
 
 function App() {
@@ -24,6 +26,7 @@ function App() {
         <Route path="/oauth/kakao" element={<KakaoOauth/>}/>
         {/* <Route path="/test" element={<Test/>}/> */}
         <Route path="/testdata" element={<TestComponent/>}></Route>
+        <Route path="/table" element={<RankingTest/>}></Route>
       </Routes>
     </BrowserRouter>
     </div>

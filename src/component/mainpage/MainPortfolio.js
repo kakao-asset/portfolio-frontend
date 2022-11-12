@@ -5,14 +5,15 @@ import News from "./maincomponent/News";
 import Ranking from "./maincomponent/Ranking";
 import DropDown from "./maincomponent/row/DropDown";
 
-export default function MainPortfolio() {
+export default function MainPortfolio({stockHold}) {
+
     return (
         <div style={{marginLeft: '2%', marginRight: '2%', textAlign: 'left', }}>
             <div style={{marginTop: '10px'}}>
                 <h3 style={{color: 'white', paddingTop: '10px', marginLeft:'20px'}}>자산</h3>
             </div>
         <div style={{display: "flex"}}>
-            {<Portfolio></Portfolio>}
+            {<Portfolio stockHold={stockHold}></Portfolio>}
             {<Budget></Budget>}
         </div>
         <div style={{marginTop: '10px', display: 'flex'}}>
