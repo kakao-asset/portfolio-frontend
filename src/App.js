@@ -5,6 +5,8 @@ import Main from './component/mainpage/Main';
 import MainSearch from './component/searchpage/MainSearch';
 import KakaoOauth from './component/loginpage/KakaoOauth';
 import TestComponent from './component/mainpage/maincomponent/TestComponent';
+import RankingTable from './component/mainpage/maincomponent/RankingTable';
+import RankingTest from './component/mainpage/maincomponent/RankingTest';
 
 
 function App() {
