@@ -13,8 +13,8 @@ export default function MainPortfolio({stockHold}) {
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
     // 업종별 랭킹 란 선택 주식 데이터 가져오는 부분
-    var rankingStock = localStorage.getItem('rankingStock');
-    const rankingSeletedStock = JSON.parse(rankingStock);
+    // var rankingStock = localStorage.getItem('rankingStock');
+    // const rankingSeletedStock = JSON.parse(rankingStock);
 
     // 업종별 랭킹 란 선택 주식
     var selectedRankingStockName;
@@ -29,12 +29,14 @@ export default function MainPortfolio({stockHold}) {
         }
     }
 
+    selectedRankingStockName = stockHold[maxIndex];
+
     // 업종별 랭킹 란 선택 주식 데이터가 없을 시 보유 주식 중 가장 많이 가지고 있는 주식 이름으로
-    if (rankingSeletedStock.rankingTarget.name===''){
-        selectedRankingStockName = stockHold[maxIndex].name;
-    } else {
-        selectedRankingStockName = rankingSeletedStock.rankingTarget.name;
-    }
+    // if (rankingSeletedStock.rankingTarget.name===''){
+    //     selectedRankingStockName = stockHold[maxIndex].name;
+    // } else {
+    //     selectedRankingStockName = rankingSeletedStock.rankingTarget.name;
+    // }
     
 
     return (
@@ -71,7 +73,7 @@ export default function MainPortfolio({stockHold}) {
                     borderColor: '#1F1F1F',
                     border: '0px',
                     fontSize: '20px'   
-                    }}>{selectedRankingStockName}</button>
+                    }}>{/*selectedRankingStockName*/}</button>
                 <h3 style={{color: 'white', paddingTop: '10px', marginLeft:'10px', marginTop: '50px'}}>관련된 업종</h3>
 
                 {/* 업종별 랭킹 란 보유 주식 선택 모달 */}
@@ -102,7 +104,7 @@ export default function MainPortfolio({stockHold}) {
 
             {/* 업종별 랭킹 영역 */}
             {/* Ranking 컴포넌트에 업종별 랭킹 란 현재 선택된 주식 이름 props로 넘겨주기 */}
-            <Ranking selectedRankingStockName={selectedRankingStockName}></Ranking>
+            {/* <Ranking selectedRankingStockName={selectedRankingStockName}></Ranking> */}
         </div>
     );
 }
