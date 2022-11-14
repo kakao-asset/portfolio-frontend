@@ -114,7 +114,7 @@ import axios from "axios";
                 <div style={{display: 'flex', marginLeft: '30px'}}>
                     <BsCart4 size='20px' style={{color: '#D9D9D9', display: 'block', paddingTop: '12px'}}></BsCart4>
                     <span style={{color: 'white', paddingLeft: '30px', display: 'block', width: '150px', paddingTop: '10px'}}>{stockName}</span>
-                    <span style={{color: 'white', paddingLeft: '100px', display: 'block', paddingTop: '10px'}}>{(Math.ceil(stockAvgPrice/stockValue)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
+                    <span style={{color: 'white', paddingLeft: '100px', display: 'block', paddingTop: '10px'}}>{stockAvgPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
                     <button className={styles.sellButton} onClick={()=>setSellPopIsOpen(true)}>매도</button>
                     <button className={styles.buyButton} onClick={()=>setBuyPopIsOpen(true)}>매수</button>
 
