@@ -34,6 +34,9 @@ const LogoutButton = () => {
         top: '40px'}}>
          <AiOutlinePoweroff size='30px'></AiOutlinePoweroff>
     </button>);
+    </button>
+    
+    );
 };
 
 export default LogoutButton;
