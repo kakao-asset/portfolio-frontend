@@ -12,15 +12,16 @@ export default function KakaoOauth(){
         
         console.log(res);
         console.log(res.data);
-        const tokenData = res.data;
+        const tokenData = res.data.data.accessToken;
+        const userId = res.data.data.userId;
         
-        localStorage.setItem("token", JSON.stringify({tokenData}));    //예시로 로컬에 저장함    
+        localStorage.setItem("token", tokenData);    //예시로 로컬에 저장함 
+        localStorage.setItem("userId", userId);   
         console.log("로그인 성공")
         //history.replace("/main") // 토큰 받았았고 로그인됐으니 화면 전환시켜줌(메인으로)
         document.location.href = "/main"
 
-        }).catch((err) => {
-        console.log("소셜로그인 에러", err);
+    }).catch((err) => {
         console.log("소셜로그인 에러", err);
         window.alert("로그인에 실패하였습니다.");
 
