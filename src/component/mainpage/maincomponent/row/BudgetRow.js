@@ -75,7 +75,6 @@ import axios from "axios";
             }
             
             setSellPopIsOpen(false);
-            // window.location.reload(); <- 화면 갱신 부분, 현재는 주석 처리
             window.location.reload();
         }
 
@@ -108,7 +107,6 @@ import axios from "axios";
                     window.alert("매수 실패");
                 })
                 setBuyPopIsOpen(false);
-                // window.location.reload(); <- 화면 갱신 부분, 현재는 주석 처리
                 window.location.reload(); 
             }
         }
