@@ -43,7 +43,7 @@ import axios from "axios";
         // 여기 함수 내에 DB에 저장 요청 보내야 함
         // DB에 저장하면 stockHold도 변하므로 reload 해서 화면 갱신하기
         const setSellMemberStock = () => {
-            var userId = localStorage.getItem("userId");
+            var userId = JSON.parse(localStorage.getItem("userData")).userId;
             console.log("sellValue ==== ", sellValue);
             console.log("stockName ==== ", stockName);
     
@@ -82,7 +82,7 @@ import axios from "axios";
             if(buyPrice < 0 || buyValue < 0) {
                 window.alert("양수 값을 입력해주세요");
             } else {
-                var userId = localStorage.getItem("userId");
+                var userId = JSON.parse(localStorage.getItem("userData")).userId;
                 axios({
                     method: "POST",
                     url: `http://localhost:8080/api/stock/buy/${userId}`,

@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const UnlinkButton = () => {
     function unlink(){
-        var userId = localStorage.getItem('userId');
+        var userId = JSON.parse(localStorage.getItem("userData")).userId;
         axios({
             method: "DELETE",
             url: `http://localhost:8080/api/unlink/${userId}`

@@ -20,7 +20,7 @@ export default function Header() {
                     <LogoutButton></LogoutButton>
                     <UnlinkButton></UnlinkButton>
                     {/* 카카오 로그인 후 받아온 유저 프로필 사진 url */}
-                    <img alt="kaprofile" src="img/ka_user_profile.png" style={
+                    <img alt="kaprofile" src={JSON.parse(localStorage.getItem("userData")).profile} style={
                         {float: 'right',
                         position: 'absolute',
                         top: '30px',

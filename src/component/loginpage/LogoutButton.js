@@ -3,7 +3,7 @@ import axios from 'axios';
 const LogoutButton = () => {
 
     function logout(){
-        var userId = localStorage.getItem('userId');
+        var userId = JSON.parse(localStorage.getItem("userData")).userId;
         axios({
             method: "DELETE",
             url: `http://localhost:8080/api/logout/${userId}`

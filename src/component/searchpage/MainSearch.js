@@ -12,7 +12,7 @@ export default function MainSearch(){
     }]);
     
     var resStockData; var resData;
-    var userId = localStorage.getItem("userId");
+    var userId = JSON.parse(localStorage.getItem("userData")).userId;
 
     const test = async () => await axios({
             method: "GET",
