@@ -16,13 +16,13 @@ export default function Portfolio({stockHold}){
             <div className={styles.box}>
                 <div>
                     <div style={{height: "25px"}}></div>
-                    <p1 style={{marginLeft: '30px', color: "white"}}>자산구성</p1>
+                    <p style={{marginLeft: '30px', color: "white"}}>자산구성</p>
                 </div>
                     <div style={{display: 'flex'}}>
                         <PieChart stockHold={stockHold}></PieChart>
                         <div style={{width: '400px', height: '400px', overflow: 'auto'}}>
                         {stockHold.map(budget => (
-                        <PieAnchor key={budget.id} budget={budget}></PieAnchor>
+                        <PieAnchor key={budget.symbolCode} budget={budget}></PieAnchor>
                     ))}
                     </div>
                     </div>
@@ -31,7 +31,7 @@ export default function Portfolio({stockHold}){
                 <div style={{display: "flex"}}>
                     {/* 총 자산은 현재 보유 주식 실시간 데이터의 현재가 X 보유 개수 */}
                     {/* 지금은 보유 주식 평단가 X 보유 개수로 계산 */}
-                    <p1 style={{marginLeft: '30px', color: "white", paddingTop: "53px"}}>총 자산</p1>
+                    <p style={{marginLeft: '30px', color: "white", paddingTop: "53px"}}>총 자산</p>
                     <h3 style={{marginLeft: '5%', color: "white", paddingTop: "30px", paddingBottom: "30px"}}>{totalAsset.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</h3>
                 </div>
             </div>

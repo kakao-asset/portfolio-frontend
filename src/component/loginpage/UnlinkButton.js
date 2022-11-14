@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { AiOutlineUserDelete } from "react-icons/ai";
 
 const UnlinkButton = () => {
     function unlink(){
@@ -21,7 +22,11 @@ const UnlinkButton = () => {
     
     return(
     <button onClick={unlink}>
-         회원탈퇴
+        <div>
+            <AiOutlineUserDelete size='30px'></AiOutlineUserDelete>
+        </div>
+         
+         
     </button>);
 };
 

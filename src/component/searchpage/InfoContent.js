@@ -8,6 +8,8 @@ import axios from "axios";
         const stockName = stockInfo.name;
         const stockAvgPrice = budget.avgPrice;
         const stockValue = budget.value;
+        const stockSymbolCode = stockInfo.symbolCode;
+        const stockSectorCode = stockInfo.sectorCode;
 
         // 매도 버튼 모달 관리
         const [SellPopIsOpen, setSellPopIsOpen] = useState(false);
@@ -44,14 +46,14 @@ import axios from "axios";
             var userId = JSON.parse(localStorage.getItem("userData")).userId;
             console.log("sellValue ==== ", sellValue);
             console.log("stockName ==== ", stockName);
-            var sectorCode = "ss";
+        
             if(sellPrice < 0 || sellValue < 0) {
                 window.alert("양수 값을 입력해주세요");
             } else {
                 axios({
                     method: "POST",
                     url: `http://localhost:8080/api/stock/sell/${userId}`,
-                    data: {"price" : sellPrice, "quantity": sellValue, "stockName": stockName, "stockCode": "test", "sectorCode": "test"},
+                    data: {"price" : sellPrice, "quantity": sellValue, "stockName": stockName, "stockCode": stockSymbolCode, "sectorCode": stockSectorCode},
                     headers: {
                         "Content-Type" : "application/json; charset=utf-8"
                     }, 
@@ -84,7 +86,7 @@ import axios from "axios";
                 axios({
                     method: "POST",
                     url: `http://localhost:8080/api/stock/buy/${userId}`,
-                    data: {"price" : buyPrice, "quantity": buyValue, "stockName": stockName, "stockCode": "test", "sectorCode": "test"},
+                    data: {"price" : buyPrice, "quantity": buyValue, "stockName": stockName, "stockCode": stockSymbolCode, "sectorCode": stockSectorCode},
                     headers: {
                         "Content-Type" : "application/json; charset=utf-8"
                     }, 

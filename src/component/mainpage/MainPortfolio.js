@@ -17,7 +17,7 @@ export default function MainPortfolio({stockHold}) {
     // const rankingSeletedStock = JSON.parse(rankingStock);
 
     // 업종별 랭킹 란 선택 주식
-    var selectedRankingStockName = "";
+    var selectedRankingStock = "";
 
     // 보유 주식 중 가장 많이 가지고 있는 주식 찾는 부분
     var maxIndex = 0;
@@ -31,7 +31,23 @@ export default function MainPortfolio({stockHold}) {
             }
         }
 
-        selectedRankingStockName = stockHold[maxIndex].name;
+        selectedRankingStock = stockHold[maxIndex];
+    }
+
+    for(var i=0;i<localStorage.length;i++){
+        const key = localStorage.key(i);
+
+        if (key == 'rankingStock') {
+            var rankingStock = localStorage.getItem('rankingStock');
+            const rankingSeletedStock = JSON.parse(rankingStock);
+
+            for (var i=0; i<stockHold.length; i++) {
+                if (rankingSeletedStock.rankingTarget.name == stockHold[i].name) {
+                    selectedRankingStock = rankingSeletedStock.rankingTarget;
+                }
+            }
+           
+        }
     }
 
     
@@ -80,7 +96,7 @@ export default function MainPortfolio({stockHold}) {
                     fontSize: '20px',
                     borderBottom: '0.5px solid', 
                     color: "#d2d2d2"  
-                    }}>{selectedRankingStockName}</button>
+                    }}>{selectedRankingStock.name}</button>
                 <h3 style={{color: 'white', paddingTop: '10px', marginLeft:'10px', marginTop: '50px'}}>관련된 업종</h3>
 
                 {/* 업종별 랭킹 란 보유 주식 선택 모달 */}
@@ -92,7 +108,7 @@ export default function MainPortfolio({stockHold}) {
                     },
                     content: {
                         position: 'relative',
-                        top: '1310px',
+                        top: '1350px',
                         left: '30px',
                         overflow: 'auto',
                         borderRadius: '4px',
@@ -111,7 +127,7 @@ export default function MainPortfolio({stockHold}) {
 
             {/* 업종별 랭킹 영역 */}
             {/* Ranking 컴포넌트에 업종별 랭킹 란 현재 선택된 주식 이름 props로 넘겨주기 */}
-            <Ranking selectedRankingStockName={selectedRankingStockName}></Ranking>
+            <Ranking selectedRankingStock={selectedRankingStock}></Ranking>
         </div>
     );
 }

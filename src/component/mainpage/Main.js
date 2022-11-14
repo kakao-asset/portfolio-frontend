@@ -21,8 +21,6 @@ export default function Main() {
         })
         .then((res) => {
             resData = res.data.data;
-            console.log("main.js ::: ")
-            resData.map((x) => console.log(x.stockName));
             resStockData = resData.map((x) => ({name: x.stockName, value: x.quantity, avgPrice: x.avgPrice, symbolCode: x.stockCode, sectorCode: x.sectorCode}));
             setStockHold(resStockData);
         }).catch((err) => {

@@ -4,7 +4,7 @@ export default function CommentRow({comment}){
     return (
         <>
             <div className={styles.div}>
-                <p1 style={{color: 'white'}}>#{stockName}</p1>
+                <p style={{color: 'white'}}>#{stockName}</p>
             </div>
         </>
     );

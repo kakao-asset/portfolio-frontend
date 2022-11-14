@@ -4,7 +4,7 @@ import RankingTest from "./RankingTable";
 import { rankingColumn } from './RankingColumn';
 import { rankingData } from './RankingData';
 
-export default function Ranking({selectedRankingStockName}){
+export default function Ranking({selectedRankingStock}){
     // ----------------서버에 요청--------------------
     // selectedRankingStockName의 업종으로 쿼리 날리기 (<-그럼 처음에 stockHold에서 업종 코드도 함께)
     // OR 이름 값만 보내면 백엔드에서 그 이름에 해당하는 업종별 데이터 찾아서 보내주기
@@ -22,10 +22,12 @@ export default function Ranking({selectedRankingStockName}){
     //     foreignRatio: "55%"
 
     // } 
+
+    const selectedSectorCode = selectedRankingStock.sectorCode;
     
     return(
         <div className={styles.box} style={{marginTop: '20px'}}>
-            <h3 style={{color: 'white', paddingTop: '40px', paddingLeft: '40px'}}>전기 전자</h3>
+            <h3 style={{color: 'white', paddingTop: '40px', paddingLeft: '40px'}}>{selectedSectorCode}</h3>
             <div style={{display: 'flex', paddingTop: '20px', paddingLeft: '110px'}}>
             <RankingTest rankingColumn={rankingColumn} rankingData={rankingData}></RankingTest>
             <RankingCustom></RankingCustom>
