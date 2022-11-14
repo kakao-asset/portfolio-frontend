@@ -9,6 +9,8 @@ export default function MainSearch(){
         name: "",
         value: "",
         avgPrice: "",
+        symbolCode: "",
+        stockCode: "",
     }]);
     
     var resStockData; var resData;

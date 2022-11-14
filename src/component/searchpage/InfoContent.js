@@ -51,7 +51,7 @@ import axios from "axios";
                 axios({
                     method: "POST",
                     url: `http://localhost:8080/api/stock/sell/${userId}`,
-                    data: {"price" : sellPrice, "quantity": sellValue, "stockCode": stockName},
+                    data: {"price" : sellPrice, "quantity": sellValue, "stockName": stockName, "stockCode": "test", "sectorCode": "test"},
                     headers: {
                         "Content-Type" : "application/json; charset=utf-8"
                     }, 
@@ -84,7 +84,7 @@ import axios from "axios";
                 axios({
                     method: "POST",
                     url: `http://localhost:8080/api/stock/buy/${userId}`,
-                    data: {"price" : buyPrice, "quantity": buyValue, "stockCode": stockName},
+                    data: {"price" : buyPrice, "quantity": buyValue, "stockName": stockName, "stockCode": "test", "sectorCode": "test"},
                     headers: {
                         "Content-Type" : "application/json; charset=utf-8"
                     }, 

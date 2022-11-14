@@ -22,7 +22,7 @@ export default function Ranking({selectedRankingStockName}){
     //     foreignRatio: "55%"
 
     // } 
-
+    
     return(
         <div className={styles.box}>
             <h3 style={{color: 'white', paddingTop: '40px', paddingLeft: '40px'}}>전기 전자</h3>

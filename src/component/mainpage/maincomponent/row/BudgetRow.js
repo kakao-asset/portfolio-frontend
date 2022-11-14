@@ -53,7 +53,7 @@ import axios from "axios";
                 axios({
                     method: "POST",
                     url: `http://localhost:8080/api/stock/sell/${userId}`,
-                    data: {"price" : sellPrice, "quantity": sellValue, "stockCode": stockName},
+                    data: {"price" : sellPrice, "quantity": sellValue, "stockName": stockName, "stockCode": "test", "sectorCode": "test"},
                     headers: {
                         "Content-Type" : "application/json; charset=utf-8"
                     }, 
@@ -77,8 +77,10 @@ import axios from "axios";
         }
 
         const setBuyMemberStock = () => {
-            //buyValue = buyValue == ""? 100 : buyValue;
-            console.log(buyPrice, buyValue );
+            
+            console.log(stockName , "stockName  : : :: ")
+            
+            
             if(buyPrice < 0 || buyValue < 0) {
                 window.alert("양수 값을 입력해주세요");
             } else {
@@ -86,7 +88,7 @@ import axios from "axios";
                 axios({
                     method: "POST",
                     url: `http://localhost:8080/api/stock/buy/${userId}`,
-                    data: {"price" : buyPrice, "quantity": buyValue, "stockCode": stockName},
+                    data: {"price" : buyPrice, "quantity": buyValue, "stockName": stockName, "stockCode": "test", "sectorCode": "test"},
                     headers: {
                         "Content-Type" : "application/json; charset=utf-8"
                     }, 

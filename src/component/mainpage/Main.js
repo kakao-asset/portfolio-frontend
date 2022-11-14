@@ -4,11 +4,12 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 export default function Main() {
-    
     const [stockHold, setStockHold] = useState([{
         name: "",
         value: "",
         avgPrice: "",
+        sectorCode: "",
+        symbolCode: ""
     }]);
     
     var resStockData; var resData;
@@ -20,7 +21,9 @@ export default function Main() {
         })
         .then((res) => {
             resData = res.data.data;
-            resStockData = resData.map((x) => ({name: x.stockCode, value: x.quantity, avgPrice: x.avgPrice}));
+            console.log("main.js ::: ")
+            resData.map((x) => console.log(x.stockName));
+            resStockData = resData.map((x) => ({name: x.stockName, value: x.quantity, avgPrice: x.avgPrice, symbolCode: x.stockCode, sectorCode: x.sectorCode}));
             setStockHold(resStockData);
         }).catch((err) => {
             console.log("use_stock 데이터 에러", err);
