@@ -53,7 +53,7 @@ import axios from "axios";
                 axios({
                     method: "POST",
                     url: `http://localhost:8080/api/stock/sell/${userId}`,
-                    data: {"price" : sellPrice, "quantity": sellValue, "stockName": stockName, "stockCode": "test", "sectorCode": "test"},
+                    data: {"price" : sellPrice, "quantity": sellValue, "stockName": stockName, "stockCode": stockSymbolCode, "sectorCode": stockSectorCode},
                     headers: {
                         "Content-Type" : "application/json; charset=utf-8"
                     }, 
@@ -74,6 +74,7 @@ import axios from "axios";
             
             setSellPopIsOpen(false);
             // window.location.reload(); <- 화면 갱신 부분, 현재는 주석 처리
+            window.location.reload();
         }
 
         const setBuyMemberStock = () => {
@@ -88,7 +89,7 @@ import axios from "axios";
                 axios({
                     method: "POST",
                     url: `http://localhost:8080/api/stock/buy/${userId}`,
-                    data: {"price" : buyPrice, "quantity": buyValue, "stockName": stockName, "stockCode": "test", "sectorCode": "test"},
+                    data: {"price" : buyPrice, "quantity": buyValue, "stockName": stockName, "stockCode": stockSymbolCode, "sectorCode": stockSectorCode},
                     headers: {
                         "Content-Type" : "application/json; charset=utf-8"
                     }, 
@@ -106,6 +107,7 @@ import axios from "axios";
                 })
                 setBuyPopIsOpen(false);
                 // window.location.reload(); <- 화면 갱신 부분, 현재는 주석 처리
+                window.location.reload(); 
             }
         }
 
