@@ -15,7 +15,11 @@ export default function Login() {
             <div style={{display: 'flex'}}>
                 <div className={styles.leftBox}>
                     <img className="kaLogo" src="img/ka_logo_s.png" alt="kaLogo" style={
-                        {paddingTop: '15%', paddingRight: '10%'}}></img>
+                        {paddingTop: '15%'}}></img>
+                    
+                    <img src="img/ka_login_page_img.png" alt="ka_login_page_img_1"
+                    style={{width: '850px'}}
+                    ></img>
                 </div>
                 <div className={styles.rightBox}>
                     <div>

@@ -2,9 +2,9 @@
 	width: 800px;
 	height: 750px;
     position: absolute;
-    top: 50%;
-    left: 35%;
-    transform: translate(-50%,-50%);
+    top: 100px;
+    left: 200px;
+    /* transform: translate(-50%,-50%); */
     background-color: #9B51E0;
 }
 
@@ -12,8 +12,8 @@
 	width: 700px;
 	height: 750px;
     position: absolute;
-    top: 50%;
-    left: 70%;
-    transform: translate(-50%,-50%);
+    top: 100px;
+    left: 1000px;
+    /* transform: translate(-50%,-50%); */
     background-color: #FFFFFF;
 }
