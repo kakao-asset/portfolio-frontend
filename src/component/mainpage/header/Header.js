@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import Searchbar from "./Searchbar";
-
+import LogoutButton from "../../loginpage/LogoutButton";
+import UnlinkButton
+ from "../../loginpage/UnlinkButton";
 export default function Header() {
     // 헤더 로고 영역 클릭 시 메인 페이지로 이동 
     const navigate = useNavigate();
@@ -15,7 +17,8 @@ export default function Header() {
                 </div>
                 <div style={{marginRight: '10px', display: 'flex', width: '20%'}}>
                     <Searchbar></Searchbar>
-
+                    <LogoutButton></LogoutButton>
+                    <UnlinkButton></UnlinkButton>
                     {/* 카카오 로그인 후 받아온 유저 프로필 사진 url */}
                     <img alt="kaprofile" src="img/ka_user_profile.png" style={
                         {float: 'right',

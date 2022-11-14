@@ -13,28 +13,33 @@ export default function MainPortfolio({stockHold}) {
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
     // 업종별 랭킹 란 선택 주식 데이터 가져오는 부분
-    var rankingStock = localStorage.getItem('rankingStock');
-    const rankingSeletedStock = JSON.parse(rankingStock);
+    // var rankingStock = localStorage.getItem('rankingStock');
+    // const rankingSeletedStock = JSON.parse(rankingStock);
 
     // 업종별 랭킹 란 선택 주식
-    var selectedRankingStockName;
+    var selectedRankingStockName = "";
 
     // 보유 주식 중 가장 많이 가지고 있는 주식 찾는 부분
     var maxIndex = 0;
-    var maxValue = stockHold[0].value;
-    for(var i=1; i<stockHold.length; i++){
-        if(maxValue<stockHold[i].value){
-            maxValue=stockHold[i].value;
-            maxIndex=i;
+
+    if (stockHold.length > 0) {
+        var maxValue = stockHold[0].value;
+        for(var i=1; i<stockHold.length; i++){
+            if(maxValue<stockHold[i].value){
+                maxValue=stockHold[i].value;
+                maxIndex=i;
+            }
         }
+
+        selectedRankingStockName = stockHold[maxIndex].name;
     }
 
     // 업종별 랭킹 란 선택 주식 데이터가 없을 시 보유 주식 중 가장 많이 가지고 있는 주식 이름으로
-    if (rankingSeletedStock.rankingTarget.name===''){
-        selectedRankingStockName = stockHold[maxIndex].name;
-    } else {
-        selectedRankingStockName = rankingSeletedStock.rankingTarget.name;
-    }
+    // if (rankingSeletedStock.rankingTarget.name===''){
+    //     selectedRankingStockName = stockHold[maxIndex].name;
+    // } else {
+    //     selectedRankingStockName = rankingSeletedStock.rankingTarget.name;
+    // }
     
 
     return (
