@@ -2,6 +2,7 @@ import styles from "./css/Login.module.css"
 import { Route, useNavigate } from "react-router-dom";
 import KakaoLoginButton from "./KakaoLoginButton";
 
+
 export default function Login() {
     const navigate = useNavigate();
     const navigateToMain = () => {

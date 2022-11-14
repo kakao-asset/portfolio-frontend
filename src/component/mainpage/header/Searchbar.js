@@ -28,7 +28,7 @@ export default function Searchbar() {
                 backgroundPosition: 'left',
                 position: 'absolute',
                 top: '40px',
-                left: '70%',
+                left: '1300px',
                 bottom: '5px',
                 color: 'white'
             }}></input>
@@ -43,7 +43,7 @@ export default function Searchbar() {
                     content: {
                         position: 'relative',
                         top: '40px',
-                        left: '1095px',
+                        left: '1080px',
                         overflow: 'auto',
                         borderRadius: '4px',
                         width: '600px',
