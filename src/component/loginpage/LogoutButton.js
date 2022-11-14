@@ -22,8 +22,6 @@ const LogoutButton = () => {
     }
     
     return(
-    <button onClick={logout}>
-         로그아웃
     <button onClick={logout} style={{
         color: 'white', 
         backgroundColor: '#1F1F1F', 
@@ -33,7 +31,6 @@ const LogoutButton = () => {
         left: '1790px', 
         top: '40px'}}>
          <AiOutlinePoweroff size='30px'></AiOutlinePoweroff>
-    </button>);
     </button>
     
     );
