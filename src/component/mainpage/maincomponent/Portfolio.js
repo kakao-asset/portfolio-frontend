@@ -20,7 +20,7 @@ export default function Portfolio({stockHold}){
                 </div>
                     <div style={{display: 'flex'}}>
                         <PieChart stockHold={stockHold}></PieChart>
-                        <div>
+                        <div style={{width: '400px', height: '400px', overflow: 'auto'}}>
                         {stockHold.map(budget => (
                         <PieAnchor key={budget.id} budget={budget}></PieAnchor>
                     ))}

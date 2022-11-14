@@ -77,7 +77,9 @@ export default function MainPortfolio({stockHold}) {
                     paddingBottom: '10px',
                     borderColor: '#1F1F1F',
                     border: '0px',
-                    fontSize: '20px'   
+                    fontSize: '20px',
+                    borderBottom: '0.5px solid', 
+                    color: "#d2d2d2"  
                     }}>{selectedRankingStockName}</button>
                 <h3 style={{color: 'white', paddingTop: '10px', marginLeft:'10px', marginTop: '50px'}}>관련된 업종</h3>
 

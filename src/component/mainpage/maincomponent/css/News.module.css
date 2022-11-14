@@ -1,6 +1,6 @@
 .box {
     background-color: #2F3138;
-    width: 40%;
+    width: 800px;
     overflow: auto;
-    height: fit-content;
+    height: 420px;
 }
