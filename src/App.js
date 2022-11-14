@@ -6,7 +6,6 @@ import MainSearch from './component/searchpage/MainSearch';
 import KakaoOauth from './component/loginpage/KakaoOauth';
 import TestComponent from './component/mainpage/maincomponent/TestComponent';
 
-
 function App() {
   return (
     <div className='App'>

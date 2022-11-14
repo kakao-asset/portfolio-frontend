@@ -17,16 +17,21 @@ export default function MainPortfolio({stockHold}) {
     // const rankingSeletedStock = JSON.parse(rankingStock);
 
     // 업종별 랭킹 란 선택 주식
-    var selectedRankingStockName;
+    var selectedRankingStockName = "";
 
     // 보유 주식 중 가장 많이 가지고 있는 주식 찾는 부분
     var maxIndex = 0;
-    var maxValue = stockHold[0].value;
-    for(var i=1; i<stockHold.length; i++){
-        if(maxValue<stockHold[i].value){
-            maxValue=stockHold[i].value;
-            maxIndex=i;
+
+    if (stockHold.length > 0) {
+        var maxValue = stockHold[0].value;
+        for(var i=1; i<stockHold.length; i++){
+            if(maxValue<stockHold[i].value){
+                maxValue=stockHold[i].value;
+                maxIndex=i;
+            }
         }
+
+        selectedRankingStockName = stockHold[maxIndex].name;
     }
 
     selectedRankingStockName = stockHold[maxIndex];
