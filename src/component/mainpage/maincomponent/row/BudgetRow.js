@@ -10,6 +10,8 @@ import axios from "axios";
         const stockName = budget.name;
         const stockAvgPrice = budget.avgPrice;
         const stockValue = budget.value;
+        const stockSymbolCode = budget.symbolCode;
+        const stockSectorCode = budget.sectorCode;
 
         // 매도 버튼 모달 관리
         const [SellPopIsOpen, setSellPopIsOpen] = useState(false);
