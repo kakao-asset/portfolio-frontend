@@ -24,7 +24,7 @@ export default function Ranking({selectedRankingStockName}){
     // } 
 
     return(
-        <div className={styles.box}>
+        <div className={styles.box} style={{marginTop: '20px'}}>
             <h3 style={{color: 'white', paddingTop: '40px', paddingLeft: '40px'}}>전기 전자</h3>
             <div style={{display: 'flex', paddingTop: '20px', paddingLeft: '110px'}}>
             <RankingTest rankingColumn={rankingColumn} rankingData={rankingData}></RankingTest>
