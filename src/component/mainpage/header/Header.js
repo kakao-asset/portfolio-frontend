@@ -45,7 +45,7 @@ export default function Header() {
                                 content: {
                                     position: 'relative',
                                     top: '100px',
-                                    left: '1730px',
+                                    left: '1710px',
                                     borderRadius: '4px',
                                     width: 'fit-content',
                                     height: 'fit-content',
