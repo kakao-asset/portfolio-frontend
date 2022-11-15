@@ -70,7 +70,7 @@ export default function News({stockCode}) {
         <div className={styles.box}>
             <div>
                     {articles.map(article => (
-                        <NewsRow key={article.id} article={article}></NewsRow>
+                        <NewsRow key={article.newsId} article={article}></NewsRow>
                     ))}
             </div>
         </div>
