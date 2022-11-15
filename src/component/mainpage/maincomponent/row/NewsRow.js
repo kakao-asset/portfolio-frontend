@@ -3,13 +3,12 @@ import React from "react";
         const title = article.title;
         const desc = article.summary;
         const thumbnail = article.imageUrl;
-        console.log(article);
         return (
             <div style={{marginTop: '40px', marginBotton: '20px'}}>
                 <ul>
                 <div style={{display: 'flex'}}>
                 <div>
-                    <img src="img/ka_article_img.png" style={{float: 'left'}}></img>
+                    <img src={thumbnail} style={{float: 'left'}}></img>
                 </div>
                 <div style={{display: 'column'}}>
                     <ul>
