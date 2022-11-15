@@ -38,7 +38,10 @@ export default function News({stockCode}) {
             console.log("데이터 받아오기 에러", err);
         })
     }
-    getNews();
+
+    useEffect(()=> {
+        getNews();
+    }, [stockCode]);
 
     // const articles = [
     //     {
