@@ -39,9 +39,6 @@ export default function News({stockCode}) {
         })
     }
     getNews();
-    useEffect(() => {
-        getNews();
-    }, []);
 
     // const articles = [
     //     {
