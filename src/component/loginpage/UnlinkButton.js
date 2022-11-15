@@ -6,7 +6,7 @@ const UnlinkButton = () => {
         var userId = JSON.parse(localStorage.getItem("userData")).userId;
         axios({
             method: "DELETE",
-            url: `http://localhost:8080/api/unlink/${userId}`
+            url: `${process.env.REACT_APP_BACKEND_URI}/api/unlink/${userId}`
         })
         .then((res) => {
             window.alert("연결끊기");

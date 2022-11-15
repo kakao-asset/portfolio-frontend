@@ -7,7 +7,7 @@ const LogoutButton = () => {
         var userId = JSON.parse(localStorage.getItem("userData")).userId;
         axios({
             method: "DELETE",
-            url: `http://localhost:8080/api/logout/${userId}`
+            url: `${process.env.REACT_APP_BACKEND_URI}/api/logout/${userId}`
         })
         .then((res) => {
             
