@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./css/InfoContent.module.css"
 import Modal from 'react-modal';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
     export default function InfoContent  ({budget, stockInfo})  {
@@ -11,6 +11,8 @@ import axios from "axios";
         const stockSymbolCode = stockInfo.symbolCode;
         const stockSectorCode = stockInfo.sectorCode;
 
+        console.log("stockInfo:::", stockInfo);
+        
         // 매도 버튼 모달 관리
         const [SellPopIsOpen, setSellPopIsOpen] = useState(false);
 
@@ -23,14 +25,11 @@ import axios from "axios";
         const [sellPrice, setSellPrice] = useState("");
         const [buyValue, setBuyValue] = useState("");
         const [buyPrice, setBuyPrice] = useState("");
-        
+
         const [sellName, setSellName] = useState("");
 
         const onSellChange = (e) => {
             setSellValue(e.target.value);
-        }
-        const onSellPriceChange = (e) => {
-            setSellPrice(e.target.value);
         }
         const onBuyChange = (e) => {
             setBuyValue(e.target.value);
@@ -107,15 +106,52 @@ import axios from "axios";
             }
         }
 
+
+        const[current2, setCurrent2] = useState({});
+
+        function getRealtimeData(){
+            // window.alert("ssss")
+            // axios({
+            //     method: "get",
+            //     url: `${process.env.REACT_APP_BACKEND_URI}/main/realtime/?stock_name=${stockSymbolCode}`,
+            //     headers: {"Access-Control-Allow-Origin": "*"},
+            //     responseEncoding: 'binary'
+            // })
+            // .then((res) => {
+            //     var result = res.data;
+            //     console.log(result)
+            //     var len = result.length == 0? 0 : result.length-1;
+            //     var data = result[len].tradePrice;
+            //     setCurrent2(data)
+
+            //     console.log(data);
+            // }).catch((err) => {
+            //     console.log("데이터 받아오기 에러", err);
+            // })
+        }
+
+        // useEffect(()=>{console.log("wpqkf");
+        //     getRealtimeData();
+        //     const interval = setInterval(()=>{
+        //         getRealtimeData();
+        //     }, 50000)
+        // },[stockSymbolCode])
+
+
+        var current = 1234;
+        console.log("-----------------------");
+        console.log(current);
+        console.log(typeof(current.tradePrice))
         // 현재가
-        const currentPrice = stockInfo.tradePrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        
-        var c = Number(stockInfo.tradePrice);
-        var o = Number(stockInfo.prevClosingPrice); 
+        // const currentPrice = current.tradePrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        // console.log("current: ",current);
+
+        var c = Number(current.tradePrice);
+        var o = Number(current.prevClosingPrice); 
 
         return (
             <div style={{display: 'flex', marginLeft: '50px'}}>
-                <p style={{color: 'white', fontSize: '35px'}}>{currentPrice}원</p>
+                <p style={{color: 'white', fontSize: '35px'}}>{current.tradePrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</p>
                 <div style={{ marginLeft: '20px', marginTop: '40px', marginRight: '80px'}}>
                     <span style={{color: 'white', paddingLeft: '20px', display: 'block', fontSize: '15px'}}>전일 대비</span>
                     <span style={{color: '#FF5981', paddingLeft: '20px', display: 'block',fontSize: '18px'}}>{(c-o).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원 
@@ -210,8 +246,6 @@ import axios from "axios";
                                         }}>매수</button>
                         
                     </Modal>
-
             </div>
-
         );
     }

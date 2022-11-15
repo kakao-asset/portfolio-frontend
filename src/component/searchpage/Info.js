@@ -13,7 +13,6 @@ export default function Info({stockHold}){
     // 로컬 스토리지에 저장되어 있는 searchStock 데이터 가져옴
     var searchStock = localStorage.getItem('searchStock');
     const detailStock = JSON.parse(searchStock);
-
     // ----------------서버에 요청--------------------
     // detailStock.searchTarget.symbolCode 로 쿼리 날리고 해당하는 정보 받아오기
 
@@ -21,7 +20,6 @@ export default function Info({stockHold}){
 
     // 임시 데이터 목록에서 같은 값 찾는 부분
     var index = TestStockData.findIndex(i => i.symbolCode === detailStock.searchTarget.symbolCode);
-
 
     // 같은 값 => selectedStock 을 Info의 Header, Content, LineGraph, List에 props로 전달
     // 수정하면 실시간 데이터 정보 들어가는 변수
@@ -33,7 +31,7 @@ export default function Info({stockHold}){
                 <div style={{display: 'flex'}}>
                     <InfoHeader stockInfo={selectedStock}></InfoHeader>
                 </div>
-                    <InfoContent budget={stockHold} stockInfo={selectedStock}></InfoContent>
+                    {/* <InfoContent budget={stockHold} stockInfo={selectedStock}></InfoContent> */}
                     <InfoLineGraph></InfoLineGraph>
                     <InfoList stockInfo={selectedStock}></InfoList>
             </div>

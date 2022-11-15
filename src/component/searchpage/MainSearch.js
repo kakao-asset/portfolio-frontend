@@ -16,7 +16,9 @@ export default function MainSearch(){
     var resStockData; var resData;
     var userId = JSON.parse(localStorage.getItem("userData")).userId;
 
-    const test = async () => await axios({
+
+    function getStockHold(){
+        axios({
             method: "GET",
             url: `${process.env.REACT_APP_BACKEND_URI}/api/stock/${userId}`
         })
@@ -27,17 +29,16 @@ export default function MainSearch(){
         }).catch((err) => {
             console.log("use_stock 데이터 에러", err);
         })
-
+    }
     useEffect(() => {
-        test();
-    }, []);
+        getStockHold();
+    }, [userId]);
     
-    return (       
-        <div>            
-            <Header>
-            </Header>
-            <Info stockHold={stockHold}>
-            </Info>
+    return (
+        <div>
+            <h1>hello</h1>             
+            <Header></Header>
+            <Info stockHold={stockHold}></Info>
         </div>
     );
 }
