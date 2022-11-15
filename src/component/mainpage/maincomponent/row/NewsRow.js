@@ -1,9 +1,9 @@
 import React from "react";
     export default function NewsRow  ({article})  {
         const title = article.title;
-        const desc = article.desc;
-        const thumbnail = article.thumbnail;
-
+        const desc = article.summary;
+        const thumbnail = article.imageUrl;
+        console.log(article);
         return (
             <div style={{marginTop: '40px', marginBotton: '20px'}}>
                 <ul>

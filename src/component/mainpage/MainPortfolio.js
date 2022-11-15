@@ -81,7 +81,7 @@ export default function MainPortfolio({stockHold, current}) {
             {<ProfitLoss></ProfitLoss>}
 
             {/* 보유 주식 관련 뉴스 영역 */}
-            {<News stockHold={stockHold}></News>}
+            {<News stockCode={selectedRankingStock['symbolCode']}></News>}
         </div>
             <div style={{display: 'flex'}}>
                 {/* 업종별 랭킹 관련 선택 주식이 없을 시 보유 주식 수가 가장 많은 주식과 관련된 업종을 디폴트로 보여줌 */}
