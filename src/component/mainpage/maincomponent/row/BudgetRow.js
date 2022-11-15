@@ -53,8 +53,8 @@ import axios from "axios";
             .then((res) => {
                 var result = res.data;
                 console.log(result)
-                //var result_len = result.length;
-                var data = result[0].tradePrice;
+                var len = result.length;
+                var data = result[len-1].tradePrice;
                 setCurrent(data)
 
                 console.log(data);
@@ -67,7 +67,7 @@ import axios from "axios";
             getRealtimeData();
             const interval = setInterval(()=>{
                 getRealtimeData();
-            }, 20000)
+            }, 50000)
         },[])
 
         // 매도 매수 버튼 클릭 시 호출되는 함수
