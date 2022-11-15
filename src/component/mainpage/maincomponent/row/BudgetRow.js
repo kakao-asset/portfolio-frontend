@@ -53,8 +53,8 @@ import axios from "axios";
             .then((res) => {
                 var result = res.data;
                 console.log(result)
-                var len = result.length == 0? 0 : result.length-1;
-                var data = result[len].tradePrice;
+                var len = result.length;
+                var data = result[len-1].tradePrice;
                 setCurrent(data)
 
                 console.log(data);
