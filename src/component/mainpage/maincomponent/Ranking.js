@@ -1,6 +1,6 @@
 import styles from "./css/Ranking.module.css";
 import RankingCustom from "./RankingCustom";
-import RankingTest from "./RankingTable";
+import RankingTable from "./RankingTable";
 import { rankingColumn } from './RankingColumn';
 import { rankingData } from './RankingData';
 
@@ -29,7 +29,7 @@ export default function Ranking({selectedRankingStock}){
         <div className={styles.box} style={{marginTop: '20px'}}>
             <h3 style={{color: 'white', paddingTop: '40px', paddingLeft: '40px'}}>{selectedSectorCode}</h3>
             <div style={{display: 'flex', paddingTop: '20px', paddingLeft: '110px'}}>
-            <RankingTest rankingColumn={rankingColumn} rankingData={rankingData}></RankingTest>
+            <RankingTable rankingColumn={rankingColumn} rankingData={rankingData}></RankingTable>
             <RankingCustom></RankingCustom>
             </div>
         </div>

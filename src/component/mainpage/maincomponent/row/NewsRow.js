@@ -1,19 +1,25 @@
 import React from "react";
+
     export default function NewsRow  ({article})  {
         const title = article.title;
         const desc = article.summary;
         const thumbnail = article.imageUrl;
+        const newslink = article.detail_url;
+
+        console.log(newslink);
+
+
         return (
             <div style={{marginTop: '40px', marginBotton: '20px'}}>
                 <ul>
                 <div style={{display: 'flex'}}>
                 <div>
-                    <img src={thumbnail} style={{float: 'left'}}></img>
+                    <img src={thumbnail} style={{float: 'left', width: '200px', height: '150px', marginTop: '5px'}}></img>
                 </div>
-                <div style={{display: 'column'}}>
+                <div style={{display: 'column', marginTop: '15px'}}>
                     <ul>
-                    <span style={{color: 'white', fontSize: 'small' }}>{title}</span>
-                        <div style={{alignSelf: 'flex-start', marginTop: '10px'}}>
+                    <span style={{color: 'white'}}><a href={newslink}>{title}</a></span>
+                        <div style={{alignSelf: 'flex-start', marginTop: '10px', fontSize: 'small'}}>
                             <span style={{color: 'white'}}>{desc}</span>
                         </div>
                     </ul>
