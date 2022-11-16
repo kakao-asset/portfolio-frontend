@@ -6,11 +6,8 @@ import React from "react";
         const thumbnail = article.imageUrl;
         const newslink = article.detail_url;
 
-        console.log(newslink);
-
-
         return (
-            <div style={{marginTop: '40px', marginBotton: '20px'}}>
+            <div style={{marginTop: '40px', marginBotton: '20px'}} onClick={() => window.open(`${newslink}`)}>
                 <ul>
                 <div style={{display: 'flex'}}>
                 <div>
@@ -18,7 +15,7 @@ import React from "react";
                 </div>
                 <div style={{display: 'column', marginTop: '15px'}}>
                     <ul>
-                    <span style={{color: 'white'}}><a href={newslink}>{title}</a></span>
+                    <span style={{color: 'white'}}>{title}</span>
                         <div style={{alignSelf: 'flex-start', marginTop: '10px', fontSize: 'small'}}>
                             <span style={{color: 'white'}}>{desc}</span>
                         </div>
