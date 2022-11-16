@@ -78,7 +78,7 @@ useEffect(()=>{
   getSectorRank();
   var interval = setInterval(()=>{
     getSectorRank();
-}, 1000);
+}, 100000);
   // if (interval == null){
   //   interval = setInterval(getSectorRank(), 10000);
   // }else{
