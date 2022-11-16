@@ -78,7 +78,7 @@ export default function MainPortfolio({stockHold, current}) {
         </div>
         <div style={{display: "flex"}}>
             {/* 실시간 손익 타임라인 그래프 영역 */}
-            {<ProfitLoss></ProfitLoss>}
+            {<ProfitLoss stockHold={stockHold}></ProfitLoss>}
 
             {/* 보유 주식 관련 뉴스 영역 */}
             {<News stockCode={selectedRankingStock['symbolCode']}></News>}

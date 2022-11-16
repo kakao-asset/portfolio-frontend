@@ -52,7 +52,7 @@ import axios from "axios";
             })
             .then((res) => {
                 var result = res.data;
-                console.log(result)
+                //console.log(result)
                 var len = result.length;
                 var data = result[len-1].tradePrice;
                 setCurrent(data)

@@ -30,9 +30,6 @@ export default function News({stockCode}) {
             responseEncoding: 'binary'
         })
         .then((res) => {
-            console.log("*******************************************");
-            console.log(res.data);
-            console.log("*******************************************");
             setArticles(res.data);
         }).catch((err) => {
             console.log("데이터 받아오기 에러", err);
