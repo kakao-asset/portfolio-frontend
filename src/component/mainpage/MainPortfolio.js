@@ -18,11 +18,13 @@ export default function MainPortfolio({stockHold, current}) {
 
     // 업종별 랭킹 란 선택 주식
     var selectedRankingStock = "";
+    var newsStockCode = "";
 
     // 보유 주식 중 가장 많이 가지고 있는 주식 찾는 부분
     var maxIndex = 0;
 
     if (stockHold.length > 0) {
+        var newsStockCode = stockHold[0].symbolCode;
         var maxValue = stockHold[0].value;
         for(var i=1; i<stockHold.length; i++){
             if(maxValue<stockHold[i].value){
@@ -50,7 +52,6 @@ export default function MainPortfolio({stockHold, current}) {
         }
     }
 
-    
 
     // 업종별 랭킹 란 선택 주식 데이터가 없을 시 보유 주식 중 가장 많이 가지고 있는 주식 이름으로
     // if (rankingSeletedStock.rankingTarget.name===''){
@@ -81,7 +82,7 @@ export default function MainPortfolio({stockHold, current}) {
             {<ProfitLoss stockHold={stockHold}></ProfitLoss>}
 
             {/* 보유 주식 관련 뉴스 영역 */}
-            {<News stockCode={selectedRankingStock['symbolCode']}></News>}
+            {<News stockCode={newsStockCode}></News>}
         </div>
             <div style={{display: 'flex'}}>
                 {/* 업종별 랭킹 관련 선택 주식이 없을 시 보유 주식 수가 가장 많은 주식과 관련된 업종을 디폴트로 보여줌 */}

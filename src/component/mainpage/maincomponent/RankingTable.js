@@ -96,7 +96,7 @@ useEffect(()=>{
 
   return (
     <div style={{ height: '800px', width: "800px", color: "white", marginBottom: '100px' }}>
-      <DataGrid rows={rankData} 
+      <DataGrid rows={rankData}
       columns={columns} style={{color: 'white', textAlign: 'center' }}>
       </DataGrid>
     </div>
