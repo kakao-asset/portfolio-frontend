@@ -1,16 +1,17 @@
 import React from "react";
 import styles from "./css/InfoContent.module.css"
 import Modal from 'react-modal';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
     export default function InfoContent  ({budget, stockInfo})  {
         const stockName = stockInfo.name;
-        const stockAvgPrice = budget.avgPrice;
         const stockValue = budget.value;
         const stockSymbolCode = stockInfo.symbolCode;
         const stockSectorCode = stockInfo.sectorCode;
 
+        console.log("stockInfo:::", stockInfo);
+        
         // 매도 버튼 모달 관리
         const [SellPopIsOpen, setSellPopIsOpen] = useState(false);
 
@@ -23,14 +24,11 @@ import axios from "axios";
         const [sellPrice, setSellPrice] = useState("");
         const [buyValue, setBuyValue] = useState("");
         const [buyPrice, setBuyPrice] = useState("");
-        
+
         const [sellName, setSellName] = useState("");
 
         const onSellChange = (e) => {
             setSellValue(e.target.value);
-        }
-        const onSellPriceChange = (e) => {
-            setSellPrice(e.target.value);
         }
         const onBuyChange = (e) => {
             setBuyValue(e.target.value);
@@ -108,14 +106,15 @@ import axios from "axios";
         }
 
         // 현재가
-        const currentPrice = stockInfo.tradePrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        
+        // const stockInfoPrice = stockInfo.tradePrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        // console.log("stockInfo: ",stockInfo);
+
         var c = Number(stockInfo.tradePrice);
         var o = Number(stockInfo.prevClosingPrice); 
 
         return (
             <div style={{display: 'flex', marginLeft: '50px'}}>
-                <p style={{color: 'white', fontSize: '35px'}}>{currentPrice}원</p>
+                <p style={{color: 'white', fontSize: '35px'}}>{c.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</p>
                 <div style={{ marginLeft: '20px', marginTop: '40px', marginRight: '80px'}}>
                     <span style={{color: 'white', paddingLeft: '20px', display: 'block', fontSize: '15px'}}>전일 대비</span>
                     <span style={{color: '#FF5981', paddingLeft: '20px', display: 'block',fontSize: '18px'}}>{(c-o).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원 
@@ -210,8 +209,6 @@ import axios from "axios";
                                         }}>매수</button>
                         
                     </Modal>
-
             </div>
-
         );
     }
