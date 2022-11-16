@@ -6,6 +6,8 @@ import { Comments } from "./Coments";
 import CommentRow from "./ComentRow";
 import { TestStockData } from "../../../data/TestStockData";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { log } from "react-modal/lib/helpers/ariaAppHider";
 // 장 시작 때 받아온 데이터 정보로 사용하면 될 거 같음
 
 
@@ -27,21 +29,30 @@ export default function Searchbar() {
     const [searchList, setSearchList] = useState("");
 
     const setSearchFilter = (search) => {
-        setSearchList(TestStockData.filter(searchStock => searchStock.name.replace(" ","").toUpperCase().includes(search.replace(" ","").toUpperCase())));
+        // setSearchList(TestStockData.filter(searchStock => searchStock.name.replace(" ","").toUpperCase().includes(search.replace(" ","").toUpperCase())));
+        SearchRequest(search);
     }
 
     const onChange = (e) => {
-        console.log((e.target.value).length);
-        if((e.target.value) == 0 || e.target.value == '') {
-            setSearchOn(false);
-        } else {
-            setSearchOn(true);
-        }
         setSearch(e.target.value);
+        SearchRequest(e.target.value);
+    }
 
-        if (searchOn==true){
-            setSearchFilter(search);
-        } else setSearchFilter('');
+    const SearchRequest = (search) => {
+        var word = search;
+        axios({
+            method: "get",
+            url: `${process.env.REACT_APP_BACKEND_URI}/api/stock/search?word=${word}`,
+            headers: {"Access-Control-Allow-Origin": "*"},
+            responseEncoding: 'binary'
+        })
+        .then((res) => {
+            var result = res.data.data;
+            setSearchList(result);
+            console.log(searchList);
+        }).catch((err) => {
+            console.log("데이터 받아오기 에러", err);
+        })
 
     }
 
