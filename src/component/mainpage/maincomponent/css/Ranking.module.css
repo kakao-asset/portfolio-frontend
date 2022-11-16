@@ -1,7 +1,7 @@
 .box {
     background-color: #2F3138;
     width: 1805px;
-    height: 850px;
+    height: fit-content;
     margin-right: 30px;
     margin-left: 20px;
     margin-bottom: 60px;

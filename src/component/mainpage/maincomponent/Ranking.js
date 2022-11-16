@@ -30,7 +30,7 @@ export default function Ranking({selectedRankingStock}){
             <h3 style={{color: 'white', paddingTop: '40px', paddingLeft: '40px'}}>{selectedSectorCode}</h3>
             <div style={{display: 'flex', paddingTop: '20px', paddingLeft: '110px'}}>
             <RankingTable rankingColumn={rankingColumn} rankingData={rankingData} sectorCode={selectedSectorCode}></RankingTable>
-            <RankingCustom></RankingCustom>
+            {/* <RankingCustom></RankingCustom> */}
             </div>
         </div>
     );

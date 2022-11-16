@@ -10,30 +10,38 @@ import { DataGrid} from "@mui/x-data-grid";
 const columns = [
   { field: "id", headerName: "ID" },
   {
+      headerAlign: 'center',  
       headerName: '종목이름',
-      field: 'name'
+      field: 'name',
+      
   },
   {
+      headerAlign: 'center',
       headerName: '현재가',
       field: 'tradePrice'
   },
   {
+      headerAlign: 'center',
       headerName: '등락률',
       field: 'prevAccTradeVolumeChangeRate',
   },
   {
+      headerAlign: 'center',
       headerName: '거래량',
       field: 'accTradeVolume'
   },
   {
+      headerAlign: 'center',
       headerName: '거래대금',
       field: 'accTradePrice'
   },
   {
-      headerName: '시가총액(억원)',
+      headerAlign: 'center',
+      headerName: '시가총액',
       field: 'marketCap'
   },
   {
+      headerAlign: 'center',
       headerName: '외국인',
       field: 'foreignRatio'
   }
@@ -87,10 +95,9 @@ useEffect(()=>{
 
 
   return (
-    <div style={{ height: 400, width: "100%", color: "white" }}>
+    <div style={{ height: '800px', width: "800px", color: "white", marginBottom: '100px' }}>
       <DataGrid rows={rankData} 
-      initialState={{columns: {columnVisibilityModel: {id: false}}}}
-      columns={columns} style={{color: 'white', textAlign: 'center'}}>
+      columns={columns} style={{color: 'white', textAlign: 'center' }}>
       </DataGrid>
     </div>
   )
