@@ -106,52 +106,19 @@ import axios from "axios";
             }
         }
 
-
-        const[current2, setCurrent2] = useState({});
-
-        function getRealtimeData(){
-            // window.alert("ssss")
-            // axios({
-            //     method: "get",
-            //     url: `${process.env.REACT_APP_BACKEND_URI}/main/realtime/?stock_name=${stockSymbolCode}`,
-            //     headers: {"Access-Control-Allow-Origin": "*"},
-            //     responseEncoding: 'binary'
-            // })
-            // .then((res) => {
-            //     var result = res.data;
-            //     console.log(result)
-            //     var len = result.length == 0? 0 : result.length-1;
-            //     var data = result[len].tradePrice;
-            //     setCurrent2(data)
-
-            //     console.log(data);
-            // }).catch((err) => {
-            //     console.log("데이터 받아오기 에러", err);
-            // })
-        }
-
-        // useEffect(()=>{console.log("wpqkf");
-        //     getRealtimeData();
-        //     const interval = setInterval(()=>{
-        //         getRealtimeData();
-        //     }, 50000)
-        // },[stockSymbolCode])
-
-
-        var current = 1234;
         console.log("-----------------------");
-        console.log(current);
-        console.log(typeof(current.tradePrice))
+        console.log(stockInfo);
+        console.log(typeof(stockInfo.tradePrice))
         // 현재가
-        // const currentPrice = current.tradePrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        // console.log("current: ",current);
+        // const stockInfoPrice = stockInfo.tradePrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        // console.log("stockInfo: ",stockInfo);
 
-        var c = Number(current.tradePrice);
-        var o = Number(current.prevClosingPrice); 
+        var c = Number(stockInfo.tradePrice);
+        var o = Number(stockInfo.prevClosingPrice); 
 
         return (
             <div style={{display: 'flex', marginLeft: '50px'}}>
-                <p style={{color: 'white', fontSize: '35px'}}>{current.tradePrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</p>
+                <p style={{color: 'white', fontSize: '35px'}}>{c.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</p>
                 <div style={{ marginLeft: '20px', marginTop: '40px', marginRight: '80px'}}>
                     <span style={{color: 'white', paddingLeft: '20px', display: 'block', fontSize: '15px'}}>전일 대비</span>
                     <span style={{color: '#FF5981', paddingLeft: '20px', display: 'block',fontSize: '18px'}}>{(c-o).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원 

@@ -16,7 +16,6 @@ export default function MainSearch(){
     var resStockData; var resData;
     var userId = JSON.parse(localStorage.getItem("userData")).userId;
 
-
     function getStockHold(){
         axios({
             method: "GET",
@@ -24,12 +23,15 @@ export default function MainSearch(){
         })
         .then((res) => {
             resData = res.data.data;
-            resStockData = resData.map((x) => ({name: x.stockCode, value: x.quantity, avgPrice: x.avgPrice}));
+            console.log("resData", resData);
+            resStockData = resData.map((x) => ({name: x.stockName, value: x.quantity, avgPrice: x.avgPrice, symbolCode: x.stockCode, sectorCode: x.sectorCode}));
             setStockHold(resStockData);
+            console.log("stockHold", stockHold);
         }).catch((err) => {
             console.log("use_stock 데이터 에러", err);
         })
     }
+    
     useEffect(() => {
         getStockHold();
     }, [userId]);
