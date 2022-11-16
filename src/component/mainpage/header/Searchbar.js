@@ -1,21 +1,60 @@
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Modal from 'react-modal';
 import SearchRow from "./SearchRow";
 import styles from "./css/SearchList.module.css"
 import { Comments } from "./Coments";
 import CommentRow from "./ComentRow";
 import { TestStockData } from "../../../data/TestStockData";
+import { useNavigate } from "react-router-dom";
 // 장 시작 때 받아온 데이터 정보로 사용하면 될 거 같음
 
 
 export default function Searchbar() {
+    const navigate = useNavigate();
+    const navigateToDetail = () => {
+        navigate("/detail");
+        window.location.reload();
+    }
+
+    const setSearchTargetToLocal = (searchTarget) => {
+        localStorage.setItem('searchStock',JSON.stringify({searchTarget}));
+    }
+
 
     const [search, setSearch] = useState("");
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    const onChange = (e) => {
-        setSearch(e.target.value);
+    const [searchOn, setSearchOn] = useState(false);
+    const [searchList, setSearchList] = useState("");
+
+    const setSearchFilter = (search) => {
+        setSearchList(TestStockData.filter(searchStock => searchStock.name.replace(" ","").toUpperCase().includes(search.replace(" ","").toUpperCase())));
     }
 
+    const onChange = (e) => {
+        console.log((e.target.value).length);
+        if((e.target.value) == 0 || e.target.value == '') {
+            setSearchOn(false);
+        } else {
+            setSearchOn(true);
+        }
+        setSearch(e.target.value);
+
+        if (searchOn==true){
+            setSearchFilter(search);
+        } else setSearchFilter('');
+
+    }
+
+    
+
+    // const setSearchFilter = (search) => {
+    //     console.log("검색 필터");
+        
+    //     const filterData = TestStockData.filter(searchStock => searchStock.name.replace(" ","").toUpperCase().includes(search.replace(" ","").toUpperCase()));
+    //     console.log(filterData);
+
+    //     setFilteredSearch(filterData);
+    // }
     return (
         <>
             <input type="text" onClick={() => setModalIsOpen(true)} style={{
@@ -34,7 +73,7 @@ export default function Searchbar() {
             }}></input>
             
             {/* 검색바 클릭 시 하단에 생성되는 검색 모달 */}
-            <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}
+            <Modal isOpen={modalIsOpen} ariaHideApp={false} onRequestClose={() => {setModalIsOpen(false); setSearchFilter(''); } }
                 style={{
                     overlay: {
                         position: 'absolute',
@@ -68,14 +107,18 @@ export default function Searchbar() {
                         right: '10px'
                     }}></input>
                     <div style={{paddingTop: '30px'}}>
-                    
-                        {TestStockData.filter(searchStock => searchStock.name.replace(" ","").toUpperCase().includes(search.replace(" ","").toUpperCase())).map((searchStock) => (
-                        <SearchRow key={searchStock.symbolCode} searchTarget={searchStock} className={styles.searchItem} 
-                        ></SearchRow>
-                    ))}
-                    
+                    {searchList != '' && search != '' && searchList.map((searchStock)=>
+                    (<ul><button onClick={()=>{navigateToDetail(); 
+                        setSearchTargetToLocal(searchStock);}} style={{
+                        color: 'white', 
+                        display: 'block', 
+                        width: 'fit-content',
+                        backgroundColor: '#1F1F1F',
+                        border: 'none',
+                        fontSize: '20px'
+                        }}>{searchStock.name}</button></ul>))}
                     </div>
-
+                
                     <div style={{ marginTop: '200px', marginLeft: '20px', marginBottom: '30px', display: 'flex' }}>
                         {Comments.map(comment => (
                             <CommentRow key={comment.id} comment={comment}></CommentRow>

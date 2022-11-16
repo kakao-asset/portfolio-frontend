@@ -37,8 +37,7 @@ export default function MainSearch(){
     }, [userId]);
     
     return (
-        <div>
-            <h1>hello</h1>             
+        <div>          
             <Header></Header>
             <Info stockHold={stockHold}></Info>
         </div>

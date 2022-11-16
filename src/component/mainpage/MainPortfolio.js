@@ -114,7 +114,8 @@ export default function MainPortfolio({stockHold, current}) {
                         borderRadius: '4px',
                         width: 'fit-content',
                         height: 'fit-content',
-                        background: '#1F1F1F'
+                        background: '#1F1F1F',
+                        
 
                     }
                 }}

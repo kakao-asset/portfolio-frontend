@@ -1,7 +1,7 @@
 import React from "react";
     export default function InfoHeader  ({stockInfo})  {
 
-        const stockCode = stockInfo.symbolCode;
+        const stockCode = String(stockInfo.symbolCode).replace(/A/ig,"");
         const stockName = stockInfo.name;
 
         return (

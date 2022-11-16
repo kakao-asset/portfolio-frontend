@@ -7,7 +7,7 @@ import React from "react";
         const newslink = article.detail_url;
 
         return (
-            <div style={{marginTop: '40px', marginBotton: '20px'}} onClick={() => window.open(`${newslink}`)}>
+            <div style={{marginTop: '40px', marginBotton: '20px', marginRight: '20px'}} onClick={() => window.open(`${newslink}`)}>
                 <ul>
                 <div style={{display: 'flex'}}>
                 <div>

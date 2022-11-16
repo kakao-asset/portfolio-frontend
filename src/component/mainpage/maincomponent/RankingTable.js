@@ -8,9 +8,9 @@ import { DataGrid} from "@mui/x-data-grid";
 
 
 const columns = [
-  { field: "id", headerName: "ID", width: 70 },
+  { field: "id", headerName: "ID" },
   {
-      headerNameName: '종목이름',
+      headerName: '종목이름',
       field: 'name'
   },
   {
@@ -88,7 +88,9 @@ useEffect(()=>{
 
   return (
     <div style={{ height: 400, width: "100%", color: "white" }}>
-      <DataGrid rows={rankData} columns={columns}>
+      <DataGrid rows={rankData} 
+      initialState={{columns: {columnVisibilityModel: {id: false}}}}
+      columns={columns} style={{color: 'white', textAlign: 'center'}}>
       </DataGrid>
     </div>
   )
