@@ -8,7 +8,7 @@ import { DataGrid} from "@mui/x-data-grid";
 
 
 const columns = [
-  { field: "id", headerName: "ID" },
+  { field: "id", headerName: "ID", headerAlign: 'center' },
   {
       headerAlign: 'center',  
       headerName: '종목이름',
