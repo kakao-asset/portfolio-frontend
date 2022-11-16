@@ -1,20 +1,54 @@
-import axios from 'axios';
+import * as React from "react";
+import { DataGrid, SolidColorBrush, GridValueGetterParams } from "@mui/x-data-grid";
 
-export default function TestComponent(){
-    // axios.defaults.withCredentials = true;
+const columns = [
+  { field: "id", headerName: "ID", width: 70 },
+  { field: "firstName", headerName: "First name", width: 130 },
+  { field: "lastName", headerName: "Last name", width: 130 },
+  {
+    field: "age",
+    headerName: "Age",
+    type: "number",
+    width: 90
+  },
+  {
+    field: "fullName",
+    headerName: "Full name",
+    description: "This column has a value getter and is not sortable.",
+    sortable: false,
+    width: 160,
+  }
+];
 
-    axios({
-        method: "GET",
-        url: '/api',
-        headers: {"Access-Control-Allow-Origin": "*"}
-    })
-    .then((res) => {
-        console.log(res); 
-        
-        const stockData = res.body;
+export default function TestComponent() {
+  const [rows, setRows] = React.useState([
+    { id: 1, lastName: "Snow", firstName: "Jon", age: 35 },
+    { id: 2, lastName: "Lannister", firstName: "Cersei", age: 42 },
+    { id: 3, lastName: "Lannister", firstName: "Jaime", age: 45 },
+    { id: 4, lastName: "Stark", firstName: "Arya", age: 16 },
+    { id: 5, lastName: "Targaryen", firstName: "Daenerys", age: null },
+    { id: 6, lastName: "Melisandre", firstName: null, age: 150 },
+    { id: 7, lastName: "Clifford", firstName: "Ferrara", age: 44 },
+    { id: 8, lastName: "Frances", firstName: "Rossini", age: 36 },
+    { id: 9, lastName: "Roxie", firstName: "Harvey", age: 65 }
+  ]);
 
-        }).catch((err) => {
-        console.log("데이터 받아오기 에러", err);
-    })
-    return(<></>);
+  React.useEffect(() => {
+    for (var i = 10; i < 20; i++) {
+      setRows([
+        ...rows,
+        { id: i, lastName: "test" + i, firstName: "firstName" + i, age: i + 20 }
+      ]);
+      setTimeout(() => console.log("after"), 10000);
+    }
+  });
+
+  React.useEffect(() => {}, [rows]);
+
+  return (
+    <div style={{ height: 400, width: "100%", color: "white" }}>
+      <DataGrid rows={rows} columns={columns}>
+      </DataGrid>
+    </div>
+  );
 }
