@@ -60,7 +60,7 @@ export default function Info({stockHold}){
         <div style={{marginTop: '50px', marginLeft: '2%', marginRight: '2%', textAlign: 'left', paddingBottom: '50px'}}>
             <div className={styles.box}>
                 <div style={{display: 'flex'}}>
-                    <InfoHeader stockInfo={selectedStock}></InfoHeader>
+                    <InfoHeader stockInfo={current}></InfoHeader>
                 </div>
                     <InfoContent budget={stockHold} stockInfo={current}></InfoContent>
                     <InfoLineGraph></InfoLineGraph>

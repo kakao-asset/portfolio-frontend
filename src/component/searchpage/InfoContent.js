@@ -6,7 +6,6 @@ import axios from "axios";
 
     export default function InfoContent  ({budget, stockInfo})  {
         const stockName = stockInfo.name;
-        const stockAvgPrice = budget.avgPrice;
         const stockValue = budget.value;
         const stockSymbolCode = stockInfo.symbolCode;
         const stockSectorCode = stockInfo.sectorCode;
@@ -106,9 +105,6 @@ import axios from "axios";
             }
         }
 
-        console.log("-----------------------");
-        console.log(stockInfo);
-        console.log(typeof(stockInfo.tradePrice))
         // 현재가
         // const stockInfoPrice = stockInfo.tradePrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         // console.log("stockInfo: ",stockInfo);
