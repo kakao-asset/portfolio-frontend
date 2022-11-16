@@ -33,7 +33,7 @@ export default function Info({stockHold}){
             var result = res.data;
             console.log(result)
             var len = result.length == 0? 0 : result.length-1;
-            var data = result[len-1];
+            var data = result[len];
             setCurrent(data)
         }).catch((err) => {
             console.log("데이터 받아오기 에러", err);
@@ -64,7 +64,7 @@ export default function Info({stockHold}){
                 </div>
                     <InfoContent budget={stockHold} stockInfo={current}></InfoContent>
                     <InfoLineGraph></InfoLineGraph>
-                    {/* <InfoList stockInfo={current}></InfoList> */}
+                    <InfoList stockInfo={current}></InfoList>
             </div>
         </div>        
     );
