@@ -48,7 +48,7 @@ import axios from "axios";
         function getRealtimeData(){
             axios({
                 method: "get",
-                url: `${process.env.REACT_APP_BACKEND_URI}/main/realtime/?stock_name=${stockSymbolCode}`,
+                url: `/main/realtime/?stock_name=${stockSymbolCode}`,
                 headers: {"Access-Control-Allow-Origin": "*"},
                 responseEncoding: 'binary'
             })
@@ -84,7 +84,7 @@ import axios from "axios";
             } else {
                 axios({
                     method: "POST",
-                    url: `${process.env.REACT_APP_BACKEND_URI}/api/stock/sell/${userId}`,
+                    url: `/api/stock/sell/${userId}`,
                     data: {"price" : sellPrice, "quantity": sellValue, "stockName": stockName, "stockCode": stockSymbolCode, "sectorCode": stockSectorCode, "sectorName": stockSectorName},
                     headers: {
                         "Content-Type" : "application/json; charset=utf-8"
@@ -118,7 +118,7 @@ import axios from "axios";
                 var userId = JSON.parse(localStorage.getItem("userData")).userId;
                 axios({
                     method: "POST",
-                    url: `${process.env.REACT_APP_BACKEND_URI}/api/stock/buy/${userId}`,
+                    url: `/api/stock/buy/${userId}`,
                     data: {"price" : buyPrice, "quantity": buyValue, "stockName": stockName, "stockCode": stockSymbolCode, "sectorCode": stockSectorCode, "sectorName": stockSectorName},
                     headers: {
                         "Content-Type" : "application/json; charset=utf-8"

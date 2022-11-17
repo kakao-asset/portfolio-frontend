@@ -64,7 +64,7 @@ export default function RankingTable({rankingColumn,rankingData, sectorCode}) {
   function getSectorRank(){
     if (sectorCode != ""){
 
-      let req_url = `${process.env.REACT_APP_BACKEND_URI}/sector?stock_sector=${code}`
+      let req_url = `/sector?stock_sector=${code}`
     axios({
         method: "get",
         url: req_url,

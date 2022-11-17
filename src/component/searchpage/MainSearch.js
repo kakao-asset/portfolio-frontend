@@ -19,7 +19,7 @@ export default function MainSearch(){
     function getStockHold(){
         axios({
             method: "GET",
-            url: `${process.env.REACT_APP_BACKEND_URI}/api/stock/${userId}`
+            url: `/api/stock/${userId}`
         })
         .then((res) => {
             resData = res.data.data;

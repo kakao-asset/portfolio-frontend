@@ -18,7 +18,7 @@ export default function Main() {
 
     const test = async () => await axios({
             method: "GET",
-            url: `${process.env.REACT_APP_BACKEND_URI}/api/stock/${userId}`
+            url: `/api/stock/${userId}`
         })
         .then((res) => {
             resData = res.data.data;

@@ -5,7 +5,7 @@ export default function KakaoOauth(){
     console.log(code);
     axios({
         method: "GET",
-        url: `${process.env.REACT_APP_BACKEND_URI}/api/oauth/kakao?code=${code}`
+        url: `/api/oauth/kakao?code=${code}`
     })
     .then((res) => {
         console.log(res); // 토큰이 넘어올 것임

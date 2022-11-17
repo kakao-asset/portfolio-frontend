@@ -25,7 +25,7 @@ export default function Info({stockHold}){
     function getRealtimeData(){
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_BACKEND_URI}/main/realtime/?stock_name=${stockSymbolCode}`,
+            url: `/main/realtime/?stock_name=${stockSymbolCode}`,
             headers: {"Access-Control-Allow-Origin": "*"},
             responseEncoding: 'binary'
         })
