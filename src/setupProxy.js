@@ -36,4 +36,12 @@ module.exports = function(app) {
             changeOrigin: true,
         })
     );
+
+    app.use(
+        '/oauth/kakao',
+        createProxyMiddleware({
+            target: BACK_URI,
+            changeOrigin: true,
+        })
+    );
 };
