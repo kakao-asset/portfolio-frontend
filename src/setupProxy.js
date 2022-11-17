@@ -1,7 +1,6 @@
 // src/setupProxy.js
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const BACK_URI = process.env.REACT_APP_BACKEND_URI
-const FRONT_URI = process.env.REACT_APP_FRONTEND_URI
 module.exports = function(app) {
 
   //CORS ERROR
@@ -45,11 +44,5 @@ module.exports = function(app) {
         })
     );
 
-    app.use(
-        '/oauth/kakao',
-        createProxyMiddleware({
-            target: FRONT_URI,
-            changeOrigin: true,
-        })
-    );
+    
 };
