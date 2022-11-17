@@ -46,6 +46,7 @@ export default function MainPortfolio({stockHold, budgetData, profit}) {
             for (var i=0; i<stockHold.length; i++) {
                 if (rankingSeletedStock.rankingTarget.name == stockHold[i].name) {
                     selectedRankingStock = rankingSeletedStock.rankingTarget;
+                    newsStockCode = rankingSeletedStock.rankingTarget.symbolCode;
                 }
             }
            
