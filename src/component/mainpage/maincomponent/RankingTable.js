@@ -65,7 +65,6 @@ export default function RankingTable({rankingColumn,rankingData, sectorCode}) {
     if (sectorCode != ""){
 
       let req_url = `${process.env.REACT_APP_BACKEND_URI}/sector?stock_sector=${code}`
-    console.log("req_url : " + req_url);
     axios({
         method: "get",
         url: req_url,
@@ -75,7 +74,6 @@ export default function RankingTable({rankingColumn,rankingData, sectorCode}) {
     .then((res) => {
         var result = res.data
         setRankData(result);
-        console.log("sector rank result" + result);
 
         }).catch((err) => {
         console.log("데이터 받아오기 에러", err);
@@ -84,7 +82,6 @@ export default function RankingTable({rankingColumn,rankingData, sectorCode}) {
 }
 
 useEffect(()=>{
-  console.log("sectorCode :" + sectorCode);
   getSectorRank();
   var interval = setInterval(()=>{
     getSectorRank();

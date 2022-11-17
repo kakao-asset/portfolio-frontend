@@ -59,7 +59,6 @@ import axios from "axios";
                 var data = result[len].tradePrice;
                 setCurrent(data)
 
-                console.log(data);
             }).catch((err) => {
                 console.log("데이터 받아오기 에러", err);
             })
