@@ -1,178 +1,69 @@
 import { ResponsiveLine } from '@nivo/line';
+import React, { useCallback,useState, useEffect } from "react";
 
-export default function LineGraph() {
+
+export default function LineGraph({profit}) {
+
+  const [,updateState] = useState()
+  const forceUpdate = useCallback(()=> updateState({}), []);
+  const [data, setData] = useState([]);
+  const [realData, setRealData] = useState([]);
+
+  useEffect(()=>{
+      forceUpdate()
+      setInterval(()=>{
+          forceUpdate()
+          makeData();
+          console.log(Object.values(data));
+      },1000)
+  },[])
+
+
+
     let now = new Date();
     let minutes = now.getMinutes();
 
+    function makeData(){
+      var min = Infinity;
+      Object.keys(profit).forEach(key=>{
+        if (min > profit[key].length){
+          min = profit[key].length;
+        }
+      });
+
+      min = Math.min(min, 390);
+
+      var today = new Date()
+      Object.keys(profit).forEach(key=>{
+        today.setHours(9)
+        today.setMinutes(0)
+        today.setSeconds(0)
+        var stock = profit[key];
+        var temp =[]
+        for (var i = 0; i < min; i++){
+          temp[temp.length] = {
+            "x" : ('0'+ today.getHours()).slice(-2) +":" + ('0'+ today.getMinutes()).slice(-2),
+            "y" : stock[i]['tradePrice']
+          }
+          today.setMinutes(today.getMinutes()+1)
+        }
+        var updateData = {
+          [key]:{
+          "id" : key,
+          "color": "hsl(206, 70%, 50%)",
+          "data" : temp
+        }
+        }
+        var target = Object.assign(data, updateData)
+        setData(target)
+      })
+    }
+
+    
     return(
         <div style={{width: '950px', height: '400px'}}>
             <ResponsiveLine
-        data={[
-            {
-              "id": "Naver",
-              "color": "hsl(206, 70%, 50%)",
-              "data": [
-                {
-                  "x": minutes-11,
-                  "y": 35
-                },
-                {
-                  "x": minutes-10,
-                  "y": 131
-                },
-                {
-                  "x": minutes-9,
-                  "y": 299
-                },
-                {
-                  "x": minutes-8,
-                  "y": 130
-                },
-                {
-                  "x": minutes-7,
-                  "y": 87
-                },
-                {
-                  "x": minutes-6,
-                  "y": 242
-                },
-                {
-                  "x": minutes-5,
-                  "y": 131
-                },
-                {
-                  "x": minutes-4,
-                  "y": 164
-                },
-                {
-                  "x": minutes-3,
-                  "y": 30
-                },
-                {
-                  "x": minutes-2,
-                  "y": 139
-                },
-                {
-                  "x": minutes-1,
-                  "y": 288
-                },
-                {
-                  "x": minutes,
-                  "y": 227
-                }
-              ]
-            },
-            {
-              "id": "Kakao",
-              "color": "hsl(301, 70%, 50%)",
-              "data": [
-                {
-                  "x": minutes-11,
-                  "y": 111
-                },
-                {
-                  "x": minutes-10,
-                  "y": 176
-                },
-                {
-                  "x": minutes-9,
-                  "y": 155
-                },
-                {
-                  "x": minutes-8,
-                  "y": 264
-                },
-                {
-                  "x": minutes-7,
-                  "y": 6
-                },
-                {
-                  "x": minutes-6,
-                  "y": 226
-                },
-                {
-                  "x": minutes-5,
-                  "y": 43
-                },
-                {
-                  "x": minutes-4,
-                  "y": 32
-                },
-                {
-                  "x": minutes-3,
-                  "y": 134
-                },
-                {
-                  "x": minutes-2,
-                  "y": 243
-                },
-                {
-                  "x": minutes-1,
-                  "y": 260
-                },
-                {
-                  "x": minutes,
-                  "y": 258
-                }
-              ]
-            },
-            {
-              "id": "Samsung",
-              "color": "hsl(2, 70%, 50%)",
-              "data": [
-                {
-                  "x": minutes-11,
-                  "y": 291
-                },
-                {
-                  "x": minutes-10,
-                  "y": 199
-                },
-                {
-                  "x": minutes-9,
-                  "y": 109
-                },
-                {
-                  "x": minutes-8,
-                  "y": 199
-                },
-                {
-                  "x": minutes-7,
-                  "y": 237
-                },
-                {
-                  "x": minutes-6,
-                  "y": 45
-                },
-                {
-                  "x": minutes-5,
-                  "y": 263
-                },
-                {
-                  "x": minutes-4,
-                  "y": 157
-                },
-                {
-                  "x": minutes-3,
-                  "y": 6
-                },
-                {
-                  "x": minutes-2,
-                  "y": 140
-                },
-                {
-                  "x": minutes-1,
-                  "y": 212
-                },
-                {
-                  "x": minutes,
-                  "y": 31
-                }
-              ]
-            },
-            
-            
-          ]}
+        data={Object.values(data)}
         margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
         xScale={{ type: 'point' }}
         yScale={{

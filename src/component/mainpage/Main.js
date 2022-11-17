@@ -18,6 +18,7 @@ export default function Main() {
     var userId = JSON.parse(localStorage.getItem("userData")).userId;
     
     const [budgetData, setBudgetData] = useState([]);
+    const [profit, setProfit] = useState([]);
 
     function getRealtimeData(stock_data){
         var tmp = stock_data;
@@ -34,18 +35,17 @@ export default function Main() {
                 
                 var len = result.length == 0 ? 0 : result.length-1;
                 var data = result[len].tradePrice;
-    
                 tmp[i]['currentPrice'] = data
-                tmp[i]['time'] = new Date();
-                
+
+                var updateData = {[tmp[i]['name']] : result}
+                var target = Object.assign(profit, updateData)
+                setProfit(target)
                 
             }).catch((err) => {
                 console.log("데이터 받아오기 에러", err);
             })
         }
-        tmp['time'] = new Date();
 
-        console.log(tmp);
         setBudgetData(tmp)
     }
 
@@ -76,7 +76,7 @@ export default function Main() {
     return (
         <div>
             <Header></Header>
-            <MainPortfolio stockHold={stockHold} budgetData={budgetData}></MainPortfolio>
+            <MainPortfolio stockHold={stockHold} budgetData={budgetData} profit={profit}></MainPortfolio>
             
         </div>
     );

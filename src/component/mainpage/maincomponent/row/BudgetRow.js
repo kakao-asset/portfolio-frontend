@@ -1,8 +1,7 @@
-import React, { useCallback } from "react";
+import React, { useCallback,useState, useEffect } from "react";
 import { BsCart4 } from "react-icons/bs";
 import styles from "../css/Budget.module.css"
 import Modal from 'react-modal';
-import { useState, useEffect } from "react";
 import axios from "axios";
 
     export default function BudgetRow  ({budget})  {
