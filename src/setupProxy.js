@@ -37,11 +37,11 @@ module.exports = function(app) {
         })
     );
 
-    app.use(
-        '/oauth/kakao',
-        createProxyMiddleware({
-            target: BACK_URI,
-            changeOrigin: true,
-        })
-    );
+    // app.use(
+    //     '/oauth/kakao',
+    //     createProxyMiddleware({
+    //         target: BACK_URI,
+    //         changeOrigin: true,
+    //     })
+    // );
 };
