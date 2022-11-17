@@ -13,6 +13,7 @@ import axios from "axios";
         const stockSymbolCode = budget.symbolCode;
         const stockSectorCode = budget.sectorCode;
         const stockSectorName = budget.sectorName;
+        const stockCurrentPrice = budget.currentPrice;
         
 
         // 매도 버튼 모달 관리
@@ -28,8 +29,6 @@ import axios from "axios";
         const [buyValue, setBuyValue] = useState("");
         const [buyPrice, setBuyPrice] = useState("");
         
-        const [sellName, setSellName] = useState("");
-
         const onSellChange = (e) => {
             setSellValue(e.target.value);
         }
@@ -42,34 +41,6 @@ import axios from "axios";
         const onBuyPriceChange = (e) => {
             setBuyPrice(e.target.value);
         }
-
-        const[current, setCurrent] = useState({});
-        
-        function getRealtimeData(){
-            axios({
-                method: "get",
-                url: `${process.env.REACT_APP_BACKEND_URI}/main/realtime/?stock_name=${stockSymbolCode}`,
-                headers: {"Access-Control-Allow-Origin": "*"},
-                responseEncoding: 'binary'
-            })
-            .then((res) => {
-                var result = res.data;
-                //console.log(result)
-                var len = result.length == 0 ? 0 : result.length-1;
-                var data = result[len].tradePrice;
-                setCurrent(data)
-
-            }).catch((err) => {
-                console.log("데이터 받아오기 에러", err);
-            })
-        }
-
-        useEffect(()=>{
-            getRealtimeData();
-            const interval = setInterval(()=>{
-                getRealtimeData();
-            }, 50000)
-        },[])
 
         // 매도 매수 버튼 클릭 시 호출되는 함수
         // 여기 함수 내에 DB에 저장 요청 보내야 함
@@ -140,8 +111,6 @@ import axios from "axios";
             }
         }
 
-        // console.log("------------");
-        // console.log(current);
 
         return (
             <div style={{marginTop: '40px', marginBotton: '20px'}}>
@@ -149,7 +118,7 @@ import axios from "axios";
                 <div style={{display: 'flex', marginLeft: '30px'}}>
                     <BsCart4 size='20px' style={{color: '#D9D9D9', display: 'block', paddingTop: '12px'}}></BsCart4>
                     <span style={{color: 'white', paddingLeft: '30px', display: 'block', width: '150px', paddingTop: '10px'}}>{stockName}</span>
-                    <span style={{color: 'white', paddingLeft: '100px', display: 'block', paddingTop: '10px', width: '90px', textAlign: 'right'}}>{current.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
+                    <span style={{color: 'white', paddingLeft: '100px', display: 'block', paddingTop: '10px', width: '90px', textAlign: 'right'}}>{stockCurrentPrice !== undefined? (stockCurrentPrice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : 0}원</span>
                     <button className={styles.sellButton} onClick={()=>setSellPopIsOpen(true)}>매도</button>
                     <button className={styles.buyButton} onClick={()=>setBuyPopIsOpen(true)}>매수</button>
 
