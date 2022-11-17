@@ -13,7 +13,15 @@ module.exports = function(app) {
     );
       
     app.use(
-        '/main',
+        '/main/news',
+        createProxyMiddleware({
+            target: BACK_URI,
+            changeOrigin: true,
+        })
+    );
+
+    app.use(
+        '/main/realtime',
         createProxyMiddleware({
             target: BACK_URI,
             changeOrigin: true,
