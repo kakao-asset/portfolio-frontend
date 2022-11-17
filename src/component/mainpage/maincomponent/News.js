@@ -6,21 +6,6 @@ import axios from "axios";
 
 export default function News({stockCode}) {
     const [articles, setArticles] = useState([]);
-    // const getNews = async () => await axios({
-    //     method: "get",
-    //     url: `${process.env.REACT_APP_BACKEND_URI}/main/news?stockCode=${stockCode}`,
-    //     headers: {"Access-Control-Allow-Origin": "*"},
-    //     responseEncoding: 'binary'
-    // })
-    // .then((res) => {
-    //     console.log("*******************************************");
-    //     console.log(res);
-    //     console.log("*******************************************");
-    // }).catch((err) => {
-    //     console.log("use_stock 데이터 에러", err);
-    // })
-
-    // getNews();
 
     function getNews(){
         axios({
@@ -40,29 +25,7 @@ export default function News({stockCode}) {
         getNews();
     }, [stockCode]);
 
-    // const articles = [
-    //     {
-    //         id: 1,
-    //         title: 'News 1',
-    //         desc: 'News 1 description',
-    //         thumbnail: 'img/ka_article_img.png'
 
-    //     },
-    //     {
-    //         id: 2,
-    //         title: 'News 2',
-    //         desc: 'News 2 description',
-    //         thumbnail: 'img/ka_article_img.png'
-
-    //     },
-    //     {
-    //         id: 3,
-    //         title: 'News 3',
-    //         desc: 'News 3 description',
-    //         thumbnail: 'img/ka_article_img.png'
-
-    //     },
-    // ]
     return (
         <div className={styles.box}>
             <div>

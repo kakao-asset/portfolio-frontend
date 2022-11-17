@@ -53,14 +53,6 @@ export default function MainPortfolio({stockHold, budgetData}) {
     }
 
 
-    // 업종별 랭킹 란 선택 주식 데이터가 없을 시 보유 주식 중 가장 많이 가지고 있는 주식 이름으로
-    // if (rankingSeletedStock.rankingTarget.name===''){
-    //     selectedRankingStockName = stockHold[maxIndex].name;
-    // } else {
-    //     selectedRankingStockName = rankingSeletedStock.rankingTarget.name;
-    // }
-    
-
     return (
         <div style={{marginLeft: '2%', marginRight: '2%', textAlign: 'left', }}>
             <div style={{marginTop: '10px'}}>

@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import styles from "./css/Budget.module.css";
 import BudgetRow from "./row/BudgetRow";
 

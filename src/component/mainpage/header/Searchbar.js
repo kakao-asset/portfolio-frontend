@@ -99,7 +99,7 @@ export default function Searchbar() {
                     }
                 }}>
                 <div style={{}}>
-                    <input id="searchText" name="searchText" type="text" onChange={onChange} style={{
+                    <input autoFocus placeholder="검색어를 입력하세요" id="searchText" name="searchText" type="text" onChange={onChange} style={{
                         width: '600px',
                         height: '30px',
                         backgroundColor: '#1F1F1F',
@@ -126,25 +126,27 @@ export default function Searchbar() {
                         }}>{searchStock.name}</button></ul>))}
                     </div>
                 
-                    <div style={{ marginTop: '70px', marginLeft: '20px', marginBottom: '30px', width: '600px', textAlign: 'center'}}>
+                    <div style={{ marginTop: '70px', marginLeft: '10px', marginBottom: '30px', width: '600px', textAlign: 'center'}}>
                         {commentList != '' && commentList.map((commentStock)=>(<button
                         onClick={()=>{navigateToDetail(); 
                             setSearchTargetToLocal(commentStock);}}
                             style = {{
                                 width: 'fit-content',
-                                height: '30px',
+                                height: '33px',
                                 backgroundColor: '#9B51E0',
                                 borderRadius: '5px',
+                                border: '0px',
                                 marginTop: '20px',
                                 marginRight: '15px',
-                                paddingLeft: '15px',
-                                paddingRight: '20px',
+                                paddingTop: '5px',
+                                paddingLeft: '20px',
+                                paddingRight: '25px',
                                 textAlign: 'center',
-                                paddingBottom: '25px',
+                                paddingBottom: '20px',
                                 color: 'white',
                                 whiteSpace: 'nowrap'
                             }}
-                        >#{commentStock.name}</button>))}
+                        ># {commentStock.name}</button>))}
                     </div>
                 </div>
             </Modal>

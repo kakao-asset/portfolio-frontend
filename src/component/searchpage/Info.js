@@ -3,7 +3,6 @@ import InfoContent from './InfoContent';
 import InfoHeader from './InfoHeader';
 import InfoLineGraph from './InfoLineGraph';
 import InfoList from './InfoList';
-import {TestStockData} from '../../data/TestStockData';
 import React from 'react';
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -49,12 +48,6 @@ export default function Info({stockHold}){
 
     console.log("curr: ", current);
     
-    // 임시 데이터 목록에서 같은 값 찾는 부분
-    var index = TestStockData.findIndex(i => i.symbolCode === detailStock.searchTarget.symbolCode);
-
-    // 같은 값 => selectedStock 을 Info의 Header, Content, LineGraph, List에 props로 전달
-    // 수정하면 실시간 데이터 정보 들어가는 변수
-    const selectedStock = TestStockData[index];
 
     return(
         <div style={{marginTop: '50px', marginLeft: '2%', marginRight: '2%', textAlign: 'left', paddingBottom: '50px'}}>

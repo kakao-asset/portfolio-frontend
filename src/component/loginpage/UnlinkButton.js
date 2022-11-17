@@ -9,12 +9,12 @@ const UnlinkButton = () => {
             url: `${process.env.REACT_APP_BACKEND_URI}/api/unlink/${userId}`
         })
         .then((res) => {
-            window.alert("연결끊기");
+            window.alert("회원 탈퇴");
             document.location.href = "/"
     
         }).catch((err, res) => {
-            console.log("연결끊기 에러", res);
-            window.alert("연결끊기 실패");
+            console.log("회원 탈퇴 에러", res);
+            window.alert("회원 탈퇴에 실패했습니다.");
     
             document.location.href = "/main" 
         })

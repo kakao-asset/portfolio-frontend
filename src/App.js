@@ -4,7 +4,6 @@ import Login from './component/loginpage/Login';
 import Main from './component/mainpage/Main';
 import MainSearch from './component/searchpage/MainSearch';
 import KakaoOauth from './component/loginpage/KakaoOauth';
-import TestComponent from './component/mainpage/maincomponent/TestComponent';
 
 function App() {
   return (
@@ -15,8 +14,6 @@ function App() {
         <Route path="/main" element={<Main />} />
         <Route path="/detail" element={<MainSearch/>}/>
         <Route path="/oauth/kakao" element={<KakaoOauth/>}/>
-        {/* <Route path="/test" element={<Test/>}/> */}
-        <Route path="/testdata" element={<TestComponent/>}></Route>
       </Routes>
     </BrowserRouter>
     </div>
