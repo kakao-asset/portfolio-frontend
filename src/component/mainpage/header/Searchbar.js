@@ -1,13 +1,10 @@
-import { useEffect, useState, useRef } from "react";
+import {useState} from "react";
 import Modal from 'react-modal';
-import SearchRow from "./SearchRow";
-import styles from "./css/SearchList.module.css"
 import { Comments } from "./Coments";
 import CommentRow from "./ComentRow";
-import { TestStockData } from "../../../data/TestStockData";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { log } from "react-modal/lib/helpers/ariaAppHider";
+
 // 장 시작 때 받아온 데이터 정보로 사용하면 될 거 같음
 
 
@@ -25,11 +22,10 @@ export default function Searchbar() {
 
     const [search, setSearch] = useState("");
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [searchOn, setSearchOn] = useState(false);
     const [searchList, setSearchList] = useState("");
+    const [commentList, setCommentList] = useState("");
 
     const setSearchFilter = (search) => {
-        // setSearchList(TestStockData.filter(searchStock => searchStock.name.replace(" ","").toUpperCase().includes(search.replace(" ","").toUpperCase())));
         SearchRequest(search);
     }
 
@@ -56,19 +52,24 @@ export default function Searchbar() {
 
     }
 
-    
+    const CommentRequest = () => {
+        axios({
+            method: "get",
+            url: `${process.env.REACT_APP_BACKEND_URI}/api/stock/rank`,
+            headers: {"Access-Control-Allow-Origin": "*"}
+        })
+        .then((res) => {
+            var result = res.data.data;
+            setCommentList(result);
+        }).catch((err) => {
+            console.log("데이터 받아오기 에러", err);
+        })
+    }
 
-    // const setSearchFilter = (search) => {
-    //     console.log("검색 필터");
-        
-    //     const filterData = TestStockData.filter(searchStock => searchStock.name.replace(" ","").toUpperCase().includes(search.replace(" ","").toUpperCase()));
-    //     console.log(filterData);
 
-    //     setFilteredSearch(filterData);
-    // }
     return (
         <>
-            <input type="text" onClick={() => setModalIsOpen(true)} style={{
+            <input type="text" onClick={() => {setModalIsOpen(true); CommentRequest();}} style={{
                 width: '400px',
                 height: '30px',
                 backgroundColor: '#1F1F1F',
@@ -130,10 +131,28 @@ export default function Searchbar() {
                         }}>{searchStock.name}</button></ul>))}
                     </div>
                 
-                    <div style={{ marginTop: '200px', marginLeft: '20px', marginBottom: '30px', display: 'flex' }}>
-                        {Comments.map(comment => (
+                    <div style={{ marginTop: '200px', marginLeft: '20px', marginBottom: '30px', dYisplay: 'flex', whiteSpace: 'nowrap'}}>
+                        {commentList != '' && commentList.map((commentStock)=>(<button
+                        onClick={()=>{navigateToDetail(); 
+                            setSearchTargetToLocal(commentStock);}}
+                            style = {{
+                                width: 'fit-content',
+                                height: '30px',
+                                backgroundColor: '#9B51E0',
+                                borderRadius: '5px',
+                                marginTop: '20px',
+                                marginRight: '15px',
+                                paddingLeft: '15px',
+                                paddingRight: '20px',
+                                textAlign: 'center',
+                                paddingBottom: '25px',
+                                color: 'white',
+                                whiteSpace: 'nowrap'
+                            }}
+                        >#{commentStock.name}</button>))}
+                        {/* {Comments.map(comment => (
                             <CommentRow key={comment.id} comment={comment}></CommentRow>
-                        ))}
+                        ))} */}
                     </div>
                 </div>
             </Modal>

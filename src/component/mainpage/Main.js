@@ -9,7 +9,8 @@ export default function Main() {
         value: "",
         avgPrice: "",
         sectorCode: "",
-        symbolCode: ""
+        symbolCode: "",
+        sectorName: "",
     }]);
     
     var resStockData; var resData;
@@ -21,7 +22,7 @@ export default function Main() {
         })
         .then((res) => {
             resData = res.data.data;
-            resStockData = resData.map((x) => ({name: x.stockName, value: x.quantity, avgPrice: x.avgPrice, symbolCode: x.stockCode, sectorCode: x.sectorCode}));
+            resStockData = resData.map((x) => ({name: x.stockName, value: x.quantity, avgPrice: x.avgPrice, symbolCode: x.stockCode, sectorCode: x.sectorCode, sectorName: x.sectorName}));
             setStockHold(resStockData);
         }).catch((err) => {
             console.log("use_stock 데이터 에러", err);

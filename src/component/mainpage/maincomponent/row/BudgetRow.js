@@ -12,6 +12,8 @@ import axios from "axios";
         const stockValue = budget.value;
         const stockSymbolCode = budget.symbolCode;
         const stockSectorCode = budget.sectorCode;
+        const stockSectorName = budget.sectorName;
+        
 
         // 매도 버튼 모달 관리
         const [SellPopIsOpen, setSellPopIsOpen] = useState(false);
@@ -84,7 +86,7 @@ import axios from "axios";
                 axios({
                     method: "POST",
                     url: `${process.env.REACT_APP_BACKEND_URI}/api/stock/sell/${userId}`,
-                    data: {"price" : sellPrice, "quantity": sellValue, "stockName": stockName, "stockCode": stockSymbolCode, "sectorCode": stockSectorCode},
+                    data: {"price" : sellPrice, "quantity": sellValue, "stockName": stockName, "stockCode": stockSymbolCode, "sectorCode": stockSectorCode, "sectorName": stockSectorName},
                     headers: {
                         "Content-Type" : "application/json; charset=utf-8"
                     }, 
@@ -118,7 +120,7 @@ import axios from "axios";
                 axios({
                     method: "POST",
                     url: `${process.env.REACT_APP_BACKEND_URI}/api/stock/buy/${userId}`,
-                    data: {"price" : buyPrice, "quantity": buyValue, "stockName": stockName, "stockCode": stockSymbolCode, "sectorCode": stockSectorCode},
+                    data: {"price" : buyPrice, "quantity": buyValue, "stockName": stockName, "stockCode": stockSymbolCode, "sectorCode": stockSectorCode, "sectorName": stockSectorName},
                     headers: {
                         "Content-Type" : "application/json; charset=utf-8"
                     }, 

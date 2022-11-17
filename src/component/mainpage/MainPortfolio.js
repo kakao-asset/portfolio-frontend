@@ -24,7 +24,6 @@ export default function MainPortfolio({stockHold, current}) {
     var maxIndex = 0;
 
     if (stockHold.length > 0) {
-        var newsStockCode = stockHold[0].symbolCode;
         var maxValue = stockHold[0].value;
         for(var i=1; i<stockHold.length; i++){
             if(maxValue<stockHold[i].value){
@@ -34,6 +33,7 @@ export default function MainPortfolio({stockHold, current}) {
         }
 
         selectedRankingStock = stockHold[maxIndex];
+        newsStockCode = stockHold[maxIndex].symbolCode
     }
 
     for(var i=0;i<localStorage.length;i++){

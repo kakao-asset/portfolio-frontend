@@ -1,49 +1,58 @@
-import { useTable, useSortBy } from 'react-table';
 import React, { useEffect, useState } from 'react';
-import { VscChevronUp , VscChevronDown} from "react-icons/vsc";
 import axios from "axios";
-import ReactTable from "react-table";
 import { DataGrid} from "@mui/x-data-grid";
 
 
 
 const columns = [
-  { field: "id", headerName: "ID", headerAlign: 'center' },
+  {   field: "id", 
+    headerName: "ID", 
+    headerAlign: 'center',
+    width: '0'
+
+   },
   {
       headerAlign: 'center',  
       headerName: '종목이름',
       field: 'name',
+      width: '200'
       
   },
   {
       headerAlign: 'center',
       headerName: '현재가',
-      field: 'tradePrice'
+      field: 'tradePrice',
+      width: '150'
   },
   {
       headerAlign: 'center',
       headerName: '등락률',
       field: 'prevAccTradeVolumeChangeRate',
+      width: '200'
   },
   {
       headerAlign: 'center',
       headerName: '거래량',
-      field: 'accTradeVolume'
+      field: 'accTradeVolume',
+      width: '250'
   },
   {
       headerAlign: 'center',
       headerName: '거래대금',
-      field: 'accTradePrice'
+      field: 'accTradePrice',
+      width: '250'
   },
   {
       headerAlign: 'center',
       headerName: '시가총액',
-      field: 'marketCap'
+      field: 'marketCap',
+      width: '250'
   },
   {
       headerAlign: 'center',
       headerName: '외국인',
-      field: 'foreignRatio'
+      field: 'foreignRatio',
+      width: '200'
   }
 ];
 
@@ -79,12 +88,6 @@ useEffect(()=>{
   var interval = setInterval(()=>{
     getSectorRank();
 }, 100000);
-  // if (interval == null){
-  //   interval = setInterval(getSectorRank(), 10000);
-  // }else{
-  //   clearInterval(interval);
-  //   interval = setInterval(getSectorRank(), 10000);
-  // }
   
 },[code])
 
@@ -95,7 +98,7 @@ useEffect(()=>{
 
 
   return (
-    <div style={{ height: '800px', width: "800px", color: "white", marginBottom: '100px' }}>
+    <div style={{ height: '800px', width: '1550px', color: "white", marginBottom: '100px' }}>
       <DataGrid rows={rankData}
       columns={columns} style={{color: 'white', textAlign: 'center' }}>
       </DataGrid>
