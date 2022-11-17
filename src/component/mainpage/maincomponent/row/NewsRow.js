@@ -5,13 +5,14 @@ import React from "react";
         const desc = article.summary;
         const thumbnail = article.imageUrl;
         const newslink = article.detail_url;
+        console.log(thumbnail);
 
         return (
             <div style={{marginTop: '40px', marginBotton: '20px', marginRight: '20px'}} onClick={() => window.open(`${newslink}`)}>
                 <ul>
                 <div style={{display: 'flex'}}>
                 <div>
-                    <img src={thumbnail} style={{float: 'left', width: '200px', height: '150px', marginTop: '5px'}}></img>
+                    <img src= {thumbnail== null? "../../img/ka_noimage.png": thumbnail} style={{float: 'left', width: '200px', height: '150px', marginTop: '5px'}}></img>
                 </div>
                 <div style={{display: 'column', marginTop: '15px'}}>
                     <ul>
