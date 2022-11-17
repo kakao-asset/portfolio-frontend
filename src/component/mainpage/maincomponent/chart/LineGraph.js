@@ -14,7 +14,6 @@ export default function LineGraph({profit}) {
       setInterval(()=>{
           forceUpdate()
           makeData();
-          console.log(Object.values(data));
       },1000)
   },[])
 
@@ -43,7 +42,7 @@ export default function LineGraph({profit}) {
         for (var i = 0; i < min; i++){
           temp[temp.length] = {
             "x" : ('0'+ today.getHours()).slice(-2) +":" + ('0'+ today.getMinutes()).slice(-2),
-            "y" : stock[i]['tradePrice']
+            "y" : stock[i]['change'] === "RISE" ? stock[i]['changeRate'] : -stock[i]['changeRate']
           }
           today.setMinutes(today.getMinutes()+1)
         }
