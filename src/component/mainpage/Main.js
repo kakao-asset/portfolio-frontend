@@ -15,17 +15,17 @@ export default function Main() {
     
     var resStockData =[]; 
     var resData;
-    var tmp;
     var userId = JSON.parse(localStorage.getItem("userData")).userId;
     
     const [budgetData, setBudgetData] = useState([]);
 
     function getRealtimeData(stock_data){
+        var tmp = stock_data;
         // 현재 보유 종목에 대한 모든 실시간 데이터 수집
         for(let i = 0; i < resStockData.length; i++){
             axios({
                 method: "get",
-                url: `${process.env.REACT_APP_BACKEND_URI}/main/realtime/?stock_name=${stock_data[i]['symbolCode']}`,
+                url: `${process.env.REACT_APP_BACKEND_URI}/main/realtime/?stock_name=${tmp[i]['symbolCode']}`,
                 headers: {"Access-Control-Allow-Origin": "*"},
                 responseEncoding: 'binary'
             })
@@ -35,16 +35,18 @@ export default function Main() {
                 var len = result.length == 0 ? 0 : result.length-1;
                 var data = result[len].tradePrice;
     
-                stock_data[i]['currentPrice'] = data
-                stock_data[i]['time'] = new Date();
+                tmp[i]['currentPrice'] = data
+                tmp[i]['time'] = new Date();
                 
                 
             }).catch((err) => {
                 console.log("데이터 받아오기 에러", err);
             })
         }
-        console.log(budgetData);
-        setBudgetData(stock_data)
+        tmp['time'] = new Date();
+
+        console.log(tmp);
+        setBudgetData(tmp)
     }
 
     const test = async () => await axios({

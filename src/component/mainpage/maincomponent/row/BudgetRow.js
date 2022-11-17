@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { BsCart4 } from "react-icons/bs";
 import styles from "../css/Budget.module.css"
 import Modal from 'react-modal';
@@ -14,7 +14,16 @@ import axios from "axios";
         const stockSectorCode = budget.sectorCode;
         const stockSectorName = budget.sectorName;
         const stockCurrentPrice = budget.currentPrice;
-        
+
+        const [,updateState] = useState()
+        const forceUpdate = useCallback(()=> updateState({}), []);
+
+        useEffect(()=>{
+            forceUpdate()
+            setInterval(()=>{
+                forceUpdate()
+            },1000)
+        },[])
 
         // 매도 버튼 모달 관리
         const [SellPopIsOpen, setSellPopIsOpen] = useState(false);
