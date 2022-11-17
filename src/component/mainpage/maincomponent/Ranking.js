@@ -1,5 +1,4 @@
 import styles from "./css/Ranking.module.css";
-import RankingCustom from "./RankingCustom";
 import RankingTable from "./RankingTable";
 import { rankingColumn } from './RankingColumn';
 import { rankingData } from './RankingData';

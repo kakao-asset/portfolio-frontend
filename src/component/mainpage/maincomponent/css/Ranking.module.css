@@ -12,3 +12,19 @@
     background-color: white;
     color: '#1F1F1F';
 }
+
+.box::-webkit-scrollbar {
+    width: 8px;  /* 스크롤바의 너비 */
+    height: 8px;
+  }
+  
+.box::-webkit-scrollbar-thumb {
+    height: 30%; /* 스크롤바의 길이 */
+    background: #ccc; /* 스크롤바의 색상 */
+    
+    border-radius: 10px;
+  }
+  
+.box::-webkit-scrollbar-track {
+    background: #1F1F1F;  /*스크롤바 뒷 배경 색상*/
+  }

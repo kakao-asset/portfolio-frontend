@@ -1,11 +1,7 @@
 import {useState} from "react";
 import Modal from 'react-modal';
-import { Comments } from "./Coments";
-import CommentRow from "./ComentRow";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
-// 장 시작 때 받아온 데이터 정보로 사용하면 될 거 같음
 
 
 export default function Searchbar() {
@@ -81,7 +77,7 @@ export default function Searchbar() {
                 top: '40px',
                 left: '1300px',
                 bottom: '5px',
-                color: 'white'
+                color: 'white',
             }}></input>
             
             {/* 검색바 클릭 시 하단에 생성되는 검색 모달 */}
@@ -95,11 +91,10 @@ export default function Searchbar() {
                         position: 'relative',
                         top: '40px',
                         left: '1080px',
-                        overflow: 'auto',
                         borderRadius: '4px',
                         width: '600px',
                         height: 'fit-content',
-                        background: '#1F1F1F'
+                        background: '#1F1F1F',
 
                     }
                 }}>
@@ -131,7 +126,7 @@ export default function Searchbar() {
                         }}>{searchStock.name}</button></ul>))}
                     </div>
                 
-                    <div style={{ marginTop: '200px', marginLeft: '20px', marginBottom: '30px', dYisplay: 'flex', whiteSpace: 'nowrap'}}>
+                    <div style={{ marginTop: '70px', marginLeft: '20px', marginBottom: '30px', width: '600px', textAlign: 'center'}}>
                         {commentList != '' && commentList.map((commentStock)=>(<button
                         onClick={()=>{navigateToDetail(); 
                             setSearchTargetToLocal(commentStock);}}
@@ -150,9 +145,6 @@ export default function Searchbar() {
                                 whiteSpace: 'nowrap'
                             }}
                         >#{commentStock.name}</button>))}
-                        {/* {Comments.map(comment => (
-                            <CommentRow key={comment.id} comment={comment}></CommentRow>
-                        ))} */}
                     </div>
                 </div>
             </Modal>

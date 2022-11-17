@@ -95,11 +95,11 @@ useEffect(()=>{
 
 
 
-  return (
-    <div style={{ height: '800px', width: '1550px', color: "white", marginBottom: '100px' }}>
-      <DataGrid rows={rankData}
-      columns={columns} style={{color: 'white', textAlign: 'center' }}>
-      </DataGrid>
-    </div>
-  )
+return (
+  <div style={{ height: '800px', width: '1550px', marginBottom: '100px' }}>
+    <DataGrid rows={rankData} initialState={{columns: {columnVisibilityModel: {id: false}}}}
+    columns={columns} style={{color: 'white', textAlign: 'center', }}>
+    </DataGrid>
+  </div>
+)
 }
