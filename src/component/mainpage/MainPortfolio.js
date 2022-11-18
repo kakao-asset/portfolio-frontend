@@ -61,7 +61,7 @@ export default function MainPortfolio({stockHold, budgetData, profit}) {
             </div>
         <div style={{display: "flex"}}>
             {/* 포트폴리오(차트 및 보유 주식, 자산) 영역 */}
-            {<Portfolio stockHold={stockHold}></Portfolio>}
+            {<Portfolio stockHold={stockHold} budget={budgetData}></Portfolio>}
 
             {/* 보유 주식 관리 영역 */}
             {<Budget stockHold={stockHold} budgetData={budgetData}></Budget>}
