@@ -1,7 +1,6 @@
 // src/setupProxy.js
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const BACK_URI = process.env.REACT_APP_BACKEND_URI
-
 module.exports = function(app) {
 
   //CORS ERROR
@@ -14,7 +13,15 @@ module.exports = function(app) {
     );
       
     app.use(
-        '/main',
+        '/main/news',
+        createProxyMiddleware({
+            target: BACK_URI,
+            changeOrigin: true,
+        })
+    );
+
+    app.use(
+        '/main/realtime',
         createProxyMiddleware({
             target: BACK_URI,
             changeOrigin: true,
@@ -36,4 +43,6 @@ module.exports = function(app) {
             changeOrigin: true,
         })
     );
+
+    
 };
