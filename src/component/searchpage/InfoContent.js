@@ -6,10 +6,19 @@ import axios from "axios";
 
     export default function InfoContent  ({budget, stockInfo})  {
         const stockName = stockInfo.name;
-        const stockValue = budget.value;
         const stockSymbolCode = stockInfo.symbolCode;
         const stockSectorCode = stockInfo.sectorCode;
         const stockSectorName = stockInfo.sectorName;
+
+        var stockValue = "";
+
+        if (budget.length > 0) {
+            for (var i=0;i<budget.length;i++){
+                if (stockSymbolCode == budget[i].symbolCode){
+                    stockValue = budget[i].value;
+                }
+            }
+        }
 
         console.log("stockInfo:::", stockInfo);
         
@@ -38,6 +47,10 @@ import axios from "axios";
             setBuyPrice(e.target.value);
         }
 
+        const onSellPriceChange = (e) => {
+            setSellPrice(e.target.value);
+        }
+
         // 매도 매수 버튼 클릭 시 호출되는 함수
         // 여기 함수 내에 DB에 저장 요청 보내야 함
         // DB에 저장하면 stockHold도 변하므로 reload 해서 화면 갱신하기
@@ -46,7 +59,7 @@ import axios from "axios";
             console.log("sellValue ==== ", sellValue);
             console.log("stockName ==== ", stockName);
         
-            if(sellPrice < 0 || sellValue < 0) {
+            if(sellPrice < 0 || sellValue < 0 || sellPrice == "" || sellValue == "") {
                 window.alert("양수 값을 입력해주세요");
             } else {
                 axios({
@@ -72,13 +85,13 @@ import axios from "axios";
             }
             
             setSellPopIsOpen(false);
-            // window.location.reload(); <- 화면 갱신 부분, 현재는 주석 처리
+            window.location.reload();
         }
 
         const setBuyMemberStock = () => {
             //buyValue = buyValue == ""? 100 : buyValue;
             console.log(buyPrice, buyValue );
-            if(buyPrice < 0 || buyValue < 0) {
+            if(buyPrice < 0 || buyValue < 0 || buyPrice == "" || buyValue == "") {
                 window.alert("양수 값을 입력해주세요");
             } else {
                 var userId = JSON.parse(localStorage.getItem("userData")).userId;
@@ -102,7 +115,7 @@ import axios from "axios";
                     window.alert("매수 실패");
                 })
                 setBuyPopIsOpen(false);
-                // window.location.reload(); <- 화면 갱신 부분, 현재는 주석 처리
+                window.location.reload(); 
             }
         }
 
@@ -144,8 +157,14 @@ import axios from "axios";
                                         }
                                     }}>
                                     <div style={{textAlign: 'center'}}>
-                                        <p style={{color:'white'}}>매도 수량</p>
-                                        <input type="number"  min="1" max={stockValue} style={{width: '40px'}} onChange={onSellChange}></input>
+                                    <ul>
+                                        <div style={{display: 'flex'}}>
+                                        <p style={{color:'white', marginRight: '10px', marginBottom: '10px'}}>매도 수량</p>
+                                        <input id='num' type="number" min="1" max={stockValue} style={{width: '40px', marginRight: '30px',marginTop:'8px', height: '30px', fontSize: '20px'}} onChange={onSellChange}></input>
+                                        </div>
+                                        </ul>
+                                        <p style={{color:'white'}}>매도 금액</p>
+                                        <input id='price' type="text" style={{width: '150px', height: '30px', fontSize: '20px'}} onChange={onSellPriceChange}></input> 
                                     </div>
                                     <button onClick={setSellMemberStock} style={{    
                                         backgroundColor: '#57C083',
@@ -186,9 +205,17 @@ import axios from "axios";
                                                             }
                                                         }}>
                         <div style={{textAlign: 'center'}}>
-                                        <p style={{color:'white'}}>매수 수량</p>
-                                        <input type="number" min="1" style={{width: '40px', marginRight: '10px'}} onChange={onBuyChange}></input>
-                                        <input id='price' type="text" style={{width: '40px'}} onChange={onBuyPriceChange}></input>
+                                    <ul>
+                                            <div style={{display: 'flex'}}>
+                                            <p style={{color:'white', marginRight: '10px', marginBottom: '10px'}}>매수 수량</p>
+                                            <input type="number" min="1" style={{width: '40px',marginRight: '30px', marginTop:'8px', height: '30px', fontSize: '20px'}} onChange={onBuyChange}></input> 
+                                            </div>
+                                    
+                                        </ul>
+                        
+                                        <p style={{color:'white'}}>매수 금액</p>
+                                        <input id='price' type="text" style={{width: '150px', height: '30px', fontSize: '20px'}} onChange={onBuyPriceChange}></input>   
+                       
                                     </div>
                                     <button onClick={setBuyMemberStock} className={styles.buySmallButton} 
                                     style={{    

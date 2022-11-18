@@ -1,6 +1,4 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import axios from "axios";
 
 export default function InfoList  ({stockInfo}) {
         // 천 원 단위 점 찍어주는 거 

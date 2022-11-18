@@ -149,8 +149,14 @@ import axios from "axios";
                                         }
                                     }}>
                                     <div style={{textAlign: 'center'}}>
-                                        <p style={{color:'white'}}>매도 수량</p>
-                                        <input id='num' type="number" min="1" max={stockValue} style={{width: '40px', marginRight: '10px'}} onChange={onSellChange}></input>
+                                    <ul>
+                                        <div style={{display: 'flex'}}>
+                                        <p style={{color:'white', marginRight: '10px', marginBottom: '10px'}}>매도 수량</p>
+                                        <input id='num' type="number" min="1" max={stockValue} style={{width: '40px', marginRight: '30px',marginTop:'8px', height: '30px', fontSize: '20px'}} onChange={onSellChange}></input>
+                                        </div>
+                                        </ul>
+                                        <p style={{color:'white'}}>매도 금액</p>
+                                        <input id='price' type="text" style={{width: '150px', height: '30px', fontSize: '20px'}} onChange={onSellPriceChange}></input>   
                                     </div>
                                     <button onClick={setSellMemberStock} className={styles.sellButton} style={{marginTop:'15px', marginLeft: '75px'}}>매도</button>
 
@@ -175,9 +181,17 @@ import axios from "axios";
                                                             }
                                                         }}>
                         <div style={{textAlign: 'center'}}>
-                                        <p style={{color:'white'}}>매수 수량</p>
-                                        <input type="number" min="1" style={{width: '40px', marginRight: '10px'}} onChange={onBuyChange}></input> 
-                                        <input id='price' type="text" style={{width: '40px'}} onChange={onBuyPriceChange}></input>
+                                        <ul>
+                                            <div style={{display: 'flex'}}>
+                                            <p style={{color:'white', marginRight: '10px', marginBottom: '10px'}}>매수 수량</p>
+                                            <input type="number" min="1" style={{width: '40px',marginRight: '30px', marginTop:'8px', height: '30px', fontSize: '20px'}} onChange={onBuyChange}></input> 
+                                            </div>
+                                    
+                                        </ul>
+                        
+                                        <p style={{color:'white'}}>매수 금액</p>
+                                        <input id='price' type="text" style={{width: '150px', height: '30px', fontSize: '20px'}} onChange={onBuyPriceChange}></input>   
+                       
                                     </div>
                                     <button onClick={setBuyMemberStock} className={styles.buyButton} style={{marginTop:'15px', marginLeft: '75px'}}>매수</button>
                         
