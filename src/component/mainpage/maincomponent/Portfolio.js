@@ -33,8 +33,8 @@ export default function Portfolio({stockHold, budget}){
         <div>
             <div className={styles.box}>
                 <div>
-                    <div style={{height: "25px"}}></div>
-                    <p style={{marginLeft: '30px', color: "white"}}>자산구성</p>
+                    <div style={{height: "10px"}}></div>
+                    <p style={{marginLeft: '30px', color: "white", fontSize: '20px'}}>자산구성</p>
                 </div>
                     <div style={{display: 'flex'}}>
                         <PieChart stockHold={stockHold}></PieChart>
