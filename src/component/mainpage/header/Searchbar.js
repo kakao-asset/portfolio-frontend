@@ -34,7 +34,7 @@ export default function Searchbar() {
         var word = search;
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_BACKEND_URI}/api/stock/search?word=${word}`,
+            url: `/api/stock/search?word=${word}`,
             headers: {"Access-Control-Allow-Origin": "*"},
             responseEncoding: 'binary'
         })
@@ -51,7 +51,7 @@ export default function Searchbar() {
     const CommentRequest = () => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_BACKEND_URI}/api/stock/rank`,
+            url: `/api/stock/rank`,
             headers: {"Access-Control-Allow-Origin": "*"}
         })
         .then((res) => {

@@ -26,7 +26,7 @@ export default function Main() {
         for(let i = 0; i < resStockData.length; i++){
             axios({
                 method: "get",
-                url: `${process.env.REACT_APP_BACKEND_URI}/main/realtime/?stock_name=${tmp[i]['symbolCode']}`,
+                url: `/main/realtime/?stock_name=${tmp[i]['symbolCode']}`,
                 headers: {"Access-Control-Allow-Origin": "*"},
                 responseEncoding: 'binary'
             })
@@ -51,7 +51,7 @@ export default function Main() {
 
     const test = async () => await axios({
             method: "GET",
-            url: `${process.env.REACT_APP_BACKEND_URI}/api/stock/${userId}`
+            url: `/api/stock/${userId}`
         })
         .then((res) => {
             resData = res.data.data;

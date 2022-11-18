@@ -10,7 +10,7 @@ export default function News({stockCode}) {
     function getNews(){
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_BACKEND_URI}/main/news?stockCode=${stockCode}`,
+            url: `/main/news?stockCode=${stockCode}`,
             headers: {"Access-Control-Allow-Origin": "*"},
             responseEncoding: 'binary'
         })
