@@ -12,6 +12,7 @@ export default function Login() {
 
 
     return (
+        <>
         <div style={{textAlign: "center"}}>
             <div style={{display: 'flex'}}>
                 <div className={styles.leftBox}>
@@ -31,8 +32,20 @@ export default function Login() {
                     <div>
                     <KakaoLoginButton/>
                     </div>
+
+                    <img style={{
+                        marginTop: '280px',
+                        marginLeft: '550px',
+                        width: '100px'
+                    }} src="img/ka_admin_login_img.png" alt="kaAdminLogin"></img>
+
                 </div>
+
+                <img alt="kaUnderText" src="img/ka_login_text.png" style={{
+                    marginLeft: '40%', marginTop: '880px', width: '400px'
+            }}></img>
             </div>
         </div>
+         </>
     );
 }

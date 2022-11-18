@@ -14,7 +14,7 @@ export default function InfoList  ({stockInfo}) {
         var stockQuantity = String(stockInfo.accTradeVolume);
         var highPrice = String(stockInfo.highPrice);
         var lowPrice = String(stockInfo.lowPrice);
-        var accTradeVolume = String(stockInfo.accTradeVolume);
+        var accTradePrice = String(stockInfo.accTradePrice);
         var upperLimitPrice = String(stockInfo.upperLimitPrice);
         var lowerLimitPrice = String(stockInfo.lowerLimitPrice);
         var high52wPrice = String(stockInfo.high52wPrice);
@@ -26,6 +26,30 @@ export default function InfoList  ({stockInfo}) {
         var bps = stockInfo.bps;
         var pbr = stockInfo.pbr;
         var sectorName = stockInfo.sectorName;
+
+        function numberToKorean(number){
+            var inputNumber  = number < 0 ? false : number;
+            var unitWords    = ['', '만'];
+            var splitUnit    = 10000;
+            var splitCount   = unitWords.length;
+            var resultArray  = [];
+            var resultString = '';
+        
+            for (var i = 0; i < splitCount; i++){
+                 var unitResult = (inputNumber % Math.pow(splitUnit, i + 1)) / Math.pow(splitUnit, i);
+                unitResult = Math.floor(unitResult);
+                if (unitResult > 0){
+                    resultArray[i] = unitResult;
+                }
+            }
+        
+            for (var i = 0; i < resultArray.length; i++){
+                if(!resultArray[i]) continue;
+                resultString = String(resultArray[i]) + unitWords[i] + resultString;
+            }
+        
+            return resultString;
+        }
 
         return (
             <div style={{paddingBottom: '100px'}}>
@@ -54,7 +78,7 @@ export default function InfoList  ({stockInfo}) {
              <div style={{marginTop: '40px', marginBotton: '20px', display: 'flex'}}>
                 <div style={{marginLeft: '30px'}}>
                     <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>거래대금</span>
-                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', fontSize: '20px'}}>{accTradeVolume.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
+                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', fontSize: '20px'}}>{numberToKorean(accTradePrice).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
                 </div>
                 <div style={{marginLeft: '30px'}}>
                     <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>상한가</span>
