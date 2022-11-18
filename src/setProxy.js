@@ -1,7 +1,17 @@
-// // src/setupProxy.js
-// const { createProxyMiddleware } = require('http-proxy-middleware');
-// const BACK_URI = process.env.REACT_APP_BACKEND_URI
-// const FRONT_URI = process.env.REACT_APP_FRONT_URI
+// src/setupProxy.js
+const { createProxyMiddleware } = require('http-proxy-middleware');
+const BACK_URI = process.env.REACT_APP_BACKEND_URI
+const FRONT_URI = process.env.REACT_APP_FRONT_URI
+
+module.exports = (app) => {
+	app.use(
+		createProxyMiddleware('/api', {
+			target: BACK_URI, 
+			changeOrigin: true,
+		})
+	);
+};
+
 // module.exports = function(app) {
 
 //   //CORS ERROR
