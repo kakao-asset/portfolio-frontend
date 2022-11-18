@@ -29,13 +29,13 @@ export default function InfoList  ({stockInfo}) {
 
         function numberToKorean(number){
             var inputNumber  = number < 0 ? false : number;
-            var unitWords    = ['', '만'];
+            var unitWords    = ['', '만','억','조','경'];
             var splitUnit    = 10000;
             var splitCount   = unitWords.length;
             var resultArray  = [];
             var resultString = '';
         
-            for (var i = 0; i < splitCount; i++){
+            for (var i = 1; i < splitCount; i++){
                  var unitResult = (inputNumber % Math.pow(splitUnit, i + 1)) / Math.pow(splitUnit, i);
                 unitResult = Math.floor(unitResult);
                 if (unitResult > 0){
@@ -43,7 +43,7 @@ export default function InfoList  ({stockInfo}) {
                 }
             }
         
-            for (var i = 0; i < resultArray.length; i++){
+            for (var i = 1; i < resultArray.length; i++){
                 if(!resultArray[i]) continue;
                 resultString = String(resultArray[i]) + unitWords[i] + resultString;
             }
@@ -102,7 +102,7 @@ export default function InfoList  ({stockInfo}) {
                 </div>
                 <div style={{marginLeft: '30px'}}>
                     <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>시가총액</span>
-                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', fontSize: '20px'}}>{marketCap.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
+                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', fontSize: '20px'}}>{numberToKorean(marketCap).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
                 </div>
                 <div style={{marginLeft: '30px'}}>
                     <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>EPS/PER</span>
