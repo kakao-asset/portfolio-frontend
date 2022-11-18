@@ -42,7 +42,8 @@ export default function LineGraph({profit}) {
         for (var i = 0; i < min; i++){
           temp[temp.length] = {
             "x" : ('0'+ today.getHours()).slice(-2) +":" + ('0'+ today.getMinutes()).slice(-2),
-            "y" : stock[i]['change'] === "RISE" ? stock[i]['changeRate'] : -stock[i]['changeRate']
+            "y" : stock[i]['tradePrice']
+            // stock[i]['change'] === "RISE" ? stock[i]['changeRate'] : -stock[i]['changeRate']
           }
           today.setMinutes(today.getMinutes()+1)
         }
@@ -82,7 +83,8 @@ export default function LineGraph({profit}) {
             tickRotation: 0,
             legend: 'Profit and Loss Timeline',
             legendOffset: 36,
-            legendPosition: 'middle'
+            legendPosition: 'middle',
+            itemTextColor:"white"
         }}
         axisLeft={{
             color: 'white',

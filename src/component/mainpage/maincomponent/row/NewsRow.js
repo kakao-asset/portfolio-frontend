@@ -5,7 +5,6 @@ import React from "react";
         const desc = article.summary;
         const thumbnail = article.imageUrl;
         const newslink = article.detail_url;
-        console.log(thumbnail);
 
         return (
             <div style={{marginTop: '40px', marginBotton: '20px', marginRight: '20px'}} onClick={() => window.open(`${newslink}`)}>
