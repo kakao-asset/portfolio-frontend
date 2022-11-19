@@ -29,7 +29,7 @@ export default function PieChart({stockHold}){
               innerRadius={0.5}
               padAngle={0.7}
               cornerRadius={0}
-              colors={{scheme: 'nivo'}}
+              colors={{"scheme": "category10"}}
               activeOuterRadiusOffset={8}
               borderWidth={1}
               borderColor={{

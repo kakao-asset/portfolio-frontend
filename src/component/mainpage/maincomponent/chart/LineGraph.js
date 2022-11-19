@@ -96,7 +96,7 @@ export default function LineGraph({profit}) {
             legendOffset: -40,
             legendPosition: 'middle',
         }}
-        colors={{scheme: 'nivo'}}
+        colors={{"scheme": "category10"}}
         enableGridX={false}
         enableGridY={false}
         pointSize={1}
