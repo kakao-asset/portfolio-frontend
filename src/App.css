@@ -2,6 +2,7 @@
   text-align: center;
   background-color: #1F1F1F;
   color: #1F1F1F;
+  font-family: 'IBMPlexSansKR-Regular';
 }
 
 .App-logo {
@@ -37,4 +38,26 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+@font-face {
+  font-family: "ibm-regular";        
+  src: url("./font/IBMPlexSerif-Regular.ttf");
+}
+
+@font-face {
+  font-family: "ibm-semi-bold";        
+  src: url("./font/IBMPlexSerif-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: "ibm-bold";
+  src: url("./font/IBMPlexSerif-Bold.ttf");
+}
+
+@font-face {
+  font-family: 'IBMPlexSansKR-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }

@@ -55,9 +55,9 @@ export default function MainPortfolio({stockHold, budgetData, profit}) {
 
 
     return (
-        <div style={{marginLeft: '2%', marginRight: '2%', textAlign: 'left', }}>
-            <div style={{marginTop: '10px'}}>
-                <h3 style={{color: 'white', paddingTop: '10px', marginLeft:'20px'}}>자산</h3>
+        <div style={{marginLeft: '2rem', marginRight: '2rem', textAlign: 'left', }}>
+            <div style={{marginTop: '1rem'}}>
+                <h3 style={{color: 'white', paddingTop: '1rem', marginLeft:'2rem'}}>자산</h3>
             </div>
         <div style={{display: "flex"}}>
             {/* 포트폴리오(차트 및 보유 주식, 자산) 영역 */}
@@ -66,9 +66,9 @@ export default function MainPortfolio({stockHold, budgetData, profit}) {
             {/* 보유 주식 관리 영역 */}
             {<Budget stockHold={stockHold} budgetData={budgetData}></Budget>}
         </div>
-        <div style={{marginTop: '10px', display: 'flex'}}>
-            <h3 style={{color: 'white', paddingTop: '10px', marginLeft:'20px'}}>손익(타임라인)</h3>
-            <h3 style={{color: 'white', paddingTop: '10px', marginLeft:'910px'}}>뉴스</h3>
+        <div style={{marginTop: '1rem', display: 'flex'}}>
+            <h3 style={{color: 'white', paddingTop: '1rem', marginLeft:'2rem'}}>손익(타임라인)</h3>
+            <h3 style={{color: 'white', paddingTop: '1rem', marginLeft:'52rem'}}>뉴스</h3>
         </div>
         <div style={{display: "flex"}}>
             {/* 실시간 손익 타임라인 그래프 영역 */}
@@ -82,16 +82,15 @@ export default function MainPortfolio({stockHold, budgetData, profit}) {
                 <button onClick={()=>setModalIsOpen(!modalIsOpen)}style={
                     {color: 'white', 
                     backgroundColor: '#1F1F1F',  
-                    marginLeft: '20px', 
-                    marginTop: '50px',
-                    paddingBottom: '10px',
+                    marginLeft: '2rem', 
+                    marginTop: '3rem',
                     borderColor: '#1F1F1F',
                     border: '0px',
                     fontSize: '20px',
                     borderBottom: '0.5px solid', 
                     color: "#d2d2d2"  
                     }}>{selectedRankingStock.name}</button>
-                <h3 style={{color: 'white', paddingTop: '10px', marginLeft:'10px', marginTop: '50px'}}>관련된 업종</h3>
+                <h3 style={{color: 'white', paddingTop: '1rem', marginLeft:'1rem', marginTop: '3rem'}}>관련된 업종</h3>
 
                 {/* 업종별 랭킹 란 보유 주식 선택 모달 */}
                 <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)} ariaHideApp={false}
@@ -102,8 +101,8 @@ export default function MainPortfolio({stockHold, budgetData, profit}) {
                     },
                     content: {
                         position: 'relative',
-                        top: '1350px',
-                        left: '30px',
+                        top: '92rem',
+                        left: '3rem',
                         overflow: 'auto',
                         borderRadius: '4px',
                         width: 'fit-content',
@@ -122,7 +121,9 @@ export default function MainPortfolio({stockHold, budgetData, profit}) {
 
             {/* 업종별 랭킹 영역 */}
             {/* Ranking 컴포넌트에 업종별 랭킹 란 현재 선택된 주식 이름 props로 넘겨주기 */}
-            <Ranking selectedRankingStock={selectedRankingStock}></Ranking>
+            <div style={{}}>
+                <Ranking selectedRankingStock={selectedRankingStock}></Ranking>       
+            </div>
         </div>
     );
 }

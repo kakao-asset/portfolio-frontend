@@ -1,8 +1,8 @@
 .box {
     background-color: #2F3138;
-    width: 800px;
+    width: 38rem;
     overflow: auto;
-    height: 420px;
+    height: 28rem;
 }
 
 .box::-webkit-scrollbar {

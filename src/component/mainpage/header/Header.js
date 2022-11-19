@@ -16,8 +16,9 @@ export default function Header() {
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
     return (
-        <div style={{width: '100%', height: '50px'}}>
-            <div style={{display: 'flex', marginTop: '1.5%', marginLeft: '1.5%', width: '100%', height: '55px'}} >              
+        <div style={{width: '100rem', height: '5rem'}}>
+            <div style={{display: 'flex', marginTop: '1.5rem', marginLeft: '1.5rem', marginRight: '1.5rem', width: '100rem', height: '5rem',
+        borderBottom: '0.5px solid', color: "#d2d2d2"}} >              
                 <img  onClick={navigateToMain} alt="kalogo" src="img/ka_logo_s.png" style={{float: 'left'}}></img>
                 
                     <Searchbar></Searchbar>
@@ -25,8 +26,8 @@ export default function Header() {
                     <img alt="kaprofile" src={JSON.parse(localStorage.getItem("userData")).profile} style={
                         {float: 'right',
                         position: 'absolute',
-                        top: '30px',
-                        left: '1730px',
+                        top: '2.5rem',
+                        left: '92rem',
                         width: '50px',
                         height: '50px',
                         borderRadius: '5px'
@@ -34,7 +35,7 @@ export default function Header() {
                         <LogoutButton></LogoutButton>
                 
             </div>
-            <div style={{borderBottom: '0.5px solid', color: "#d2d2d2", marginLeft: '1.5%', marginRight: '1.5%'}}></div>
+            {/* <div style={{borderBottom: '0.5px solid', color: "#d2d2d2", marginLeft: '1.5rem', marginRight: '1.5rem'}}></div> */}
 
             <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}
                             style={{

@@ -96,7 +96,7 @@ useEffect(()=>{
 
 
 return (
-  <div style={{ height: '800px', width: '1550px', marginBottom: '100px' }}>
+  <div style={{ height: '800px', width: '80rem', marginBottom: '100px' }}>
     <DataGrid rows={rankData} initialState={{columns: {columnVisibilityModel: {id: false}}}}
     columns={columns} style={{color: 'white', textAlign: 'center', }}>
     </DataGrid>

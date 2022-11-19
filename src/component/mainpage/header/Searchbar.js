@@ -74,8 +74,8 @@ export default function Searchbar() {
                 backgroundSize: 'contain',
                 backgroundPosition: 'left',
                 position: 'absolute',
-                top: '40px',
-                left: '1300px',
+                top: '3rem',
+                left: '65rem',
                 bottom: '5px',
                 color: 'white',
             }}></input>
@@ -89,8 +89,8 @@ export default function Searchbar() {
                     },
                     content: {
                         position: 'relative',
-                        top: '40px',
-                        left: '1080px',
+                        top: '3rem',
+                        left: '51rem',
                         borderRadius: '4px',
                         width: '600px',
                         height: 'fit-content',

@@ -28,8 +28,8 @@ const LogoutButton = () => {
         border: '0px', 
         float: 'right', 
         position: 'absolute', 
-        left: '1790px', 
-        top: '40px'}}>
+        left: '95.7rem', 
+        top: '3.2rem'}}>
          <AiOutlinePoweroff size='30px'></AiOutlinePoweroff>
     </button>
     

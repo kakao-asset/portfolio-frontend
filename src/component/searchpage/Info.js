@@ -50,7 +50,7 @@ export default function Info({stockHold}){
     
 
     return(
-        <div style={{marginTop: '50px', marginLeft: '2%', marginRight: '2%', textAlign: 'left', paddingBottom: '50px'}}>
+        <div style={{marginTop: '2rem', marginLeft: '2rem', marginRight: '2rem', textAlign: 'left', paddingBottom: '50px'}}>
             <div className={styles.box}>
                 <div style={{display: 'flex'}}>
                     <InfoHeader stockInfo={current}></InfoHeader>
