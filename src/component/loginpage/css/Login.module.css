@@ -1,9 +1,11 @@
 .leftBox {
 	width: 800px;
 	height: 750px;
-    position: absolute;
-    top: 100px;
-    left: 200px;
+    top: 10rem;
+    left: 20rem;
+
+
+
     /* transform: translate(-50%,-50%); */
     background-color: #9B51E0;
 }
@@ -11,9 +13,9 @@
 .rightBox {
 	width: 700px;
 	height: 750px;
-    position: absolute;
-    top: 100px;
-    left: 1000px;
+    top: 10rem;
+    left: 70rem;
+ 
     /* transform: translate(-50%,-50%); */
     background-color: #FFFFFF;
 }

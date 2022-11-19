@@ -13,7 +13,8 @@ export default function Login() {
 
     return (
         <>
-        <div style={{textAlign: "center"}}>
+        <div text-align="center" >
+        <div style={{display: 'inline-block'}}>
             <div style={{display: 'flex'}}>
                 <div className={styles.leftBox}>
                     <img className="kaLogo" src="img/ka_logo_s.png" alt="kaLogo" style={
@@ -41,9 +42,11 @@ export default function Login() {
 
                 </div>
 
-                <img alt="kaUnderText" src="img/ka_login_text.png" style={{
-                    marginLeft: '40%', marginTop: '880px', width: '400px'
-            }}></img>
+
+            </div>
+            <img alt="kaUnderText" src="img/ka_login_text.png" style={{
+                    marginTop: '2rem', width: '400px'}}>
+                </img>
             </div>
         </div>
          </>

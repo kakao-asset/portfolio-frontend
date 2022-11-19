@@ -74,10 +74,11 @@ export default function Main() {
     
 
     return (
-        <div>
+        <div text-align="center">
+            <div style={{display: 'inline-block'}}>
             <Header></Header>
             <MainPortfolio stockHold={stockHold} budgetData={budgetData} profit={profit}></MainPortfolio>
-            
+            </div>
         </div>
     );
     

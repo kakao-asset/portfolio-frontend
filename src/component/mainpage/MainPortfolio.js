@@ -55,6 +55,8 @@ export default function MainPortfolio({stockHold, budgetData, profit}) {
 
 
     return (
+        <div text-align="center">
+            <div style={{display: 'inline-block'}}>
         <div style={{marginLeft: '2rem', marginRight: '2rem', textAlign: 'left', }}>
             <div style={{marginTop: '1rem'}}>
                 <h3 style={{color: 'white', paddingTop: '1rem', marginLeft:'2rem'}}>자산</h3>
@@ -124,6 +126,8 @@ export default function MainPortfolio({stockHold, budgetData, profit}) {
             <div style={{}}>
                 <Ranking selectedRankingStock={selectedRankingStock}></Ranking>       
             </div>
+        </div>
+        </div>
         </div>
     );
 }

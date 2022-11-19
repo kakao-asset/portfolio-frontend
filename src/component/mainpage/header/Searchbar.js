@@ -74,7 +74,7 @@ export default function Searchbar() {
                 backgroundSize: 'contain',
                 backgroundPosition: 'left',
                 position: 'absolute',
-                top: '3rem',
+                top: '2rem',
                 left: '65rem',
                 bottom: '5px',
                 color: 'white',
@@ -90,7 +90,7 @@ export default function Searchbar() {
                     content: {
                         position: 'relative',
                         top: '3rem',
-                        left: '51rem',
+                        left: '137rem',
                         borderRadius: '4px',
                         width: '600px',
                         height: 'fit-content',
