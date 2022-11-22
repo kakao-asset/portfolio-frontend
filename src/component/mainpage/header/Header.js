@@ -16,7 +16,7 @@ export default function Header() {
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
     return (
-        <div style={{ width: '100rem', height: '5rem' }}>
+        <div style={{ width: '100rem', height: '5rem'}}>
             <div style={{
                 display: 'flex', flexDirection: 'row', marginTop: '1.5rem', marginLeft: '1.5rem', marginRight: '1.5rem', width: '100rem', height: '5rem',
                 borderBottom: '0.5px solid', color: "#d2d2d2", position: "relative"
@@ -41,16 +41,16 @@ export default function Header() {
                             height: '50px',
                             borderRadius: '5px'
                         }} onClick={() => setModalIsOpen(true)}></img>
-                                                <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}
+                <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}
                          style={{
                              overlay: {
                              position: 'absolute',
                              backgroundColor: 'rgba(255, 255, 255, 0)'
                             },
                     content: {
-                        position: 'fixed',
-                        top: '7rem',
-                        left: '100rem',
+                        position: 'absolute',
+                        top: '100px',
+                        left: '1650px',
                         borderRadius: '4px',
                         width: 'fit-content',
                         height: 'fit-content',

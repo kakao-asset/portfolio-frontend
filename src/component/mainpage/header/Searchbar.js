@@ -90,7 +90,7 @@ export default function Searchbar() {
                     content: {
                         position: 'relative',
                         top: '3rem',
-                        left: '100rem',
+                        left: '70rem',
                         borderRadius: '4px',
                         width: '600px',
                         height: 'fit-content',

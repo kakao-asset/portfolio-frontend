@@ -13,7 +13,7 @@ export default function PieChart({stockHold}){
     // console.log(obj)
 
 
-    var stockData = stockHold.map((x) => ({id: x.name, label:[x.name+"\t"+"\t", x.value+"주"], value: x.value, price: x.avgPrice}));
+    var stockData = stockHold.map((x) => ({id: x.name, label:[x.name+"\t"+"\t", x.value+"주"], value: x.value*x.avgPrice, price: x.avgPrice}));
     // console.log(stockData);
     
 
