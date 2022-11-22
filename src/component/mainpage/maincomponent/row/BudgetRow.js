@@ -127,8 +127,9 @@ import axios from "axios";
                     <BsCart4 size='20px' style={{color: '#D9D9D9', display: 'block', paddingTop: '12px'}}></BsCart4>
                     <span style={{color: 'white', paddingLeft: '30px', display: 'block', width: '100px', paddingTop: '10px'}}>{stockName}</span>
                     <span style={{color: 'white', paddingLeft: '4rem', display: 'block', paddingTop: '10px', width: '90px', textAlign: 'right'}}>{stockCurrentPrice !== undefined? (stockCurrentPrice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : 0}원</span>
-                    <button className={styles.sellButton} onClick={()=>setSellPopIsOpen(true)}>매도</button>
+                    
                     <button className={styles.buyButton} onClick={()=>setBuyPopIsOpen(true)}>매수</button>
+                    <button className={styles.sellButton} onClick={()=>setSellPopIsOpen(true)}>매도</button>
 
                     <Modal isOpen={SellPopIsOpen} onRequestClose={()=>setSellPopIsOpen(false)} ariaHideApp={false}
                                     style={{

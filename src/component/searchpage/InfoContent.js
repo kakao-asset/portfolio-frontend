@@ -135,8 +135,9 @@ import axios from "axios";
                     ({(Math.ceil(((c-o)/o)*10000))/100}%)
                     </span>
                 </div>
-                <button className={styles.sellButton} onClick={()=>setSellPopIsOpen(true)}>매도</button>
                 <button className={styles.buyButton} onClick={()=>setBuyPopIsOpen(true)}>매수</button>
+                <button className={styles.sellButton} onClick={()=>setSellPopIsOpen(true)}>매도</button>
+                
 
                 <Modal isOpen={SellPopIsOpen} onRequestClose={()=>setSellPopIsOpen(false)} ariaHideApp={false}
                                     style={{

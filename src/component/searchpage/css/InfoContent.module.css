@@ -1,6 +1,6 @@
-.sellButton {
-    background-color: #57C083;
-    border-color: #57C083;
+.buyButton {
+    background-color: #DD6C87;
+    border-color: #DD6C87;
     width: fit-content;
     height: 40px;
     border-radius: 4px;
@@ -14,9 +14,9 @@
     color: white;
 }
 
-.buyButton {
-    background-color: #DD6C87;
-    border-color: #DD6C87;
+.sellButton {
+    background-color: #57C083;
+    border-color: #57C083;
     width: fit-content;
     height: 40px;
     border-radius: 4px;
