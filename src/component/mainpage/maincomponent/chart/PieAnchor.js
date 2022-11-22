@@ -8,7 +8,7 @@ export default function PieAnchor  ({budget})  {
         const stockValue = budget.value;
 
         return (
-            <div style={{marginTop: '40px', marginBotton: '20px', display: 'block', width:'400px'}}>
+            <div style={{marginTop: '40px', marginBotton: '20px', display: 'block', width:'300px'}}>
 
                 <div style={{display: 'flex'}}>
                     <BsCoin style={{color: 'white', paddingTop: '15px'}}></BsCoin>

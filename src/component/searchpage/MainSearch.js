@@ -37,9 +37,11 @@ export default function MainSearch(){
     }, [userId]);
     
     return (
-        <div>          
+        <div text-align="center">
+        <div style={{display: 'inline-block'}}>         
             <Header></Header>
             <Info stockHold={stockHold}></Info>
+            </div>
         </div>
     );
 }
