@@ -21,7 +21,7 @@ const UnlinkButton = () => {
     }
     
     return(
-    <button onClick={unlink}>
+    <button onClick={unlink} >회원탈퇴
         <div>
             <AiOutlineUserDelete size='30px'></AiOutlineUserDelete>
         </div>

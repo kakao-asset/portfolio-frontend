@@ -25,8 +25,12 @@ export default function Header() {
                     <img onClick={navigateToMain} alt="kalogo" src="img/ka_logo_s.png" style={{ float: 'left' }}></img>
                 </div>
                 <div style={{width: '30rem'}}>
-                    <Searchbar></Searchbar>
+                    <div>
+                        <Searchbar></Searchbar>
+                    
+                    </div>
 
+                <div>
                     <img alt="kaprofile" src={JSON.parse(localStorage.getItem("userData")).profile} style={
                         {
                             float: 'right',
@@ -37,12 +41,33 @@ export default function Header() {
                             height: '50px',
                             borderRadius: '5px'
                         }} onClick={() => setModalIsOpen(true)}></img>
+                                                <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}
+                         style={{
+                             overlay: {
+                             position: 'absolute',
+                             backgroundColor: 'rgba(255, 255, 255, 0)'
+                            },
+                    content: {
+                        position: 'fixed',
+                        top: '7rem',
+                        left: '100rem',
+                        borderRadius: '4px',
+                        width: 'fit-content',
+                        height: 'fit-content',
+                        background: '#1F1F1F',
+
+                    },
+                }}>
+                    
+                <UnlinkButton></UnlinkButton>
+            </Modal>
+            </div>
                     <LogoutButton></LogoutButton>
                 </div>
 
             </div>
             {/* <div style={{borderBottom: '0.5px solid', color: "#d2d2d2", marginLeft: '1.5rem', marginRight: '1.5rem'}}></div> */}
-
+{/* 
             <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}
                 style={{
                     overlay: {
@@ -52,16 +77,16 @@ export default function Header() {
                     content: {
                         position: 'relative',
                         top: '100px',
-                        left: '1710px',
+                        left: '',
                         borderRadius: '4px',
                         width: 'fit-content',
                         height: 'fit-content',
                         background: '#1F1F1F'
 
-                    }
+                    }, position: 'relative'
                 }}>
                 <UnlinkButton></UnlinkButton>
-            </Modal>
+            </Modal> */}
         </div>
 
     );

@@ -23,11 +23,11 @@ export default function Portfolio({stockHold, budget}){
     }
 
     for (var i=0; i<budget.length; i++){
-        console.log(budget[i].currentPrice);
+        // console.log(budget[i].currentPrice);
         totalAsset += budget[i].value * budget[i].currentPrice;
     }
 
-    console.log(totalAsset);
+    // console.log(totalAsset);
 
     return (
         <div>
