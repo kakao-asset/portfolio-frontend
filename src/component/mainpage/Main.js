@@ -2,6 +2,7 @@ import Header from "./header/Header";
 import MainPortfolio from "./MainPortfolio";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import MainEmpty from "./MainEmpty";
 
 export default function Main() {
     const [stockHold, setStockHold] = useState([{
@@ -13,6 +14,8 @@ export default function Main() {
         sectorName: "",
     }]);
     
+    const [stockHoldisFill, setStockHoldisFill] = useState(false);
+
     var resStockData =[]; 
     var resData;
     var userId = JSON.parse(localStorage.getItem("userData")).userId;
@@ -62,6 +65,13 @@ export default function Main() {
             const interval = setInterval(()=>{
                 getRealtimeData(resStockData);
             }, 5000)
+
+            console.log(stockHold);
+
+            if (resStockData.length > 0) {
+                if (resStockData[0].name != "") 
+                     setStockHoldisFill(true);
+            } else (setStockHoldisFill(false));
             
             
         }).catch((err) => {
@@ -77,7 +87,8 @@ export default function Main() {
         <div text-align="center">
             <div style={{display: 'inline-block'}}>
             <Header></Header>
-            <MainPortfolio stockHold={stockHold} budgetData={budgetData} profit={profit}></MainPortfolio>
+            {stockHoldisFill? <MainPortfolio stockHold={stockHold} budgetData={budgetData} profit={profit}></MainPortfolio> : <MainEmpty></MainEmpty>}
+            {/* <MainPortfolio stockHold={stockHold} budgetData={budgetData} profit={profit}></MainPortfolio> */}
             </div>
         </div>
     );

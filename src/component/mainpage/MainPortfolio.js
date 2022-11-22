@@ -110,6 +110,7 @@ export default function MainPortfolio({stockHold, budgetData, profit}) {
                         width: 'fit-content',
                         height: 'fit-content',
                         background: '#1F1F1F',
+                        marginLeft: '3rem'
                         
 
                     }
