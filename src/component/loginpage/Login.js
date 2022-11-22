@@ -8,13 +8,16 @@ export default function Login() {
     const navigateToMain = () => {
         navigate("/Main");
     }
+    const navigateToAdmin = () => {
+        navigate("/admin");
+    }
 
 
 
     return (
         <>
         <div text-align="center" >
-        <div style={{display: 'inline-block'}}>
+        <div style={{display: 'inline-block', paddingTop: '5%', paddingBottom: '5%'}}>
             <div style={{display: 'flex'}}>
                 <div className={styles.leftBox}>
                     <img className="kaLogo" src="img/ka_logo_s.png" alt="kaLogo" style={
@@ -34,7 +37,7 @@ export default function Login() {
                     <KakaoLoginButton/>
                     </div>
 
-                    <img style={{
+                    <img onClick={navigateToAdmin} style={{
                         marginTop: '280px',
                         marginLeft: '550px',
                         width: '100px'
