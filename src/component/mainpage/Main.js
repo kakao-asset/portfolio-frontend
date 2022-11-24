@@ -13,15 +13,6 @@ export default function Main() {
         symbolCode: "",
         sectorName: "",
     }]);
-
-    const [stockHistory, setStockHistory] = useState([{
-        name: "",
-        tradeType: "",          // 1이 매수, 0이 매도 
-        tradeDate: "",
-        tradeTime: "",
-        price: "",
-        quantity: "",
-    }])
     
     const [stockHoldisFill, setStockHoldisFill] = useState(false);
 
@@ -47,7 +38,7 @@ export default function Main() {
                 
                 var len = result.length == 0 ? 0 : result.length-1;
                 var data = result[len].tradePrice;
-                tmp[i]['currentPrice'] = data
+                tmp[i]['currentPrice'] = data;
 
                 var updateData = {[tmp[i]['name']] : result}
                 var target = Object.assign(profit, updateData)
@@ -98,38 +89,11 @@ export default function Main() {
     }, []);
     
 
-    const getStockHistory = async () => await axios({
-        method: "GET",
-        url: `/api/stock-history/${userId}`
-    })
-    .then((res) => {
-        resData = res.data.data;
-        resStockData = resData.map((x) => ({
-            name: x.stockName, 
-            quantity: x.quantity, 
-            price: x.price, 
-            tradeType: x.tradeType, 
-            tradeDate: x.tradeDate, 
-            tradeTime: x.tradeTime}));
-        setStockHistory(resStockData);
-
-        console.log(stockHistory);
-        
-    }).catch((err) => {
-        console.log("use_stock 데이터 에러", err);
-    })
-
-useEffect(() => {
-    getStockHistory();
-}, []);
-
-
     return (
         <div text-align="center">
             <div style={{display: 'inline-block'}}>
             <Header></Header>
-            {console.log(stockHistory)}
-            {stockHoldisFill? <MainPortfolio stockHold={stockHold} budgetData={budgetData} profit={profit} stockHistory={stockHistory}></MainPortfolio> : <MainEmpty></MainEmpty>}
+            {stockHoldisFill? <MainPortfolio stockHold={stockHold} budgetData={budgetData} profit={profit}></MainPortfolio> : <MainEmpty></MainEmpty>}
             {/* <MainPortfolio stockHold={stockHold} budgetData={budgetData} profit={profit}></MainPortfolio> */}
             </div>
         </div>
