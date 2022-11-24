@@ -18,6 +18,7 @@ export default function MainSearch(){
         const [stockInfoisFill, setStockInfoisFill] = useState(false);
     
         function getRealtimeData(){
+            console.log("실시간 정보 검색");
             axios({
                 method: "get",
                 url: `/main/realtime/?stock_name=${stockSymbolCode}`,
@@ -26,7 +27,12 @@ export default function MainSearch(){
             })
             .then((res) => {
                 var result = res.data;
-                console.log(result)
+                console.log(result);
+
+                if (result == "") {
+                    window.alert("KOSPI 종목이 아닙니다.");
+                    document.location.href = "/main";
+                }
                 var len = result.length == 0? 0 : result.length-1;
                 var data = result[len];
                 setCurrent(data);
