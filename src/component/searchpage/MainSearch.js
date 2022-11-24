@@ -2,45 +2,62 @@ import Header from "../mainpage/header/Header";
 import Info from "./Info";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import SearchEmpty from "./SearchEmpty";
 
 export default function MainSearch(){
-    
-    const [stockHold, setStockHold] = useState([{
-        name: "",
-        value: "",
-        avgPrice: "",
-        symbolCode: "",
-        stockCode: "",
-    }]);
-    
-    var resStockData; var resData;
-    var userId = JSON.parse(localStorage.getItem("userData")).userId;
 
-    function getStockHold(){
-        axios({
-            method: "GET",
-            url: `/api/stock/${userId}`
-        })
-        .then((res) => {
-            resData = res.data.data;
-            console.log("resData", resData);
-            resStockData = resData.map((x) => ({name: x.stockName, value: x.quantity, avgPrice: x.avgPrice, symbolCode: x.stockCode, sectorCode: x.sectorCode}));
-            setStockHold(resStockData);
-            console.log("stockHold", stockHold);
-        }).catch((err) => {
-            console.log("use_stock 데이터 에러", err);
-        })
-    }
+        // 로컬 스토리지에 저장되어 있는 searchStock 데이터 가져옴
+        var searchStock = localStorage.getItem('searchStock');
+        const detailStock = JSON.parse(searchStock);
+        // ----------------서버에 요청--------------------
+        // detailStock.searchTarget.symbolCode 로 쿼리 날리고 해당하는 정보 받아오기
     
-    useEffect(() => {
-        getStockHold();
-    }, [userId]);
+        const stockSymbolCode = detailStock.searchTarget.symbolCode;
+    
+        const[current, setCurrent] = useState({});
+        const [stockInfoisFill, setStockInfoisFill] = useState(false);
+    
+        function getRealtimeData(){
+            console.log("실시간 정보 검색");
+            axios({
+                method: "get",
+                url: `/main/realtime/?stock_name=${stockSymbolCode}`,
+                headers: {"Access-Control-Allow-Origin": "*"},
+                responseEncoding: 'binary'
+            })
+            .then((res) => {
+                var result = res.data;
+                console.log(result);
+
+                if (result == "") {
+                    window.alert("KOSPI 종목이 아닙니다.");
+                    document.location.href = "/main";
+                }
+                var len = result.length == 0? 0 : result.length-1;
+                var data = result[len];
+                setCurrent(data);
+
+                if (current != "") {
+                    setStockInfoisFill(true);
+                } else setStockInfoisFill(false);
+
+            }).catch((err) => {
+                console.log("데이터 받아오기 에러", err);
+            })
+        }
+    
+        useEffect( () => {
+            getRealtimeData();
+            const interval = setInterval(()=>{
+                getRealtimeData();
+            }, 50000)
+        },[stockSymbolCode])
     
     return (
         <div text-align="center">
         <div style={{display: 'inline-block'}}>         
             <Header></Header>
-            <Info stockHold={stockHold}></Info>
+            {stockInfoisFill? <Info current={current}></Info> : <SearchEmpty></SearchEmpty>}
             </div>
         </div>
     );

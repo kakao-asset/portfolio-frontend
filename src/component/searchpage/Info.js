@@ -10,42 +10,41 @@ import axios from "axios";
 // 현재는 임시 데이터 목록에서 searchStock의 종목코드(symbolCode)와 같은 값 찾아서 해당 정보를 Info 컴포넌트들에게 전달하고 있음
 // 서버 통신 시, api 서버에다가 searchStock의 종목코드를 쿼리로 날려서 실시간 데이터를 받아와서 전달해 주어야 함
 
-export default function Info({stockHold}){
-    // 로컬 스토리지에 저장되어 있는 searchStock 데이터 가져옴
-    var searchStock = localStorage.getItem('searchStock');
-    const detailStock = JSON.parse(searchStock);
-    // ----------------서버에 요청--------------------
-    // detailStock.searchTarget.symbolCode 로 쿼리 날리고 해당하는 정보 받아오기
+export default function Info({current}){
 
-    const stockSymbolCode = detailStock.searchTarget.symbolCode;
+    const [stockHold, setStockHold] = useState([{
+        name: "",
+        value: "",
+        avgPrice: "",
+        symbolCode: "",
+        stockCode: "",
+    }]);
+    
+    var resStockData; var resData;
+    var userId = JSON.parse(localStorage.getItem("userData")).userId;
 
-    const[current, setCurrent] = useState({});
-
-    function getRealtimeData(){
+    function getStockHold(){
         axios({
-            method: "get",
-            url: `/main/realtime/?stock_name=${stockSymbolCode}`,
-            headers: {"Access-Control-Allow-Origin": "*"},
-            responseEncoding: 'binary'
+            method: "GET",
+            url: `/api/stock/${userId}`
         })
         .then((res) => {
-            var result = res.data;
-            console.log(result)
-            var len = result.length == 0? 0 : result.length-1;
-            var data = result[len];
-            setCurrent(data)
+            resData = res.data.data;
+            console.log("resData", resData);
+            resStockData = resData.map((x) => ({name: x.stockName, value: x.quantity, avgPrice: x.avgPrice, symbolCode: x.stockCode, sectorCode: x.sectorCode}));
+            setStockHold(resStockData);
+            console.log("stockHold", stockHold);
         }).catch((err) => {
-            console.log("데이터 받아오기 에러", err);
+            console.log("use_stock 데이터 에러", err);
         })
     }
-
-    useEffect( () => {
-        getRealtimeData();
-        const interval = setInterval(()=>{
-            getRealtimeData();
-        }, 50000)
-    },[stockSymbolCode])
     
+    useEffect(() => {
+        getStockHold();
+    }, [userId]);
+
+
+ 
     return(
         <div style={{marginTop: '2rem', marginLeft: '2rem', marginRight: '2rem', textAlign: 'left', paddingBottom: '50px'}}>
             <div className={styles.box}>

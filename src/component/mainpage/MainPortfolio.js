@@ -75,7 +75,7 @@ export default function MainPortfolio({stockHold, budgetData, profit, stockHisto
         </div>
         <div style={{display: "flex"}}>
          
-            <ProfitLoss stockHold={stockHold} profit={profit} stockHistory = {stockHistory}></ProfitLoss>
+            <ProfitLoss stockHold={stockHold} profit={profit}></ProfitLoss>
         
 
             {/* 보유 주식 관련 뉴스 영역 */}

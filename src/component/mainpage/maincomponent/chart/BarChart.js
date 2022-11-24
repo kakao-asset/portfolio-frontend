@@ -1,12 +1,54 @@
-import { ResponsiveBar } from '@nivo/bar'
+import { ResponsiveBar } from '@nivo/bar';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 
-export default function BarChart({stockHistory}) {
+export default function BarChart({stockHold}) {
+    var resStockData =[]; 
+    var resData;
+    var userId = JSON.parse(localStorage.getItem("userData")).userId;
+
+    const [stockHistory, setStockHistory] = useState([{
+        name: "",
+        tradeType: "",          // 1이 매수, 0이 매도
+        tradeDate: "",
+        tradeTime: "",
+        price: "",
+        quantity: "",
+    }])
+
+    const getStockHistory = async () => await axios({
+        method: "GET",
+        url: `/api/stock-history/${userId}`
+    })
+    .then((res) => {
+        resData = res.data.data;
+        resStockData = resData.map((x) => ({
+            name: x.stockName, 
+            quantity: x.quantity, 
+            price: x.price, 
+            tradeType: x.tradeType, 
+            tradeDate: x.tradeDate, 
+            tradeTime: x.tradeTime}));
+        setStockHistory(resStockData);
+
+        console.log(stockHistory);
+        
+    }).catch((err) => {
+        console.log("use_stock 데이터 에러", err);
+    })
+
+    useEffect(() => {
+        getStockHistory();
+    }, []);
+
+
 
     var stockHistoryData = stockHistory.map((x) => 
-    ({id: x.name, label:[x.name+"\t"+"\t", x.value+"주"], value: x.value*x.avgPrice, price: x.avgPrice}));
+    ({date: x.tradeDate, label:[x.name+"\t"+"\t", x.value+"주"], value: x.value*x.avgPrice, price: x.avgPrice}));
     
-    
+    var keyData = stockHistory.map((x) => ([x.tradeDate]));
+    console.log(keyData);
 
     var fillStockHistory = stockHistory.map((x) => ({match: {id: x.name}}));
     return (
@@ -119,14 +161,7 @@ export default function BarChart({stockHistory}) {
               "donutColor": "hsl(142, 70%, 50%)"
             }
           ]}
-        keys={[
-            'hot dog',
-            'burger',
-            'sandwich',
-            'kebab',
-            'fries',
-            'donut'
-        ]}
+        keys={keyData}
         indexBy="date"
         margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
         padding={0.3}
