@@ -1,17 +1,48 @@
 import React, { Component } from "react";
 import "./chart.css";
 import ApexCharts from "react-apexcharts";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-class LineChart extends Component {
-  constructor(props) {
-    super(props);
+function LineChart(){
 
-    var data = generateDayWiseTimeSeries(new Date("22 Apr 2017").getTime(), 115, {
-      min: 30,
-      max: 90
-    });
+    var searchStock = localStorage.getItem('searchStock');
+    const detailStock = JSON.parse(searchStock);
+    const stockSymbolCode = detailStock.searchTarget.symbolCode;
 
-    this.state = {
+    const[current, setCurrent] = useState([{tradePrice: 1000, datetime: '2022-11-2501:11:11'},{tradePrice: 2000, datetime: '2022-11-2601:12:11'}]);
+
+      //window.alert(current.datetime)
+    function getRealtimeData(){
+      axios({
+          method: "get",
+          url: `/main/realtime/?stock_name=${stockSymbolCode}`,
+          headers: {"Access-Control-Allow-Origin": "*"},
+          responseEncoding: 'binary'
+      })
+      .then((res) => {
+          setCurrent(res.data)
+      }).catch((err) => {
+          console.log("데이터 받아오기 에러", err);
+      })
+    }
+  
+    useEffect( () => {
+        getRealtimeData();
+        const interval = setInterval(()=>{
+            getRealtimeData();
+        }, 10000)
+      },[stockSymbolCode])
+
+    console.log(current);
+
+    var chartData = current.map((data) => ([convertTime(data.datetime.substring(10,15)), data.tradePrice]));
+    var tradeQuantityData =  current.map((data) => ([convertTime(data.datetime.substring(10,15)), data.accTradeVolume]));
+    function convertTime(hhmm){
+      return Number(hhmm.split(':')[0]) * 60 * 60 * 1000 + Number(hhmm.split(':')[1]) * 60 * 1000;
+    }
+
+    var state1 = {
     options: { 
         chart: {
         id: "chart2",
@@ -59,21 +90,27 @@ class LineChart extends Component {
         type: "datetime"
       },
       yaxis: {
-        min: 0,
-        tickAmount: 4
+        tickAmount: 1
       }
-    },
-    series: [
-      {
-        data: data
-      }
-    ],
+    }
     };
     
-    //var chart1 = new ApexCharts(document.querySelector("#chart-area"), options1);
-    //chart1.render();
-    
-    this.state2 = {
+    var stockData1 =  {
+      series: [
+      {
+        data: chartData
+      }]
+    }
+
+    var stockData2 = {
+      series: [
+        {
+          data: tradeQuantityData
+        }]
+      
+    }
+
+    var state2 = {
       options: {
         chart: {
           id: "chart1",
@@ -90,10 +127,10 @@ class LineChart extends Component {
               color: "#fff",
               opacity: 0.4
             },
-            xaxis: {
-              min: new Date("27 Jul 2017 10:00:00").getTime(),
-              max: new Date("14 Aug 2017 10:00:00").getTime()
-            }
+            // xaxis: {
+            //   min: new Date().getTime(),
+            //   max: new Date().getTime()
+            // }
           }
         },
         colors: ["#FF0080"],
@@ -118,40 +155,19 @@ class LineChart extends Component {
       },
       series: [
         {
-          data: data
+          data: chartData
         }
       ],
     };
-    
-    //var chart2 = new ApexCharts(document.querySelector("#chart-bar"), options2);
-    //chart2.render();
-    
-    function generateDayWiseTimeSeries(baseval, count, yrange) {
-      var i = 0;
-      var series = [];
-      while (i < count) {
-        var x = baseval;
-        var y =
-          Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
-    
-        series.push([x, y]);
-        baseval += 86400000;
-        i++;
-      }
-      return series;
-    }
-  }
 
-    render() {
-      return (
-        <div id="wrapper">
-          {/* <div id="chart-area"></div> */}
-          <ApexCharts options={this.state.options} series={this.state.series} type="area" width="1500" height="300" > </ApexCharts>
-          <ApexCharts options={this.state2.options} series={this.state2.series} type="bar" width="1500" height="120" > </ApexCharts>
-          {/* <div id="chart-bar"></div> */}
-        </div>
-      );
-    }
+  return (
+    <div id="wrapper">
+      {/* <div id="chart-area"></div> */}
+      <ApexCharts options={state1.options} series={stockData1.series} type="area" width="1500" height="300" > </ApexCharts>
+      <ApexCharts options={state2.options} series={stockData2.series} type="bar" width="1500" height="120" > </ApexCharts>
+      {/* <div id="chart-bar"></div> */}
+    </div>
+  );
 }
 
 export default LineChart;
