@@ -3,8 +3,14 @@ import { BsCart4 } from "react-icons/bs";
 import styles from "../css/Budget.module.css"
 import Modal from 'react-modal';
 import axios from "axios";
+import DatePicker from "react-datepicker";
+import { ko } from 'date-fns/esm/locale';
+
 
     export default function BudgetRow  ({budget})  {
+
+        let now = new Date();
+
         // 지금은 보유 주식 정보로 띄우는데 보유 주식 이름(코드?)으로 쿼리 날려서 실시간 가격 가져와야함 
         const stockName = budget.name;
         const stockAvgPrice = budget.avgPrice;
@@ -36,6 +42,10 @@ import axios from "axios";
         const [sellPrice, setSellPrice] = useState("");
         const [buyValue, setBuyValue] = useState("");
         const [buyPrice, setBuyPrice] = useState("");
+        const [sellDate, setSellDate] = useState(now);
+        const [buyDate, setBuyDate] = useState(now);
+        // const [sellTime, setSellTime] = useState();
+        // const [buyTime, setBuyTime] = useState();
         
         const onSellChange = (e) => {
             setSellValue(e.target.value);
@@ -55,6 +65,7 @@ import axios from "axios";
         // DB에 저장하면 stockHold도 변하므로 reload 해서 화면 갱신하기
         const setSellMemberStock = () => {
             var userId = JSON.parse(localStorage.getItem("userData")).userId;
+            var sellTime = document.getElementById("sellTime").value;
             console.log("sellValue ==== ", sellValue);
             console.log("stockName ==== ", stockName);
     
@@ -64,7 +75,8 @@ import axios from "axios";
                 axios({
                     method: "POST",
                     url: `/api/stock/sell/${userId}`,
-                    data: {"price" : sellPrice, "quantity": sellValue, "stockName": stockName, "stockCode": stockSymbolCode, "sectorCode": stockSectorCode, "sectorName": stockSectorName},
+                    data: {"price" : sellPrice, "quantity": sellValue, "stockName": stockName, "stockCode": stockSymbolCode, "sectorCode": stockSectorCode, "sectorName": stockSectorName,
+                "tradeDate": sellDate, "tradeTime": sellTime},
                     headers: {
                         "Content-Type" : "application/json; charset=utf-8"
                     }, 
@@ -95,10 +107,14 @@ import axios from "axios";
                 window.alert("양수 값을 입력해주세요");
             } else {
                 var userId = JSON.parse(localStorage.getItem("userData")).userId;
+                var buyTime = document.getElementById("buyTime").value;
+
                 axios({
+                    
                     method: "POST",
                     url: `/api/stock/buy/${userId}`,
-                    data: {"price" : buyPrice, "quantity": buyValue, "stockName": stockName, "stockCode": stockSymbolCode, "sectorCode": stockSectorCode, "sectorName": stockSectorName},
+                    data: {"price" : buyPrice, "quantity": buyValue, "stockName": stockName, "stockCode": stockSymbolCode, "sectorCode": stockSectorCode, "sectorName": stockSectorName,
+                    "tradeDate": buyDate, "tradeTime":  buyTime},
                     headers: {
                         "Content-Type" : "application/json; charset=utf-8"
                     }, 
@@ -143,21 +159,23 @@ import axios from "axios";
                                             left: '75%',
                                             overflow: 'auto',
                                             borderRadius: '4px',
-                                            width: '200px',
+                                            width: 'fit-content',
                                             height: 'fit-content',
                                             background: '#1F1F1F'
                     
                                         }
                                     }}>
                                     <div style={{textAlign: 'center'}}>
-                                    <ul>
+                                        <ul>
                                         <div style={{display: 'flex'}}>
                                         <p style={{color:'white', marginRight: '10px', marginBottom: '10px'}}>매도 수량</p>
                                         <input id='num' type="number" min="1" max={stockValue} style={{width: '40px', marginRight: '30px',marginTop:'8px', height: '30px', fontSize: '20px'}} onChange={onSellChange}></input>
                                         </div>
                                         </ul>
                                         <p style={{color:'white'}}>매도 금액</p>
-                                        <input id='price' type="text" style={{width: '150px', height: '30px', fontSize: '20px'}} onChange={onSellPriceChange}></input>   
+                                        <input id='price' type="text" style={{width: '150px', height: '30px', fontSize: '20px'}} onChange={onSellPriceChange}></input>
+                                        <DatePicker style={{color: 'white'}} locale={ko} selected={sellDate} onChange={date => setSellDate(date)}></DatePicker>
+                                        <input id='sellTime' type="time" ></input>
                                     </div>
                                     <button onClick={setSellMemberStock} className={styles.sellButton} style={{marginTop:'15px', marginLeft: '75px'}}>매도</button>
 
@@ -192,6 +210,8 @@ import axios from "axios";
                         
                                         <p style={{color:'white'}}>매수 금액</p>
                                         <input id='price' type="text" style={{width: '150px', height: '30px', fontSize: '20px'}} onChange={onBuyPriceChange}></input>   
+                                        <DatePicker locale={ko} selected={buyDate} onChange={date => setBuyDate(date)}></DatePicker>
+                                        <input id='buyTime' type="time"></input>
                        
                                     </div>
                                     <button onClick={setBuyMemberStock} className={styles.buyButton} style={{marginTop:'15px', marginLeft: '75px'}}>매수</button>
@@ -203,3 +223,4 @@ import axios from "axios";
 
         );
     }
+

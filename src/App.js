@@ -5,6 +5,7 @@ import Main from './component/mainpage/Main';
 import MainSearch from './component/searchpage/MainSearch';
 import KakaoOauth from './component/loginpage/KakaoOauth';
 import AdminPage from './component/mainpage/AdminPage';
+import TestPage from './component/TestPage';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/detail" element={<MainSearch/>}/>
         <Route path="/oauth/kakao" element={<KakaoOauth/>}/>
         <Route path="/admin" element={<AdminPage/>}/>
+        <Route path="/test" element={<TestPage></TestPage>}></Route>
       </Routes>
     </BrowserRouter>
     </div>

@@ -13,6 +13,15 @@ export default function Main() {
         symbolCode: "",
         sectorName: "",
     }]);
+
+    const [stockHistory, setStockHistory] = useState([{
+        name: "",
+        tradeType: "",          // 1이 매수, 0이 매도 
+        tradeDate: "",
+        tradeTime: "",
+        price: "",
+        quantity: "",
+    }])
     
     const [stockHoldisFill, setStockHoldisFill] = useState(false);
 
@@ -58,7 +67,13 @@ export default function Main() {
         })
         .then((res) => {
             resData = res.data.data;
-            resStockData = resData.map((x) => ({name: x.stockName, value: x.quantity, avgPrice: x.avgPrice, symbolCode: x.stockCode, sectorCode: x.sectorCode, sectorName: x.sectorName}));
+            resStockData = resData.map((x) => ({
+                name: x.stockName, 
+                value: x.quantity, 
+                avgPrice: x.avgPrice, 
+                symbolCode: x.stockCode, 
+                sectorCode: x.sectorCode, 
+                sectorName: x.sectorName}));
             setStockHold(resStockData);
 
             getRealtimeData(resStockData);
@@ -83,11 +98,38 @@ export default function Main() {
     }, []);
     
 
+    const getStockHistory = async () => await axios({
+        method: "GET",
+        url: `/api/stock-history/${userId}`
+    })
+    .then((res) => {
+        resData = res.data.data;
+        resStockData = resData.map((x) => ({
+            name: x.stockName, 
+            quantity: x.quantity, 
+            price: x.price, 
+            tradeType: x.tradeType, 
+            tradeDate: x.tradeDate, 
+            tradeTime: x.tradeTime}));
+        setStockHistory(resStockData);
+
+        console.log(stockHistory);
+        
+    }).catch((err) => {
+        console.log("use_stock 데이터 에러", err);
+    })
+
+useEffect(() => {
+    getStockHistory();
+}, []);
+
+
     return (
         <div text-align="center">
             <div style={{display: 'inline-block'}}>
             <Header></Header>
-            {stockHoldisFill? <MainPortfolio stockHold={stockHold} budgetData={budgetData} profit={profit}></MainPortfolio> : <MainEmpty></MainEmpty>}
+            {console.log(stockHistory)}
+            {stockHoldisFill? <MainPortfolio stockHold={stockHold} budgetData={budgetData} profit={profit} stockHistory={stockHistory}></MainPortfolio> : <MainEmpty></MainEmpty>}
             {/* <MainPortfolio stockHold={stockHold} budgetData={budgetData} profit={profit}></MainPortfolio> */}
             </div>
         </div>
