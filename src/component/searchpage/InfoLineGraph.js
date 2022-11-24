@@ -1,6 +1,44 @@
 import { ResponsiveLine } from '@nivo/line';
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function InfoLineGraph() {
+  
+
+      // 로컬 스토리지에 저장되어 있는 searchStock 데이터 가져옴
+      var searchStock = localStorage.getItem('searchStock');
+      const detailStock = JSON.parse(searchStock);
+      // ----------------서버에 요청--------------------
+      // detailStock.searchTarget.symbolCode 로 쿼리 날리고 해당하는 정보 받아오기
+  
+      const stockSymbolCode = detailStock.searchTarget.symbolCode;
+  
+      const[current, setCurrent] = useState([{tradePrice: -5, datetime: '2022-11-1101:11:11'},{tradePrice: -5, datetime: '2022-11-1101:11:11'}]);
+      //window.alert(current.datetime)
+      function getRealtimeData(){
+        axios({
+            method: "get",
+            url: `/main/realtime/?stock_name=${stockSymbolCode}`,
+            headers: {"Access-Control-Allow-Origin": "*"},
+            responseEncoding: 'binary'
+        })
+        .then((res) => {
+            setCurrent(res.data)
+        }).catch((err) => {
+            console.log("데이터 받아오기 에러", err);
+        })
+      }
+  
+    useEffect( () => {
+          getRealtimeData();
+          const interval = setInterval(()=>{
+              getRealtimeData();
+          }, 50000)
+      },[stockSymbolCode])
+
+    console.log(current);
+    var chartData = current.map((data) => ({y: data.tradePrice, x: data.datetime.slice(10,15)}));
+    
     let now = new Date();
     let minutes = now.getMinutes();
 
@@ -11,56 +49,7 @@ export default function InfoLineGraph() {
             {
               "id": "Naver",
               "color": "hsl(206, 70%, 50%)",
-              "data": [
-                {
-                  "x": minutes-11,
-                  "y": 35
-                },
-                {
-                  "x": minutes-10,
-                  "y": 131
-                },
-                {
-                  "x": minutes-9,
-                  "y": 299
-                },
-                {
-                  "x": minutes-8,
-                  "y": 130
-                },
-                {
-                  "x": minutes-7,
-                  "y": 87
-                },
-                {
-                  "x": minutes-6,
-                  "y": 242
-                },
-                {
-                  "x": minutes-5,
-                  "y": 131
-                },
-                {
-                  "x": minutes-4,
-                  "y": 164
-                },
-                {
-                  "x": minutes-3,
-                  "y": 30
-                },
-                {
-                  "x": minutes-2,
-                  "y": 139
-                },
-                {
-                  "x": minutes-1,
-                  "y": 288
-                },
-                {
-                  "x": minutes,
-                  "y": 227
-                }
-              ]
+              "data": chartData
             },
                        
           ]}

@@ -45,10 +45,7 @@ export default function Info({stockHold}){
             getRealtimeData();
         }, 50000)
     },[stockSymbolCode])
-
-    console.log("curr: ", current);
     
-
     return(
         <div style={{marginTop: '2rem', marginLeft: '2rem', marginRight: '2rem', textAlign: 'left', paddingBottom: '50px'}}>
             <div className={styles.box}>
