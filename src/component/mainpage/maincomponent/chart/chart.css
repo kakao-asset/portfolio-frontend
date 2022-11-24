@@ -1,0 +1,27 @@
+body {
+    background: #1f1f1f;
+  }
+  
+#wrapper {
+position: relative;
+background: #2f3138;
+border: 0px solid #000;
+box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.71);
+margin: 0 auto;
+}
+
+#chart-bar {
+position: relative;
+margin-top: -38px;
+}
+  
+.link {
+position: absolute;
+bottom: 7px;
+right: 13px;
+z-index: 10;
+color: #ccc;
+font-size: 12px;
+text-decoration: none;
+font-family: Helvetica, Arial;
+}
