@@ -7,7 +7,8 @@ import Modal from 'react-modal';
 import { useState } from "react";
 import MyBudgetRow from "./maincomponent/row/MyBudgetRow";
 
-export default function MainPortfolio({stockHold, budgetData, profit}) {
+
+export default function MainPortfolio({stockHold, budgetData, profit, stockHistory}) {
 
     // 업종별 랭킹 란 보유 주식 선택 모달 state
     const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -69,12 +70,13 @@ export default function MainPortfolio({stockHold, budgetData, profit}) {
             {<Budget stockHold={stockHold} budgetData={budgetData}></Budget>}
         </div>
         <div style={{marginTop: '1rem', display: 'flex'}}>
-            <h3 style={{color: 'white', paddingTop: '1rem', marginLeft:'2rem'}}>손익(타임라인)</h3>
+            <h3 style={{color: 'white', paddingTop: '1rem', marginLeft:'2rem'}}>나의 투자동향</h3>
             <h3 style={{color: 'white', paddingTop: '1rem', marginLeft:'52rem'}}>뉴스</h3>
         </div>
         <div style={{display: "flex"}}>
-            {/* 실시간 손익 타임라인 그래프 영역 */}
-            {<ProfitLoss stockHold={stockHold} profit={profit}></ProfitLoss>}
+         
+            <ProfitLoss stockHold={stockHold} profit={profit} stockHistory = {stockHistory}></ProfitLoss>
+        
 
             {/* 보유 주식 관련 뉴스 영역 */}
             {<News stockCode={newsStockCode}></News>}

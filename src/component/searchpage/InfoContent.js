@@ -3,8 +3,13 @@ import styles from "./css/InfoContent.module.css"
 import Modal from 'react-modal';
 import { useState, useEffect } from "react";
 import axios from "axios";
+import DatePicker from "react-datepicker";
+import { ko } from 'date-fns/esm/locale';
+
 
     export default function InfoContent  ({budget, stockInfo})  {
+        let now = new Date();
+
         const stockName = stockInfo.name;
         const stockSymbolCode = stockInfo.symbolCode;
         const stockSectorCode = stockInfo.sectorCode;
@@ -34,8 +39,13 @@ import axios from "axios";
         const [sellPrice, setSellPrice] = useState("");
         const [buyValue, setBuyValue] = useState("");
         const [buyPrice, setBuyPrice] = useState("");
+        const [sellDate, setSellDate] = useState(now);
+        const [buyDate, setBuyDate] = useState(now);
 
         const [sellName, setSellName] = useState("");
+
+        // const [sellDate, setSellDate] = useState(now);
+        // const [buyDate, setBuyDate] = useState(now);
 
         const onSellChange = (e) => {
             setSellValue(e.target.value);
@@ -56,6 +66,7 @@ import axios from "axios";
         // DB에 저장하면 stockHold도 변하므로 reload 해서 화면 갱신하기
         const setSellMemberStock = () => {
             var userId = JSON.parse(localStorage.getItem("userData")).userId;
+            var sellTime = document.getElementById("sellTime").value;
             console.log("sellValue ==== ", sellValue);
             console.log("stockName ==== ", stockName);
         
@@ -65,7 +76,8 @@ import axios from "axios";
                 axios({
                     method: "POST",
                     url: `/api/stock/sell/${userId}`,
-                    data: {"price" : sellPrice, "quantity": sellValue, "stockName": stockName, "stockCode": stockSymbolCode, "sectorCode": stockSectorCode,"sectorName": stockSectorName},
+                    data: {"price" : sellPrice, "quantity": sellValue, "stockName": stockName, "stockCode": stockSymbolCode, "sectorCode": stockSectorCode,"sectorName": stockSectorName,
+                    "tradeDate": sellDate, "tradeTime": sellTime},
                     headers: {
                         "Content-Type" : "application/json; charset=utf-8"
                     }, 
@@ -95,10 +107,12 @@ import axios from "axios";
                 window.alert("양수 값을 입력해주세요");
             } else {
                 var userId = JSON.parse(localStorage.getItem("userData")).userId;
+                var buyTime = document.getElementById("buyTime").value;
                 axios({
                     method: "POST",
                     url: `/api/stock/buy/${userId}`,
-                    data: {"price" : buyPrice, "quantity": buyValue, "stockName": stockName, "stockCode": stockSymbolCode, "sectorCode": stockSectorCode, "sectorName": stockSectorName},
+                    data: {"price" : buyPrice, "quantity": buyValue, "stockName": stockName, "stockCode": stockSymbolCode, "sectorCode": stockSectorCode, "sectorName": stockSectorName,
+                    "tradeDate": buyDate, "tradeTime": buyTime},
                     headers: {
                         "Content-Type" : "application/json; charset=utf-8"
                     }, 
@@ -165,7 +179,9 @@ import axios from "axios";
                                         </div>
                                         </ul>
                                         <p style={{color:'white'}}>매도 금액</p>
-                                        <input id='price' type="text" style={{width: '150px', height: '30px', fontSize: '20px'}} onChange={onSellPriceChange}></input> 
+                                        <input id='price' type="text" style={{width: '150px', height: '30px', fontSize: '20px'}} onChange={onSellPriceChange}></input>
+                                        <DatePicker style={{color: 'white'}} locale={ko} selected={sellDate} onChange={date => setSellDate(date)}></DatePicker>
+                                        <input id='sellTime' type="time" ></input>
                                     </div>
                                     <button onClick={setSellMemberStock} style={{    
                                         backgroundColor: '#57C083',
@@ -215,8 +231,10 @@ import axios from "axios";
                                         </ul>
                         
                                         <p style={{color:'white'}}>매수 금액</p>
-                                        <input id='price' type="text" style={{width: '150px', height: '30px', fontSize: '20px'}} onChange={onBuyPriceChange}></input>   
-                       
+                                        <input id='price' type="text" style={{width: '150px', height: '30px', fontSize: '20px'}} onChange={onBuyPriceChange}></input>
+                                        <DatePicker style={{color: 'white'}} locale={ko} selected={sellDate} onChange={date => setBuyDate(date)}></DatePicker>
+                                        <input id='buyTime' type="time" ></input>   
+
                                     </div>
                                     <button onClick={setBuyMemberStock} className={styles.buySmallButton} 
                                     style={{    
