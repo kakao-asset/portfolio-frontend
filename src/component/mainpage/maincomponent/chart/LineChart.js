@@ -3,6 +3,8 @@ import "./chart.css";
 import ApexCharts from "react-apexcharts";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import moment from "moment";
+import 'moment/locale/ko';
 
 function LineChart(){
 
@@ -10,7 +12,7 @@ function LineChart(){
     const detailStock = JSON.parse(searchStock);
     const stockSymbolCode = detailStock.searchTarget.symbolCode;
 
-    const[current, setCurrent] = useState([{tradePrice: 1000, datetime: '2022-11-2501:11:11'},{tradePrice: 2000, datetime: '2022-11-2601:12:11'}]);
+    const[current, setCurrent] = useState([{tradePrice: 1000, datetime: '2022-11-2501:11:11', accTradeVolume: 0},{tradePrice: 2000, datetime: '2022-11-2601:12:11', accTradeVolume: 0}]);
 
       //window.alert(current.datetime)
     function getRealtimeData(){
@@ -31,13 +33,24 @@ function LineChart(){
         getRealtimeData();
         const interval = setInterval(()=>{
             getRealtimeData();
-        }, 10000)
+        }, 60000)
       },[stockSymbolCode])
 
-    console.log(current);
+    //console.log(current);
+    
+    //var temp = current.map((data) => console.log(data.datetime + " "+data.datetime.substring(10,15) + " " + convertTime(data.datetime.substring(10,16))));
+    
+    var chartData = current.map((data) => ([convertTime(data.datetime.substring(10,16)), data.tradePrice])).sort();
+    
+    //console.log(chartData)
+    var sortedData =  current.map((data) => ([convertTime(data.datetime.substring(10,16)), data.accTradeVolume])).sort();
+    var tradeQuantityData = [];
+    for(var i = 1; i < sortedData.length; i++){
+      tradeQuantityData.push([sortedData[i][0], sortedData[i][1] - sortedData[i-1][1]]);
+      
+    }
+    
 
-    var chartData = current.map((data) => ([convertTime(data.datetime.substring(10,15)), data.tradePrice]));
-    var tradeQuantityData =  current.map((data) => ([convertTime(data.datetime.substring(10,15)), data.accTradeVolume]));
     function convertTime(hhmm){
       return Number(hhmm.split(':')[0]) * 60 * 60 * 1000 + Number(hhmm.split(':')[1]) * 60 * 1000;
     }
@@ -56,6 +69,7 @@ function LineChart(){
       },
       colors: ["#00BAEC"],
       stroke: {
+        curve: 'smooth',
         width: 3
       },
       grid: {
@@ -64,7 +78,8 @@ function LineChart(){
         yaxis: {
           lines: {
             show: false
-          }
+          },
+          min : current.tradePrice - 1000
         }
       },
       dataLabels: {
@@ -78,19 +93,38 @@ function LineChart(){
         }
       },
       markers: {
-        size: 1,
+        size: 0,
         colors: ["#000524"],
         strokeColor: "#00BAEC",
         strokeWidth: 3
       },
       tooltip: {
-        theme: "dark"
+        theme: "dark",
+        x: {
+          show: true,
+          format: 'HH:mm',
+          formatter: function (x) {
+            return new moment(x).subtract(9, 'hour').format("HH:mm");
+          }
+      },
+      // y: {
+      //     formatter: 'num',
+      //     title: {
+      //         formatter: (seriesName) => seriesName,
+      //     },
+      // },
       },
       xaxis: {
-        type: "datetime"
+        type: "datetime",
+        labels: {
+            format: 'HH:mm'
+        }
       },
       yaxis: {
-        tickAmount: 1
+        tickAmount: 1,
+        // min: function(x) {
+        //   return x - 1000;
+        // }
       }
     }
     };
@@ -126,38 +160,31 @@ function LineChart(){
             fill: {
               color: "#fff",
               opacity: 0.4
-            },
-            // xaxis: {
-            //   min: new Date().getTime(),
-            //   max: new Date().getTime()
-            // }
+            }
           }
         },
         colors: ["#FF0080"],
         stroke: {
-          width: 2
+          width: 2.5
         },
         grid: {
-          borderColor: "#444"
+          show: false,
+          //borderColor: "#444"
         },
         markers: {
           size: 0
         },
         xaxis: {
           type: "datetime",
-          tooltip: {
-            enabled: false
+          labels: {
+            format: 'HH:mm'
           }
         },
         yaxis: {
-          tickAmount: 2
+          tickAmount: 1,
+          min: 0
         }
-      },
-      series: [
-        {
-          data: chartData
-        }
-      ],
+      }
     };
 
   return (

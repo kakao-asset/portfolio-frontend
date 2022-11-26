@@ -142,10 +142,10 @@ import { ko } from 'date-fns/esm/locale';
 
         return (
             <div style={{display: 'flex', marginLeft: '50px'}}>
-                <p style={{color: 'white', fontSize: '35px'}}>{c.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</p>
+                <p style={{color: 'white', fontSize: '33px'}}>{c.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</p>
                 <div style={{ marginLeft: '20px', marginTop: '40px', marginRight: '80px'}}>
-                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', fontSize: '15px'}}>전일 대비</span>
-                    <span style={{color: (c-o)>0? '#57C083':'#FF5981', paddingLeft: '20px', display: 'block',fontSize: '18px'}}>{(c-o).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원 
+                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', fontSize: '12px'}}>전일 대비</span>
+                    <span style={{color: (c-o)>0? '#57C083':'#FF5981', paddingLeft: '20px', display: 'block',fontSize: '15px'}}>{(c-o).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원 
                     ({(Math.ceil(((c-o)/o)*10000))/100}%)
                     </span>
                 </div>

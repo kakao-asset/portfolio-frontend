@@ -62,7 +62,7 @@ export default function InfoList  ({stockInfo}) {
                 </div>
                 <div style={{marginLeft: '30px'}}>
                     <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>거래량</span>
-                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', fontSize: '20px', whiteSpace: 'nowrap', width: '100px'}}>{stockQuantity.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
+                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', fontSize: '20px', whiteSpace: 'nowrap', width: '100px'}}>{stockQuantity.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
                 </div>
                 <div style={{marginLeft: '30px'}}>
                     <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>최고가</span>

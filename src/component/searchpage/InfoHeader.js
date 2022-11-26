@@ -6,10 +6,8 @@ import React from "react";
 
         return (
             <div style={{ marginLeft: '10px', marginTop: '60px'}}>
-                <span style={{color: 'white', paddingLeft: '40px', display: 'block', fontSize: '35px'}}>{stockName}</span>
-                <span style={{color: 'white', paddingLeft: '48px', display: 'block', width: '100px', opacity: '0.7', fontSize: '20px'}}>{stockCode}</span>
+                <span style={{color: 'white', paddingLeft: '40px', display: 'block', fontSize: '30px'}}>{stockName}</span>
+                <span style={{color: 'white', paddingLeft: '40px', display: 'block', width: '100px', opacity: '0.7', fontSize: '15px'}}>{stockCode}</span>
             </div>
-
-
         );
     }

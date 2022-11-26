@@ -52,7 +52,6 @@ export default function Info({current}){
                     <InfoHeader stockInfo={current}></InfoHeader>
                 </div>
                     <InfoContent budget={stockHold} stockInfo={current}></InfoContent>
-                    {/* <InfoLineGraph></InfoLineGraph> */}
                     <LineChart></LineChart>
                     <InfoList stockInfo={current}></InfoList>
             </div>
