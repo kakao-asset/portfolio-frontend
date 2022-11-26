@@ -1,6 +1,7 @@
 import React from "react";
 // import { BsFillCircleFill } from "react-icons/bs";
 import { BsCoin } from "react-icons/bs";
+import styles from "./PieAnchor.module.css"
 
 export default function PieAnchor  ({budget})  {
         const stockName = budget.name;

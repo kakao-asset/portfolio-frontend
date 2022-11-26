@@ -70,7 +70,7 @@ export default function MainPortfolio({stockHold, budgetData, profit, stockHisto
             {<Budget stockHold={stockHold} budgetData={budgetData}></Budget>}
         </div>
         <div style={{marginTop: '1rem', display: 'flex'}}>
-            <h3 style={{color: 'white', paddingTop: '1rem', marginLeft:'2rem'}}>나의 투자동향</h3>
+            <h3 style={{color: 'white', paddingTop: '1rem', marginLeft:'2rem'}}>나의 자산동향</h3>
             <h3 style={{color: 'white', paddingTop: '1rem', marginLeft:'52rem'}}>뉴스</h3>
         </div>
         <div style={{display: "flex"}}>

@@ -65,12 +65,16 @@ export default function InfoList  ({stockInfo}) {
                     <span style={{color: 'white', paddingLeft: '20px', display: 'block', fontSize: '20px', whiteSpace: 'nowrap', width: '100px'}}>{stockQuantity.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
                 </div>
                 <div style={{marginLeft: '30px'}}>
+                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>최저가</span>
+                    <span style={{paddingLeft: '20px', display: 'block', fontSize: '20px', color: '#E35277', width: '100px'}}>{lowPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
+                </div>
+                <div style={{marginLeft: '30px'}}>
                     <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>최고가</span>
                     <span style={{paddingLeft: '20px', display: 'block', fontSize: '20px', color: '#57C083', width: '100px'}}>{highPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
                 </div>
                 <div style={{marginLeft: '30px'}}>
-                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>최저가</span>
-                    <span style={{paddingLeft: '20px', display: 'block', fontSize: '20px', color: '#E35277', width: '100px'}}>{lowPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
+                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>업종</span>
+                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', fontSize: '20px', width: '100px'}}>{sectorName}</span>
                 </div>
              </div>
              <div style={{marginTop: '40px', marginBotton: '20px', display: 'flex'}}>
@@ -109,10 +113,6 @@ export default function InfoList  ({stockInfo}) {
                 <div style={{marginLeft: '30px'}}>
                     <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>BPS/PBR</span>
                     <span style={{paddingLeft: '20px', display: 'block', fontSize: '20px', color: 'white', width: '100px'}}>{bps}/{pbr}</span>
-                </div>
-                <div style={{marginLeft: '30px'}}>
-                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>업종</span>
-                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', fontSize: '20px', width: '100px'}}>{sectorName}</span>
                 </div>
              </div>
             </div>

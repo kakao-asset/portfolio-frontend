@@ -19,6 +19,7 @@ export default function PieChart({stockHold}){
 
     var fillStock = stockHold.map((x) => ({match: {id: x.name}}));
 
+    var chartColor = ["#f47560", "#f1e15b","#af97e3","#c1f460","#e8a838","#61cdbb","#97e3d5","#af97e3","#cbe397"];
 
     return (
 
@@ -29,7 +30,7 @@ export default function PieChart({stockHold}){
               innerRadius={0.5}
               padAngle={0.7}
               cornerRadius={0}
-              colors={{"scheme": "nivo"}}
+              colors={chartColor}
               activeOuterRadiusOffset={8}
               borderWidth={1}
               borderColor={{

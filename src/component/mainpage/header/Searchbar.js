@@ -50,6 +50,7 @@ export default function Searchbar() {
     }
 
     const CommentRequest = () => {
+        console.log("인기 검색어 조회");
         axios({
             method: "get",
             url: `/api/stock/rank`,
@@ -66,7 +67,7 @@ export default function Searchbar() {
 
     return (
         <>
-            <input type="text" onClick={() => {setModalIsOpen(true); CommentRequest();}} style={{
+            <input id="searchBar" type="text" onClick={() => {setModalIsOpen(true); CommentRequest();}} style={{
                 width: '400px',
                 height: '30px',
                 backgroundColor: '#1F1F1F',
@@ -86,25 +87,35 @@ export default function Searchbar() {
                 style={{
                     overlay: {
                         position: 'absolute',
-                        backgroundColor: 'rgba(255, 255, 255, 0)'
+                        backgroundColor: 'rgba(31, 31, 31, 0)',
+                        top: '0',
+                        left: '0',
+    
+                        
                     },
                     content: {
                         position: 'relative',
                         top: '3rem',
-                        left: '70rem',
+                        bottom: '0',
+                        left: '21rem',
+                        right: '0',
+                        margin: 'auto',
                         borderRadius: '4px',
                         width: '600px',
                         height: 'fit-content',
                         background: '#1F1F1F',
+                        borderColor: '#000'
+
 
                     }
                 }}>
                 <div style={{}}>
+                    {console.log("검색창 클릭")}
                     <input autoFocus placeholder="검색어를 입력하세요" id="searchText" name="searchText" type="text" onChange={onChange} style={{
                         width: '600px',
                         height: '30px',
                         backgroundColor: '#1F1F1F',
-                        border: '1px solid #D2D2D2',
+                        border: '1px solid #000',
                         background: 'no-repeat scroll 1px 1px',
                         backgroundSize: 'contain',
                         backgroundPosition: 'left',

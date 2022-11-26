@@ -71,8 +71,11 @@ import { ko } from 'date-fns/esm/locale';
             console.log("stockName ==== ", stockName);
         
             if(sellPrice < 0 || sellValue < 0 || sellPrice == "" || sellValue == "") {
-                window.alert("양수 값을 입력해주세요");
-            } else {
+                window.alert("매도 수량과 금액을 확인해주세요");
+            } else if (sellDate == "" || document.getElementById("sellTime").value == "" ){
+                window.alert("매도 일자와 시간을 확인해주세요");
+            }
+            else {
                 axios({
                     method: "POST",
                     url: `/api/stock/sell/${userId}`,
@@ -104,8 +107,11 @@ import { ko } from 'date-fns/esm/locale';
             //buyValue = buyValue == ""? 100 : buyValue;
             console.log(buyPrice, buyValue );
             if(buyPrice < 0 || buyValue < 0 || buyPrice == "" || buyValue == "") {
-                window.alert("양수 값을 입력해주세요");
-            } else {
+                window.alert("매수 수량과 금액을 확인해주세요");
+            } else if (buyDate == "" || document.getElementById("buyTime").value == "" ){
+                window.alert("매수 일자와 시간을 확인해주세요");
+            }
+            else {
                 var userId = JSON.parse(localStorage.getItem("userData")).userId;
                 var buyTime = document.getElementById("buyTime").value;
                 axios({
@@ -152,110 +158,131 @@ import { ko } from 'date-fns/esm/locale';
                 <button className={styles.buyButton} onClick={()=>setBuyPopIsOpen(true)}>매수</button>
                 <button className={styles.sellButton} onClick={()=>setSellPopIsOpen(true)}>매도</button>
                 
-
                 <Modal isOpen={SellPopIsOpen} onRequestClose={()=>setSellPopIsOpen(false)} ariaHideApp={false}
-                                    style={{
-                                        overlay: {
-                                            position: 'absolute',
-                                            backgroundColor: 'rgba(255, 255, 255, 0)'
-                                        },
-                                        content: {
-                                            position: 'relative',
-                                            top: '25%',
-                                            left: '22%',
-                                            overflow: 'auto',
-                                            borderRadius: '4px',
-                                            width: '200px',
-                                            height: 'fit-content',
-                                            background: '#1F1F1F'
-                    
-                                        }
-                                    }}>
-                                    <div style={{textAlign: 'center'}}>
-                                    <ul>
-                                        <div style={{display: 'flex'}}>
-                                        <p style={{color:'white', marginRight: '10px', marginBottom: '10px'}}>매도 수량</p>
-                                        <input id='num' type="number" min="1" max={stockValue} style={{width: '40px', marginRight: '30px',marginTop:'8px', height: '30px', fontSize: '20px'}} onChange={onSellChange}></input>
-                                        </div>
+                                                        style={{
+                                                            overlay: {
+                                                                position: 'absolute',
+                                                                backgroundColor: 'rgba(31, 31, 31, 0)',
+                                                                top: '0',
+                                                                left: '0',
+                                            
+                                                                
+                                                            },
+                                                            content: {
+                                                                top: '0',
+                                                                bottom: '0',
+                                                                left: '0',
+                                                                right: '0',
+                                                                margin: 'auto',
+                                                                marginTop: '15rem',
+                                                                position: 'relative',
+                                                                overflow: 'auto',
+                                                                width: 'fit-content',
+                                                                height: 'fit-content',
+                                                                background: '#1F1F1F',
+                                                                paddingRight: '50px',
+                                                                paddingBottom: '30px',
+                                                                borderColor: '#000',
+                                                                borderWidth: '2px'
+                                                                
+                                        
+                                                            }
+                                                        }}>
+                        <div style={{}}>
+                                        <ul>
+                                        <span style={{color: 'white', display: 'block', fontSize: '30px'}}>{stockName}</span>
+                                        <span style={{color: 'white' , display: 'block', width: 'fit-content', opacity: '0.7', fontSize: '20px'}}>(*현재가: {c.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원)</span>
                                         </ul>
-                                        <p style={{color:'white'}}>매도 금액</p>
-                                        <input id='price' type="text" style={{width: '150px', height: '30px', fontSize: '20px'}} onChange={onSellPriceChange}></input>
-                                        <DatePicker style={{color: 'white'}} locale={ko} selected={sellDate} onChange={date => setSellDate(date)}></DatePicker>
-                                        <input id='sellTime' type="time" ></input>
-                                    </div>
-                                    <button onClick={setSellMemberStock} style={{    
-                                        backgroundColor: '#57C083',
-                                        borderColor: '#57C083',
-                                        width: 'fit-content',
-                                        height: '40px',
-                                        borderRadius: '4px',
-                                        marginRight: '30px',
-                                        paddingLeft: '10px',
-                                        paddingRight: '10px',
-                                        textAlign: 'center',
-                                        paddingTop: '5px',
-                                        paddingBottom: '10px',
-                                        color: 'white',
-                                        marginLeft: '75px',
-                                        marginTop: '10px'
+                                        <ul>
+                                            <div style={{display: 'flex',}}>
+                                            <p style={{color:'white', marginRight: '10px', marginBottom: '10px'}}>수량</p>
+                                            <input type="number" min="1" max={stockValue} style={{width: '40px',marginRight: '30px', marginTop:'8px', height: '30px', fontSize: '20px'}} onChange={onBuyChange}></input> 
+                                            </div>
                                     
-                                        }}>매도</button>
-
+                                        </ul>
+                                        <ul>
+                                        <div style={{display: 'flex'}}>
+                                            <p style={{color:'white', marginRight: '10px', marginTop: '10px'}}>금액</p>
+                                        <input id='price' type="text" style={{width: '150px', height: '30px', fontSize: '20px'}} onChange={onSellPriceChange}></input>   
+                                            </div>
+                                        </ul>
+                                        <ul>
+                                            <DatePicker locale={ko} selected={sellDate} onChange={date => setSellDate(date)} ></DatePicker>
+                                        </ul>
+                                        <ul>
+                                            <input id='sellTime' type="time" style={{marginLeft: '40px'}}></input>
+                                        </ul>
+                                        
+                                        
+                       
+                                    </div>
+                                    <button onClick={setSellMemberStock} className={styles.sellSmallButton} style={{marginTop:'30px', marginLeft: '110px'}}>매도</button>
+                        
                     </Modal>
+  
 
                     <Modal isOpen={BuyPopIsOpen} onRequestClose={()=>setBuyPopIsOpen(false)} ariaHideApp={false}
                                                         style={{
                                                             overlay: {
                                                                 position: 'absolute',
-                                                                backgroundColor: 'rgba(255, 255, 255, 0)'
+                                                                backgroundColor: 'rgba(31, 31, 31, 0)',
+                                                                top: '0',
+                                                                left: '0',
+                                            
+                                                                
                                                             },
                                                             content: {
+                                                                top: '0',
+                                                                bottom: '0',
+                                                                left: '0',
+                                                                right: '0',
+                                                                margin: 'auto',
+                                                                marginTop: '15rem',
                                                                 position: 'relative',
-                                                                top: '25%',
-                                                                left: '35%',
                                                                 overflow: 'auto',
-                                                                borderRadius: '4px',
-                                                                width: '200px',
+                                                                width: 'fit-content',
                                                                 height: 'fit-content',
-                                                                background: '#1F1F1F'
+                                                                background: '#1F1F1F',
+                                                                paddingRight: '50px',
+                                                                paddingBottom: '30px',
+                                                                borderColor: '#000',
+                                                                borderWidth: '2px'
+                                                                
                                         
                                                             }
                                                         }}>
-                        <div style={{textAlign: 'center'}}>
-                                    <ul>
-                                            <div style={{display: 'flex'}}>
-                                            <p style={{color:'white', marginRight: '10px', marginBottom: '10px'}}>매수 수량</p>
+                        <div style={{}}>
+                                        <ul>
+                                        <span style={{color: 'white', display: 'block', fontSize: '30px'}}>{stockName}</span>
+                                        <span style={{color: 'white' , display: 'block', width: 'fit-content', opacity: '0.7', fontSize: '20px'}}>(*현재가: {c.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원)</span>
+                                        </ul>
+                                        <ul>
+                                            <div style={{display: 'flex',}}>
+                                            <p style={{color:'white', marginRight: '10px', marginBottom: '10px'}}>수량</p>
                                             <input type="number" min="1" style={{width: '40px',marginRight: '30px', marginTop:'8px', height: '30px', fontSize: '20px'}} onChange={onBuyChange}></input> 
                                             </div>
                                     
                                         </ul>
-                        
-                                        <p style={{color:'white'}}>매수 금액</p>
-                                        <input id='price' type="text" style={{width: '150px', height: '30px', fontSize: '20px'}} onChange={onBuyPriceChange}></input>
-                                        <DatePicker style={{color: 'white'}} locale={ko} selected={sellDate} onChange={date => setBuyDate(date)}></DatePicker>
-                                        <input id='buyTime' type="time" ></input>   
-
+                                        <ul>
+                                        <div style={{display: 'flex'}}>
+                                            <p style={{color:'white', marginRight: '10px', marginTop: '10px'}}>금액</p>
+                                        <input id='price' type="text" style={{width: '150px', height: '30px', fontSize: '20px'}} onChange={onBuyPriceChange}></input>   
+                                            </div>
+                                        </ul>
+                                        <ul>
+                                            <DatePicker locale={ko} selected={buyDate} onChange={date => setBuyDate(date)} ></DatePicker>
+                                        </ul>
+                                        <ul>
+                                            <input id='buyTime' type="time" style={{marginLeft: '40px'}}></input>
+                                        </ul>
+                                        
+                                        
+                       
                                     </div>
-                                    <button onClick={setBuyMemberStock} className={styles.buySmallButton} 
-                                    style={{    
-                                        backgroundColor: '#DD6C87',
-                                        borderColor: '#DD6C87',
-                                        width: 'fit-content',
-                                        height: '40px',
-                                        borderRadius: '4px',
-                                        marginRight: '30px',
-                                        paddingLeft: '10px',
-                                        paddingRight: '10px',
-                                        textAlign: 'center',
-                                        paddingTop: '5px',
-                                        paddingBottom: '10px',
-                                        color: 'white',
-                                        marginLeft: '75px',
-                                        marginTop: '10px'
-                                    
-                                        }}>매수</button>
+                                    <button onClick={setBuyMemberStock} className={styles.buySmallButton} style={{marginTop:'30px', marginLeft: '110px'}}>매수</button>
                         
                     </Modal>
+
             </div>
         );
     }

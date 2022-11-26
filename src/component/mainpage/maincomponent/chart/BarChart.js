@@ -15,22 +15,14 @@ export default function BarChart({stockHold}) {
 
     var indexData = [];
 
-    var stockHistory = []; 
+    var chartColor = ["#f47560", "#f1e15b","#af97e3","#c1f460","#e8a838","#61cdbb","#97e3d5","#af97e3","#cbe397"];
 
     var keyResult = [];
-    var IndexResult = [];
 
-    var barData = [];
+
     var resultData = [];
-    var barResult = [];
-    // const [stockHistory, setStockHistory] = useState([{
-    //     name: "",
-    //     tradeType: "",          // 1이 매수, 0이 매도
-    //     tradeDate: "",
-    //     tradeTime: "",
-    //     price: "",
-    //     quantity: "",
-    // }])
+
+
     const getStockTrend = async () => await axios({
         method: "GET",
         url: `/api/stock/trend/${userId}`
@@ -87,29 +79,6 @@ export default function BarChart({stockHold}) {
 
         setStockTrend(resultData);
         setStockMenu(keyResult);
-        /*
-        "date": "2022-11-14",
-    "삼성전자": 21,
-    "현대로템": 21,
-    "sandwich": 118,
-    "kebab": 172,
-        */
-        // console.log(resData.length);
-
-        // for (var i=0; i<resData.length; i++){
-        //     indexData.push(resData[i].date);
-
-        //     if (resData[i].trndDataList.length > 0) {
-        //         for (var j=0;j<resData[i].trndDataList.length; j++) {
-        //             keyData.push(resData[i].trndDataList[j].stockName);
-        //             barData.push({date:resData[i].date,  name : resData[i].trndDataList[j].stockName, value : resData[i].trndDataList[j].quantity})
-        //         }
-        //     }
-        // }
-        // console.log(indexData); //index 데이터 (일자)
-        // keyResult = [...new Set(keyData)]; // key 데이터 (보유 주식 종목명)
-        // console.log(keyResult);
-        // console.log(barData);
 
 
     }).catch((err) => {
@@ -125,7 +94,7 @@ export default function BarChart({stockHold}) {
 
     return (
         <div style={{width: '950px', height: '400px'}}>
-            {console.log(stockTrend)}
+            {console.log(stockTrend)};
             {console.log(stockMenu)};
         <ResponsiveBar
         data={stockTrend}
@@ -135,7 +104,19 @@ export default function BarChart({stockHold}) {
         padding={0.3}
         valueScale={{ type: 'linear' }}
         indexScale={{ type: 'band', round: true }}
-        colors={{ scheme: 'nivo' }}
+        colors={chartColor}
+        theme={{axis: {
+            ticks:{
+                text: {
+                    fill: '#FFF'
+                }
+            },
+            legend: {
+                text: {
+                    fill: '#FFF'
+                }
+            }
+        }}}
         defs={[
             {
                 id: 'dots',
@@ -171,15 +152,16 @@ export default function BarChart({stockHold}) {
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: 'country',
+            legend: '일자별 자산 보유 현황',
             legendPosition: 'middle',
-            legendOffset: 32
+            legendOffset: 40,
+
         }}
         axisLeft={{
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: 'food',
+            legend: '보유 주식 종목',
             legendPosition: 'middle',
             legendOffset: -40
         }}
@@ -194,8 +176,36 @@ export default function BarChart({stockHold}) {
                 ]
             ]
         }}
+        // annotations={[
+        //     {
+        //         type: 'circle',
+        //         match: { key: "삼성전자.2022-11-25" },
+        //         noteX: 25,
+        //         noteY: 25,
+        //         offset: 3,
+        //         noteTextOffset: -3,
+        //         noteWidth: 5,
+        //         note: 'an annotation',
+        //         size: 40,
+        //     },
+        // ]}
+        tooltip={({ id, value, color }) => (
+            <div
+                style={{
+                    padding: 12,
+                    color,
+                    background: '#222222',
+                }}
+            >
+                {/* <span>Look, I'm custom :)</span> */}
+                {/* <br /> */}
+                <strong>
+                    {id}: {value}주
+                </strong>
+            </div>
+        )}
         legends={[
-            {
+            {   
                 dataFrom: 'keys',
                 anchor: 'bottom-right',
                 direction: 'column',
@@ -220,7 +230,7 @@ export default function BarChart({stockHold}) {
         ]}
         role="application"
         ariaLabel="Nivo bar chart demo"
-        barAriaLabel={function(e){return e.id+": "+e.formattedValue+" in country: "+e.indexValue}}
+        barAriaLabel={function(e){return e.id+": "+e.formattedValue+" in date: "+e.indexValue}}
     />
     </div>
     );
