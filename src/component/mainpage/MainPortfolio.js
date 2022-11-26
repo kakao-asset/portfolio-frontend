@@ -115,6 +115,7 @@ export default function MainPortfolio({stockHold, budgetData, profit, stockHisto
                         width: 'fit-content',
                         height: 'fit-content',
                         background: '#1F1F1F',
+                        borderColor: '#000'
                         
                         
 

@@ -36,7 +36,6 @@ export default function Main() {
             })
             .then((res) => {
                 var result = res.data;
-                
                 var len = result.length == 0 ? 0 : result.length-1;
                 var data = result[len].tradePrice;
                 tmp[i]['currentPrice'] = data;

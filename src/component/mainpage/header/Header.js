@@ -40,21 +40,24 @@ export default function Header() {
                             width: '50px',
                             height: '50px',
                             borderRadius: '5px'
-                        }} onClick={() => setModalIsOpen(true)}></img>
+                        }} onClick={() => setModalIsOpen(!modalIsOpen)}></img>
                 <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}
                          style={{
                              overlay: {
                              position: 'absolute',
+                             top: '7rem',
+                             left: '82rem',
                              backgroundColor: 'rgba(255, 255, 255, 0)'
                             },
                     content: {
-                        position: 'absolute',
-                        top: '100px',
-                        left: '1650px',
+                        position: 'relative',
+                        margin: 'auto',
+                        top: 0,
                         borderRadius: '4px',
                         width: 'fit-content',
                         height: 'fit-content',
                         background: '#1F1F1F',
+                        borderColor: '#000'
 
                     },
                 }}>
