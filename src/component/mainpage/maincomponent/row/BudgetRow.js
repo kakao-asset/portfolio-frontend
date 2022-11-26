@@ -5,9 +5,13 @@ import Modal from 'react-modal';
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import { ko } from 'date-fns/esm/locale';
+import { VscNoNewline } from "react-icons/vsc";
 
 
     export default function BudgetRow  ({budget})  {
+
+
+
 
         let now = new Date();
 
@@ -139,15 +143,15 @@ import { ko } from 'date-fns/esm/locale';
         return (
             <div style={{marginTop: '2rem', marginBotton: '20px'}}>
 
-                <div style={{display: 'flex', marginLeft: '1.5rem'}}>
+                <div style={{display: 'flex', marginLeft: '1.5rem', position: 'relative'}}>
                     <BsCart4 size='20px' style={{color: '#D9D9D9', display: 'block', paddingTop: '12px'}}></BsCart4>
                     <span style={{color: 'white', paddingLeft: '30px', display: 'block', width: '100px', paddingTop: '10px'}}>{stockName}</span>
                     <span style={{color: 'white', paddingLeft: '4rem', display: 'block', paddingTop: '10px', width: '90px', textAlign: 'right'}}>{stockCurrentPrice !== undefined? (stockCurrentPrice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : 0}원</span>
                     
-                    <button className={styles.buyButton} onClick={()=>setBuyPopIsOpen(true)}>매수</button>
-                    <button className={styles.sellButton} onClick={()=>setSellPopIsOpen(true)}>매도</button>
+                    <button id="buyButton" className={styles.buyButton} onClick={()=>setBuyPopIsOpen(true)}>매수</button>
+                    <button id="sellButton" className={styles.sellButton} onClick={()=>setSellPopIsOpen(true)}>매도</button>
 
-                    <Modal isOpen={SellPopIsOpen} onRequestClose={()=>setSellPopIsOpen(false)} ariaHideApp={false}
+                    <Modal parentSelector={()=>document.getElementById("buyButton")} isOpen={SellPopIsOpen} onRequestClose={()=>setSellPopIsOpen(false)} ariaHideApp={false}
                                     style={{
                                         overlay: {
                                             position: 'absolute',
@@ -161,7 +165,8 @@ import { ko } from 'date-fns/esm/locale';
                                             borderRadius: '4px',
                                             width: 'fit-content',
                                             height: 'fit-content',
-                                            background: '#1F1F1F'
+                                            background: '#1F1F1F',
+                                            zIndex: '99'
                     
                                         }
                                     }}>

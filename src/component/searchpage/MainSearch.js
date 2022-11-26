@@ -1,10 +1,16 @@
 import Header from "../mainpage/header/Header";
 import Info from "./Info";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import SearchEmpty from "./SearchEmpty";
+import Footer from "../mainpage/header/Footer";
+// import { SearchContext } from "../../store/SearchStore";
+
 
 export default function MainSearch(){
+        // const context = useContext(SearchContext);
+
+        // console.log(context);
 
         // 로컬 스토리지에 저장되어 있는 searchStock 데이터 가져옴
         var searchStock = localStorage.getItem('searchStock');
@@ -58,6 +64,7 @@ export default function MainSearch(){
         <div style={{display: 'inline-block'}}>         
             <Header></Header>
             {stockInfoisFill? <Info current={current}></Info> : <SearchEmpty></SearchEmpty>}
+            <Footer></Footer>
             </div>
         </div>
     );

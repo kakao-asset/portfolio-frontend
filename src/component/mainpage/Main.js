@@ -3,6 +3,7 @@ import MainPortfolio from "./MainPortfolio";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import MainEmpty from "./MainEmpty";
+import Footer from "./header/Footer";
 
 export default function Main() {
     const [stockHold, setStockHold] = useState([{
@@ -95,6 +96,7 @@ export default function Main() {
             <Header></Header>
             {stockHoldisFill? <MainPortfolio stockHold={stockHold} budgetData={budgetData} profit={profit}></MainPortfolio> : <MainEmpty></MainEmpty>}
             {/* <MainPortfolio stockHold={stockHold} budgetData={budgetData} profit={profit}></MainPortfolio> */}
+            <Footer></Footer>
             </div>
         </div>
     );

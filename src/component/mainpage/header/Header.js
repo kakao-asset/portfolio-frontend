@@ -22,7 +22,7 @@ export default function Header() {
                 borderBottom: '0.5px solid', color: "#d2d2d2", position: "relative"
             }} >
                 <div style={{width: '15rem'}}>
-                    <img onClick={navigateToMain} alt="kalogo" src="img/ka_logo_s.png" style={{ float: 'left' }}></img>
+                    <img onClick={navigateToMain} alt="kalogo" src="img/ka_logo_s.png" style={{ float: 'left', paddingTop: '1rem' }}></img>
                 </div>
                 <div style={{width: '30rem'}}>
                     <div>
