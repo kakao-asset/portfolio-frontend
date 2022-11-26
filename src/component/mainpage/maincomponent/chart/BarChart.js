@@ -1,167 +1,135 @@
 import { ResponsiveBar } from '@nivo/bar';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { keyboardImplementationWrapper } from '@testing-library/user-event/dist/keyboard';
+import { BsArrowCounterclockwise } from 'react-icons/bs';
 
 
 export default function BarChart({stockHold}) {
+    
+    const [stockTrend, setStockTrend] = useState([]);
+    const [stockMenu, setStockMenu] =useState([]);
     var resStockData =[]; 
-    var resData;
+    var resData = [];
     var userId = JSON.parse(localStorage.getItem("userData")).userId;
 
-    const [stockHistory, setStockHistory] = useState([{
-        name: "",
-        tradeType: "",          // 1이 매수, 0이 매도
-        tradeDate: "",
-        tradeTime: "",
-        price: "",
-        quantity: "",
-    }])
+    var indexData = [];
 
-    const getStockHistory = async () => await axios({
+    var stockHistory = []; 
+
+    var keyResult = [];
+    var IndexResult = [];
+
+    var barData = [];
+    var resultData = [];
+    var barResult = [];
+    // const [stockHistory, setStockHistory] = useState([{
+    //     name: "",
+    //     tradeType: "",          // 1이 매수, 0이 매도
+    //     tradeDate: "",
+    //     tradeTime: "",
+    //     price: "",
+    //     quantity: "",
+    // }])
+    const getStockTrend = async () => await axios({
         method: "GET",
-        url: `/api/stock-history/${userId}`
+        url: `/api/stock/trend/${userId}`
     })
     .then((res) => {
         resData = res.data.data;
-        resStockData = resData.map((x) => ({
-            name: x.stockName, 
-            quantity: x.quantity, 
-            price: x.price, 
-            tradeType: x.tradeType, 
-            tradeDate: x.tradeDate, 
-            tradeTime: x.tradeTime}));
-        setStockHistory(resStockData);
+        var keyData = [];
 
-        console.log(stockHistory);
+        //console.log(resData);
         
+        var temp = new Map();
+        var objs = [];
+        
+         for (var i=0; i<resData.length; i++){
+            indexData.push(resData[i].date);
+
+            if (resData[i].trendDataList.length > 0) {
+                for (var j=0;j<resData[i].trendDataList.length; j++) {
+                    keyData.push(resData[i].trendDataList[j].stockName);
+                    
+                }
+            }
+        }
+        //console.log(indexData); //index 데이터 (일자)
+        keyResult = [...new Set(keyData)]; // key 데이터 (보유 주식 종목명)
+
+        for(var i = 0; i < resData.length; i++){
+            //var temp = resData[i].trendDataList.map((x) => ([{[x.stockName]: x.quantity}]));
+            var obj =[];
+            obj.push({"date": resData[i].date});
+            for(var j = 0; j < resData[i].trendDataList.length; j++){
+                obj.push({[resData[i].trendDataList[j].stockName]: resData[i].trendDataList[j].quantity});
+            }
+            objs.push(obj);
+            // var barData = {"date": resData[i].date};
+            // console.log(Object.assign(barData,temp));
+        }
+        console.log(keyResult)
+        //console.log(objs);
+        for(var i = 0; i < objs.length; i++){
+            // console.log(objs[i])
+            var temp = objs[i];
+            var tttt = {};
+            //tttt = Object.assign(temp[0], temp[1])
+            for(var j = 0; j < temp.length; j++){
+                //console.log(temp[j]);
+                tttt = Object.assign(tttt, temp[j])
+            }
+            console.log(tttt)
+            resultData.push(tttt)
+            console.log("resultData: " , resultData)
+        }
+        //resultData = objs.map((x) => x.keys().map((k) => console.log(k)))
+
+        setStockTrend(resultData);
+        setStockMenu(keyResult);
+        /*
+        "date": "2022-11-14",
+    "삼성전자": 21,
+    "현대로템": 21,
+    "sandwich": 118,
+    "kebab": 172,
+        */
+        // console.log(resData.length);
+
+        // for (var i=0; i<resData.length; i++){
+        //     indexData.push(resData[i].date);
+
+        //     if (resData[i].trndDataList.length > 0) {
+        //         for (var j=0;j<resData[i].trndDataList.length; j++) {
+        //             keyData.push(resData[i].trndDataList[j].stockName);
+        //             barData.push({date:resData[i].date,  name : resData[i].trndDataList[j].stockName, value : resData[i].trndDataList[j].quantity})
+        //         }
+        //     }
+        // }
+        // console.log(indexData); //index 데이터 (일자)
+        // keyResult = [...new Set(keyData)]; // key 데이터 (보유 주식 종목명)
+        // console.log(keyResult);
+        // console.log(barData);
+
+
     }).catch((err) => {
         console.log("use_stock 데이터 에러", err);
     })
 
     useEffect(() => {
-        getStockHistory();
+        getStockTrend();
     }, []);
 
+    console.log(resultData)
+    console.log(keyResult)
 
-
-    var stockHistoryData = stockHistory.map((x) => 
-    ({date: x.tradeDate, label:[x.name+"\t"+"\t", x.value+"주"], value: x.value*x.avgPrice, price: x.avgPrice}));
-    
-    var keyData = stockHistory.map((x) => ([x.tradeDate]));
-    console.log(keyData);
-
-    var fillStockHistory = stockHistory.map((x) => ({match: {id: x.name}}));
     return (
         <div style={{width: '950px', height: '400px'}}>
+            {console.log(stockTrend)}
+            {console.log(stockMenu)};
         <ResponsiveBar
-        data={[
-            {
-              "country": "AD",
-              "hot dog": 3,
-              "hot dogColor": "hsl(236, 70%, 50%)",
-              "burger": 144,
-              "burgerColor": "hsl(327, 70%, 50%)",
-              "sandwich": 175,
-              "sandwichColor": "hsl(297, 70%, 50%)",
-              "kebab": 3,
-              "kebabColor": "hsl(305, 70%, 50%)",
-              "fries": 121,
-              "friesColor": "hsl(47, 70%, 50%)",
-              "donut": 177,
-              "donutColor": "hsl(112, 70%, 50%)"
-            },
-            {
-              "country": "AE",
-              "hot dog": 20,
-              "hot dogColor": "hsl(218, 70%, 50%)",
-              "burger": 92,
-              "burgerColor": "hsl(178, 70%, 50%)",
-              "sandwich": 119,
-              "sandwichColor": "hsl(180, 70%, 50%)",
-              "kebab": 174,
-              "kebabColor": "hsl(248, 70%, 50%)",
-              "fries": 168,
-              "friesColor": "hsl(311, 70%, 50%)",
-              "donut": 95,
-              "donutColor": "hsl(212, 70%, 50%)"
-            },
-            {
-              "country": "AF",
-              "hot dog": 5,
-              "hot dogColor": "hsl(214, 70%, 50%)",
-              "burger": 87,
-              "burgerColor": "hsl(51, 70%, 50%)",
-              "sandwich": 77,
-              "sandwichColor": "hsl(102, 70%, 50%)",
-              "kebab": 104,
-              "kebabColor": "hsl(50, 70%, 50%)",
-              "fries": 6,
-              "friesColor": "hsl(29, 70%, 50%)",
-              "donut": 100,
-              "donutColor": "hsl(202, 70%, 50%)"
-            },
-            {
-              "country": "AG",
-              "hot dog": 150,
-              "hot dogColor": "hsl(77, 70%, 50%)",
-              "burger": 112,
-              "burgerColor": "hsl(50, 70%, 50%)",
-              "sandwich": 116,
-              "sandwichColor": "hsl(203, 70%, 50%)",
-              "kebab": 68,
-              "kebabColor": "hsl(281, 70%, 50%)",
-              "fries": 94,
-              "friesColor": "hsl(2, 70%, 50%)",
-              "donut": 11,
-              "donutColor": "hsl(124, 70%, 50%)"
-            },
-            {
-              "country": "AI",
-              "hot dog": 167,
-              "hot dogColor": "hsl(108, 70%, 50%)",
-              "burger": 120,
-              "burgerColor": "hsl(250, 70%, 50%)",
-              "sandwich": 0,
-              "sandwichColor": "hsl(350, 70%, 50%)",
-              "kebab": 79,
-              "kebabColor": "hsl(138, 70%, 50%)",
-              "fries": 183,
-              "friesColor": "hsl(17, 70%, 50%)",
-              "donut": 115,
-              "donutColor": "hsl(124, 70%, 50%)"
-            },
-            {
-              "country": "AL",
-              "hot dog": 28,
-              "hot dogColor": "hsl(332, 70%, 50%)",
-              "burger": 142,
-              "burgerColor": "hsl(66, 70%, 50%)",
-              "sandwich": 79,
-              "sandwichColor": "hsl(235, 70%, 50%)",
-              "kebab": 105,
-              "kebabColor": "hsl(99, 70%, 50%)",
-              "fries": 163,
-              "friesColor": "hsl(237, 70%, 50%)",
-              "donut": 165,
-              "donutColor": "hsl(305, 70%, 50%)"
-            },
-            {
-              "country": "AM",
-              "hot dog": 120,
-              "hot dogColor": "hsl(312, 70%, 50%)",
-              "burger": 34,
-              "burgerColor": "hsl(163, 70%, 50%)",
-              "sandwich": 118,
-              "sandwichColor": "hsl(242, 70%, 50%)",
-              "kebab": 67,
-              "kebabColor": "hsl(202, 70%, 50%)",
-              "fries": 74,
-              "friesColor": "hsl(331, 70%, 50%)",
-              "donut": 45,
-              "donutColor": "hsl(142, 70%, 50%)"
-            }
-          ]}
-        keys={keyData}
+        data={stockTrend}
+        keys={stockMenu}
         indexBy="date"
         margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
         padding={0.3}
@@ -186,20 +154,6 @@ export default function BarChart({stockHold}) {
                 rotation: -45,
                 lineWidth: 6,
                 spacing: 10
-            }
-        ]}
-        fill={[
-            {
-                match: {
-                    id: 'fries'
-                },
-                id: 'dots'
-            },
-            {
-                match: {
-                    id: 'sandwich'
-                },
-                id: 'lines'
             }
         ]}
         borderColor={{
@@ -260,8 +214,8 @@ export default function BarChart({stockHold}) {
                         style: {
                             itemOpacity: 1
                         }
-                    }
-                ]
+                    },
+                ],
             }
         ]}
         role="application"

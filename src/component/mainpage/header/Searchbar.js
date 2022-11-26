@@ -1,10 +1,11 @@
-import {useState} from "react";
+import {useContext, useState} from "react";
 import Modal from 'react-modal';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 
 export default function Searchbar() {
+
     const navigate = useNavigate();
     const navigateToDetail = () => {
         navigate("/detail");
@@ -116,7 +117,7 @@ export default function Searchbar() {
                     <div style={{paddingTop: '30px'}}>
                     {searchList != '' && search != '' && searchList.map((searchStock)=>
                     (<ul><button onClick={()=>{navigateToDetail(); 
-                        setSearchTargetToLocal(searchStock);}} style={{
+                        setSearchTargetToLocal(searchStock); }} style={{
                         color: 'white', 
                         display: 'block', 
                         width: 'fit-content',
