@@ -3,8 +3,7 @@ import "./chart.css";
 import ApexCharts from "react-apexcharts";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import moment from "moment";
-import 'moment/locale/ko';
+import dayjs from 'dayjs';
 
 function LineChart(){
 
@@ -36,13 +35,8 @@ function LineChart(){
         }, 60000)
       },[stockSymbolCode])
 
-    //console.log(current);
-    
-    //var temp = current.map((data) => console.log(data.datetime + " "+data.datetime.substring(10,15) + " " + convertTime(data.datetime.substring(10,16))));
-    
     var chartData = current.map((data) => ([convertTime(data.datetime.substring(10,16)), data.tradePrice])).sort();
     
-    //console.log(chartData)
     var sortedData =  current.map((data) => ([convertTime(data.datetime.substring(10,16)), data.accTradeVolume])).sort();
     var tradeQuantityData = [];
     for(var i = 1; i < sortedData.length; i++){
@@ -50,7 +44,6 @@ function LineChart(){
       
     }
     
-
     function convertTime(hhmm){
       return Number(hhmm.split(':')[0]) * 60 * 60 * 1000 + Number(hhmm.split(':')[1]) * 60 * 1000;
     }
@@ -104,7 +97,7 @@ function LineChart(){
           show: true,
           format: 'HH:mm',
           formatter: function (x) {
-            return new moment(x).subtract(9, 'hour').format("HH:mm");
+            return new dayjs(x).subtract(9, 'hour').format("HH:mm");
           }
       },
       // y: {
