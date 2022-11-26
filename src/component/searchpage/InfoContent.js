@@ -196,7 +196,7 @@ import { ko } from 'date-fns/esm/locale';
                                         <ul>
                                             <div style={{display: 'flex',}}>
                                             <p style={{color:'white', marginRight: '10px', marginBottom: '10px'}}>수량</p>
-                                            <input type="number" min="1" max={stockValue} style={{width: '40px',marginRight: '30px', marginTop:'8px', height: '30px', fontSize: '20px'}} onChange={onBuyChange}></input> 
+                                            <input type="number" min="1" max={stockValue} style={{width: '40px',marginRight: '30px', marginTop:'8px', height: '30px', fontSize: '20px'}} onChange={onSellChange}></input> 
                                             </div>
                                     
                                         </ul>
