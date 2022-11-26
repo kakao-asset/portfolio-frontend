@@ -83,7 +83,7 @@ export default function MainPortfolio({stockHold, budgetData, profit, stockHisto
         </div>
             <div style={{display: 'flex'}}>
                 {/* 업종별 랭킹 관련 선택 주식이 없을 시 보유 주식 수가 가장 많은 주식과 관련된 업종을 디폴트로 보여줌 */}
-                <button onClick={()=>setModalIsOpen(!modalIsOpen)}style={
+                <button id="rankingButton" onClick={()=>setModalIsOpen(!modalIsOpen)}style={
                     {color: 'white', 
                     backgroundColor: '#1F1F1F',  
                     marginLeft: '2rem', 
@@ -101,18 +101,21 @@ export default function MainPortfolio({stockHold, budgetData, profit, stockHisto
                 style={{
                     overlay: {
                         position: 'absolute',
-                        backgroundColor: 'rgba(255, 255, 255, 0)'
+                        backgroundColor: 'rgba(255, 255, 255, 0)',
+                        left: '0',
+                        top: '0'
                     },
                     content: {
                         position: 'relative',
-                        top: '92rem',
-                        left: '3rem',
+                        top: '93rem',
+                        left: '-42rem',
+                        margin: 'auto',
                         overflow: 'auto',
                         borderRadius: '4px',
                         width: 'fit-content',
                         height: 'fit-content',
                         background: '#1F1F1F',
-                        marginLeft: '3rem'
+                        
                         
 
                     }
