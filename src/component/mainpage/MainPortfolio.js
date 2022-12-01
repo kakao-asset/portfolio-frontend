@@ -4,8 +4,9 @@ import ProfitLoss from "./maincomponent/ProfitLoss";
 import News from "./maincomponent/News";
 import Ranking from "./maincomponent/Ranking";
 import Modal from 'react-modal';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MyBudgetRow from "./maincomponent/row/MyBudgetRow";
+import axios from "axios";
 
 
 export default function MainPortfolio({stockHold, budgetData, profit, stockHistory}) {
@@ -54,6 +55,29 @@ export default function MainPortfolio({stockHold, budgetData, profit, stockHisto
         }
     }
 
+    var userId = JSON.parse(localStorage.getItem("userData")).userId;
+    const [cash, setCash] = useState("");
+
+    const getUserCash = async () => await axios({
+        method: "GET",
+        url: `/api/cash/${userId}`
+    })
+    .then((res) => {
+        var resData = res.data.data;
+        console.log(resData.cash);
+        setCash(resData.cash);
+
+        console.log(cash);
+
+        
+    }).catch((err) => {
+        console.log("user_cash 데이터 에러", err);
+    })
+
+useEffect(() => {
+    getUserCash();
+}, []);
+
 
     return (
         <div text-align="center">
@@ -64,7 +88,7 @@ export default function MainPortfolio({stockHold, budgetData, profit, stockHisto
             </div>
         <div style={{display: "flex"}}>
             {/* 포트폴리오(차트 및 보유 주식, 자산) 영역 */}
-            {<Portfolio stockHold={stockHold} budget={budgetData}></Portfolio>}
+            {<Portfolio stockHold={stockHold} budget={budgetData} cash={cash}></Portfolio>}
 
             {/* 보유 주식 관리 영역 */}
             {<Budget stockHold={stockHold} budgetData={budgetData}></Budget>}
