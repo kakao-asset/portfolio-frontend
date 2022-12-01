@@ -46,7 +46,7 @@ export default function Header() {
                              overlay: {
                              position: 'absolute',
                              top: '7rem',
-                             left: '82rem',
+                             left: '85rem',
                              backgroundColor: 'rgba(255, 255, 255, 0)'
                             },
                     content: {

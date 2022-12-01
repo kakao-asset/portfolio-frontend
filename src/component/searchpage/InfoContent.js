@@ -15,7 +15,7 @@ import { ko } from 'date-fns/esm/locale';
         const stockSectorCode = stockInfo.sectorCode;
         const stockSectorName = stockInfo.sectorName;
 
-        var stockValue = "";
+        var stockValue = 0;
 
         if (budget.length > 0) {
             for (var i=0;i<budget.length;i++){
@@ -155,8 +155,8 @@ import { ko } from 'date-fns/esm/locale';
                     ({(Math.ceil(((c-o)/o)*10000))/100}%)
                     </span>
                 </div>
-                <button className={styles.buyButton} onClick={()=>setBuyPopIsOpen(true)}>매수</button>
-                <button className={styles.sellButton} onClick={()=>setSellPopIsOpen(true)}>매도</button>
+                <button className={styles.buyButton} onClick={()=>setBuyPopIsOpen(true)}>자산 추가</button>
+                <button className={styles.sellButton} onClick={()=>setSellPopIsOpen(true)}>자산 삭제</button>
                 
                 <Modal isOpen={SellPopIsOpen} onRequestClose={()=>setSellPopIsOpen(false)} ariaHideApp={false}
                                                         style={{
@@ -196,7 +196,7 @@ import { ko } from 'date-fns/esm/locale';
                                         <ul>
                                             <div style={{display: 'flex',}}>
                                             <p style={{color:'white', marginRight: '10px', marginBottom: '10px'}}>수량</p>
-                                            <input type="number" min="1" max={stockValue} style={{width: '40px',marginRight: '30px', marginTop:'8px', height: '30px', fontSize: '20px'}} onChange={onSellChange}></input> 
+                                            <input type="number" min="0" max={stockValue} style={{width: '40px',marginRight: '30px', marginTop:'8px', height: '30px', fontSize: '20px'}} onChange={onSellChange}></input> 
                                             </div>
                                     
                                         </ul>
@@ -216,7 +216,7 @@ import { ko } from 'date-fns/esm/locale';
                                         
                        
                                     </div>
-                                    <button onClick={setSellMemberStock} className={styles.sellSmallButton} style={{marginTop:'30px', marginLeft: '110px'}}>매도</button>
+                                    <button onClick={setSellMemberStock} className={styles.sellSmallButton} style={{marginTop:'30px', marginLeft: '110px'}}>삭제</button>
                         
                     </Modal>
   
@@ -279,7 +279,7 @@ import { ko } from 'date-fns/esm/locale';
                                         
                        
                                     </div>
-                                    <button onClick={setBuyMemberStock} className={styles.buySmallButton} style={{marginTop:'30px', marginLeft: '110px'}}>매수</button>
+                                    <button onClick={setBuyMemberStock} className={styles.buySmallButton} style={{marginTop:'30px', marginLeft: '110px'}}>추가</button>
                         
                     </Modal>
 

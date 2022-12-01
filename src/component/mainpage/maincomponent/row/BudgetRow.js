@@ -113,7 +113,7 @@ import { VscNoNewline } from "react-icons/vsc";
             console.log(stockName , "stockName  : : :: ")
             
             if(buyPrice < 0 || buyValue < 0 || buyPrice == "" || buyValue == "") {
-                window.alert("매수 수량과 금액을 확인해주세요");
+                window.alert("추가 수량과 금액을 확인해주세요");
             } else if (buyDate == "" || document.getElementById("buyTime").value == "" ){
                 window.alert("매수 일자와 시간을 확인해주세요");
             }
@@ -138,9 +138,9 @@ import { VscNoNewline } from "react-icons/vsc";
                     // {avgPrice: 554, quantity: 40, stockCode: '뉴트리'}
                     window.alert(res.data.message);
                 }).catch((err, res) => {
-                    console.log("매수 실패", err);
+                    console.log("추가 실패", err);
                     console.log("매수 실패", res);
-                    window.alert("매수 실패");
+                    window.alert("추가 실패");
                 })
                 setBuyPopIsOpen(false);
                 window.location.reload(); 
@@ -156,8 +156,8 @@ import { VscNoNewline } from "react-icons/vsc";
                     <span id='stockName' style={{color: 'white', paddingLeft: '30px', display: 'block', width: '100px', paddingTop: '10px'}}>{stockName}</span>
                     <span id='stockCurrentPrice' style={{color: 'white', paddingLeft: '4rem', display: 'block', paddingTop: '10px', width: '90px', textAlign: 'right'}}>{stockCurrentPrice !== undefined? (stockCurrentPrice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : 0}원</span>
                     
-                    <button id="buyButton" className={styles.buyButton} onClick={()=>setBuyPopIsOpen(true)}>매수</button>
-                    <button id="sellButton" className={styles.sellButton} onClick={()=>setSellPopIsOpen(true)}>매도</button>
+                    <button id="buyButton" className={styles.buyButton} onClick={()=>setBuyPopIsOpen(true)}>추가</button>
+                    <button id="sellButton" className={styles.sellButton} onClick={()=>setSellPopIsOpen(true)}>삭제</button>
 
 
                     <Modal isOpen={SellPopIsOpen} onRequestClose={()=>setSellPopIsOpen(false)} ariaHideApp={false}
@@ -198,7 +198,7 @@ import { VscNoNewline } from "react-icons/vsc";
                                         <ul>
                                             <div style={{display: 'flex',}}>
                                             <p style={{color:'white', marginRight: '10px', marginBottom: '10px'}}>수량</p>
-                                            <input type="number" min="1" max={stockValue} style={{width: '40px',marginRight: '30px', marginTop:'8px', height: '30px', fontSize: '20px'}} onChange={onSellChange}></input> 
+                                            <input type="number" min="0" max={stockValue} style={{width: '40px',marginRight: '30px', marginTop:'8px', height: '30px', fontSize: '20px'}} onChange={onSellChange}></input> 
                                             </div>
                                     
                                         </ul>
@@ -279,7 +279,7 @@ import { VscNoNewline } from "react-icons/vsc";
                                         
                        
                                     </div>
-                                    <button onClick={setBuyMemberStock} className={styles.buyButton} style={{marginTop:'30px', marginLeft: '110px'}}>매수</button>
+                                    <button onClick={setBuyMemberStock} className={styles.buyButton} style={{marginTop:'30px', marginLeft: '110px'}}>추가</button>
                         
                     </Modal>
 

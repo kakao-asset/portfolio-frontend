@@ -197,11 +197,14 @@ export default function BarChart({stockHold}) {
                     background: '#222222',
                 }}
             >
-                {/* <span>Look, I'm custom :)</span> */}
-                {/* <br /> */}
+            
                 <strong>
                     {id}: {value}주
                 </strong>
+                <br />
+                <span>Look, I'm custom :)</span>
+                
+                
             </div>
         )}
         legends={[
