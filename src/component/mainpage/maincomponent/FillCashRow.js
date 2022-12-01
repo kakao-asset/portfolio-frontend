@@ -13,12 +13,13 @@ export default function FillCashRow({cash}) {
         else {
             var userId = JSON.parse(localStorage.getItem("userData")).userId;
             var userCash = document.getElementById("cash").value;
+            console.log("수정!!!");
 
             axios({
                 
                 method: "POST",
                 url: `/api/cash/${userId}`,
-                data: {"cash": userCash},
+                data: {"cash": (userCash-cash)},
                 headers: {
                     "Content-Type" : "application/json; charset=utf-8"
                 }, 
@@ -39,11 +40,13 @@ export default function FillCashRow({cash}) {
     }
     return(
         <div text-align='center'>
-            <div style={{display: 'inline-block'}}>
+            <div style={{display: 'inline-block', marginTop: '2rem'}}>
+                <img alt="ka_plus_cash_3" src="img/ka_plus_cash_4.png"></img>
                 <div style={{display: 'flex'}}>
-                    <img alt="ka_plus_cash_3" src="img/ka_plus_cash_3.png"></img>
-                    <h3 style={{color: 'white'}}>등록된 현금: {cash}원</h3>
-                    <AiFillEdit color="white" onClick={()=> setModalIsOpen}></AiFillEdit>
+                    
+                    <h3 style={{color: 'white', paddingTop: '1rem', paddingRight: '1rem'}}>등록된 현금:  {Number(cash).toLocaleString('ko-KR')}원</h3>
+                   
+                    <AiFillEdit size= '30px' style={{paddingTop: '2rem'}} color="white" onClick={()=> setModalIsOpen(true)}></AiFillEdit>
                 </div>
             </div>
 
@@ -60,7 +63,7 @@ export default function FillCashRow({cash}) {
                     },
                     content: {
                         position: 'relative',
-                        top: '10rem',
+                        top: '20rem',
                         bottom: '0',
                         left: '0',
                         right: '0',
@@ -75,7 +78,7 @@ export default function FillCashRow({cash}) {
                     }
                 }}>
                     <div style={{textAlign: 'center', color: 'white', paddingLeft: '30px', paddingRight: '30px'}}> 
-                    <h3 style={{color: 'white'}}>나의 현금 수정하기</h3>
+                    <h3 style={{color: 'white'}}>보유 현금 수정하기</h3>
                     
                     <input id='cash' type="text" style={{width: '150px', height: '30px', fontSize: '20px'}}></input> 원  
 
@@ -85,6 +88,7 @@ export default function FillCashRow({cash}) {
                 borderColor: '#366cc2',
                 width: 'fit-content',
                 height: '40px',
+                marginTop: '30px',
                 borderRadius: '4px',
                 paddingLeft: '20px',
                 paddingRight: '20px',
@@ -93,7 +97,7 @@ export default function FillCashRow({cash}) {
                 paddingBottom: '10px',
                 marginBottom: '20px',
                 color: 'white'
-            }} onClick={()=> setMemberCash}>수정</button>
+            }} onClick={setMemberCash}>수정</button>
             </div>
                 </Modal>
         </div>
