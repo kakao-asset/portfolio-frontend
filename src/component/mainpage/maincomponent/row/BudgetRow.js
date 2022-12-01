@@ -12,7 +12,7 @@ import { VscNoNewline } from "react-icons/vsc";
     export default function BudgetRow  ({budget})  {
 
 
-
+        console.log(budget);
 
         let now = new Date();
 

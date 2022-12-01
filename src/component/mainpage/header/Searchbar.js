@@ -97,7 +97,7 @@ export default function Searchbar() {
                         position: 'relative',
                         top: '3rem',
                         bottom: '0',
-                        left: '21rem',
+                        left: '21.5rem',
                         right: '0',
                         margin: 'auto',
                         borderRadius: '4px',

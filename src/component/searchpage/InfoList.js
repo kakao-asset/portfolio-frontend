@@ -73,14 +73,18 @@ export default function InfoList  ({stockInfo}) {
                     <span style={{paddingLeft: '20px', display: 'block', fontSize: '20px', color: '#57C083', width: '100px'}}>{highPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
                 </div>
                 <div style={{marginLeft: '30px'}}>
-                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>업종</span>
-                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', fontSize: '20px', width: '100px'}}>{sectorName}</span>
+                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '150px', opacity: '0.7'}}>거래대금</span>
+                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', fontSize: '20px', width: 'fit-content'}}>{numberToKorean(accTradePrice).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
+                </div>
+                <div style={{marginLeft: '30px'}}>
+                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '200px', opacity: '0.7'}}>시가총액</span>
+                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', fontSize: '20px', width: 'fit-content'}}>{numberToKorean(marketCap).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
                 </div>
              </div>
              <div style={{marginTop: '40px', marginBotton: '20px', display: 'flex'}}>
                 <div style={{marginLeft: '30px'}}>
-                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>거래대금</span>
-                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', fontSize: '20px', width: '100px'}}>{numberToKorean(accTradePrice).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
+                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>외국인 비율</span>
+                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', fontSize: '20px', width: '100px'}}>{foreignRatio}%</span>
                 </div>
                 <div style={{marginLeft: '30px'}}>
                     <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>상한가</span>
@@ -91,20 +95,12 @@ export default function InfoList  ({stockInfo}) {
                     <span style={{color: 'white', paddingLeft: '20px', display: 'block', fontSize: '20px', width: '100px'}}>{lowerLimitPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
                 </div>
                 <div style={{marginLeft: '30px'}}>
-                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>52주 최고가</span>
-                    <span style={{paddingLeft: '20px', display: 'block', fontSize: '20px', color: 'white', width: '100px'}}>{high52wPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
-                </div>
-                <div style={{marginLeft: '30px'}}>
                     <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>52주 최저가</span>
                     <span style={{paddingLeft: '20px', display: 'block', fontSize: '20px', color: 'white', width: '100px'}}>{low52wPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
                 </div>
                 <div style={{marginLeft: '30px'}}>
-                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>외국인 비율</span>
-                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', fontSize: '20px', width: '100px'}}>{foreignRatio}%</span>
-                </div>
-                <div style={{marginLeft: '30px'}}>
-                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>시가총액</span>
-                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', fontSize: '20px', width: '100px'}}>{numberToKorean(marketCap).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
+                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>52주 최고가</span>
+                    <span style={{paddingLeft: '20px', display: 'block', fontSize: '20px', color: 'white', width: '100px'}}>{high52wPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
                 </div>
                 <div style={{marginLeft: '30px'}}>
                     <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>EPS/PER</span>

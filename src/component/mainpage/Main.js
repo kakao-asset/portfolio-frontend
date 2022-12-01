@@ -38,7 +38,9 @@ export default function Main() {
                 var result = res.data;
                 var len = result.length == 0 ? 0 : result.length-1;
                 var data = result[len].tradePrice;
+                var dateData = result[len].datetime;
                 tmp[i]['currentPrice'] = data;
+                tmp[i]['datetime'] = dateData;
 
                 var updateData = {[tmp[i]['name']] : result}
                 var target = Object.assign(profit, updateData)
