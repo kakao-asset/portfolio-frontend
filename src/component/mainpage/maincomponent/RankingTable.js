@@ -15,14 +15,15 @@ const columns = [
       headerAlign: 'center',  
       headerName: '종목이름',
       field: 'name',
-      width: '200'
+      width: '200',
+   
       
   },
   {
       headerAlign: 'center',
       headerName: '현재가',
       field: 'tradePrice',
-      width: '150'
+      width: '100'
   },
   {
       headerAlign: 'center',
@@ -72,8 +73,21 @@ export default function RankingTable({rankingColumn,rankingData, sectorCode}) {
         responseEncoding: 'binary'
     })
     .then((res) => {
-        var result = res.data
-        setRankData(result);
+        var result = res.data;
+        var resultData = result.map((x)=>(
+          {accTradePrice: Number(x.accTradePrice).toLocaleString('ko-KR')+"원",
+            accTradeVolume : Number(x.accTradeVolume).toLocaleString('ko-KR')+"원",
+            foreignRatio: x.foreignRatio+"%",
+            id : x.id,
+            marketCap : Number(x.marketCap).toLocaleString('ko-KR')+"원",
+            name : x.name,
+            prevAccTradeVolumeChangeRate : Number(x.prevAccTradeVolumeChangeRate).toFixed(2),
+            tradePrice: Number(x.tradePrice).toLocaleString('ko-KR')+"원"
+
+          }) );
+        console.log(result);
+
+        setRankData(resultData);
 
         }).catch((err) => {
         console.log("데이터 받아오기 에러", err);

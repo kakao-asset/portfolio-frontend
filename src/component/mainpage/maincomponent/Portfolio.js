@@ -3,7 +3,7 @@ import PieChart from "./chart/PieChart";
 import PieAnchor from "./chart/PieAnchor";
 import React, { useCallback,useState, useEffect } from "react";
 
-export default function Portfolio({stockHold, budget}){
+export default function Portfolio({stockHold, budget, cash}){
 
     const [,updateState] = useState()
     const forceUpdate = useCallback(()=> updateState({}), []);
@@ -51,10 +51,14 @@ export default function Portfolio({stockHold, budget}){
                     {/* 지금은 보유 주식 평단가 X 보유 개수로 계산 */}
                     <p style={{marginLeft: '30px', color: "white", paddingTop: '5px'}}>매수금액</p>
                     <h3 style={{marginLeft: '5%', color: "white"}}>{totalPurchase.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</h3>
+                    <p style={{marginLeft: '30px', color: "white", paddingTop: '5px'}}>보유현금</p>
+                    <h3 style={{marginLeft: '5%', color: "white"}}>{cash.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</h3>
                 </div>
                 <div style={{display: "flex"}}>
                     <p style={{marginLeft: '30px', color: "white", paddingTop: '5px'}}>투자금액</p>
                     <h3 style={{marginLeft: '5%', color: "white"}}>{totalAsset == "" || totalAsset == undefined? '(계산중)' :totalAsset.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</h3>
+                    <p style={{marginLeft: '30px', color: "white", paddingTop: '5px'}}>총 자산</p>
+                    <h3 style={{marginLeft: '5%', color: "white"}}>{(totalAsset+cash).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</h3>
                 </div>
             </div>
         </div>
