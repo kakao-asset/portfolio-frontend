@@ -56,6 +56,7 @@ export default function MainPortfolio({stockHold, budgetData, profit, stockHisto
     }
 
     var userId = JSON.parse(localStorage.getItem("userData")).userId;
+    
     const [cash, setCash] = useState("");
 
     const getUserCash = async () => await axios({

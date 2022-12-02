@@ -9,7 +9,7 @@ import { ko } from 'date-fns/esm/locale';
 import { VscNoNewline } from "react-icons/vsc";
 
 
-    export default function BudgetRow  ({budget})  {
+    export default function BudgetRow  ({budget, cash})  {
 
 
         console.log(budget);
@@ -76,9 +76,9 @@ import { VscNoNewline } from "react-icons/vsc";
             console.log("stockName ==== ", stockName);
     
             if(sellPrice < 0 || sellValue < 0 || sellPrice == "" || sellValue == "") {
-                window.alert("매도 수량과 금액을 확인해주세요");
+                window.alert("삭제 수량과 금액을 확인해주세요");
             } else if (sellDate == "" || document.getElementById("sellTime").value == "" ){
-                window.alert("매도 일자와 시간을 확인해주세요");
+                window.alert("삭제 일자와 시간을 확인해주세요");
             }
             else {
                 axios({
@@ -115,7 +115,9 @@ import { VscNoNewline } from "react-icons/vsc";
             if(buyPrice < 0 || buyValue < 0 || buyPrice == "" || buyValue == "") {
                 window.alert("추가 수량과 금액을 확인해주세요");
             } else if (buyDate == "" || document.getElementById("buyTime").value == "" ){
-                window.alert("매수 일자와 시간을 확인해주세요");
+                window.alert("추가 일자와 시간을 확인해주세요");
+            } else if ( buyPrice*buyValue > cash){
+                window.alert("보유 현금 잔액이 부족합니다");
             }
             else {
                 var userId = JSON.parse(localStorage.getItem("userData")).userId;

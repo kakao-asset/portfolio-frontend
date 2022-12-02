@@ -71,9 +71,9 @@ import { ko } from 'date-fns/esm/locale';
             console.log("stockName ==== ", stockName);
         
             if(sellPrice < 0 || sellValue < 0 || sellPrice == "" || sellValue == "") {
-                window.alert("매도 수량과 금액을 확인해주세요");
+                window.alert("삭제 수량과 금액을 확인해주세요");
             } else if (sellDate == "" || document.getElementById("sellTime").value == "" ){
-                window.alert("매도 일자와 시간을 확인해주세요");
+                window.alert("삭제 일자와 시간을 확인해주세요");
             }
             else {
                 axios({
@@ -93,9 +93,9 @@ import { ko } from 'date-fns/esm/locale';
                     window.alert(res.data.message);
                 }).catch((err, res) => {
                     console.log(res.data.message)
-                    console.log("매도 실패", err);
-                    console.log("매도 실패", res);
-                    window.alert("매도 실패");
+                    console.log("삭제 실패", err);
+                    console.log("삭제 실패", res);
+                    window.alert("삭제 실패");
                 })
             }
             
@@ -107,9 +107,12 @@ import { ko } from 'date-fns/esm/locale';
             //buyValue = buyValue == ""? 100 : buyValue;
             console.log(buyPrice, buyValue );
             if(buyPrice < 0 || buyValue < 0 || buyPrice == "" || buyValue == "") {
-                window.alert("매수 수량과 금액을 확인해주세요");
+                window.alert("추가 수량과 금액을 확인해주세요");
             } else if (buyDate == "" || document.getElementById("buyTime").value == "" ){
-                window.alert("매수 일자와 시간을 확인해주세요");
+                window.alert("추가 일자와 시간을 확인해주세요");
+            }
+             else if ( buyPrice*buyValue > cash){
+                window.alert("보유 현금 잔액이 부족합니다");
             }
             else {
                 var userId = JSON.parse(localStorage.getItem("userData")).userId;
@@ -130,9 +133,9 @@ import { ko } from 'date-fns/esm/locale';
                     // {avgPrice: 554, quantity: 40, stockCode: '뉴트리'}
                     window.alert(res.data.message);
                 }).catch((err, res) => {
-                    console.log("매수 실패", err);
-                    console.log("매수 실패", res);
-                    window.alert("매수 실패");
+                    console.log("추가 실패", err);
+                    console.log("추가 실패", res);
+                    window.alert("추가 실패");
                 })
                 setBuyPopIsOpen(false);
                 window.location.reload(); 
@@ -145,6 +148,32 @@ import { ko } from 'date-fns/esm/locale';
 
         var c = Number(stockInfo.tradePrice);
         var o = Number(stockInfo.prevClosingPrice); 
+
+
+        var userId = JSON.parse(localStorage.getItem("userData")).userId;
+    
+        const [cash, setCash] = useState("");
+    
+        const getUserCash = async () => await axios({
+            method: "GET",
+            url: `/api/cash/${userId}`
+        })
+        .then((res) => {
+            var resData = res.data.data;
+            console.log(resData.cash);
+            setCash(resData.cash);
+    
+            console.log(cash);
+    
+            
+        }).catch((err) => {
+            console.log("user_cash 데이터 에러", err);
+        })
+    
+        useEffect(() => {
+            getUserCash();
+        }, []);
+    
 
         return (
             <div style={{display: 'flex', marginLeft: '50px'}}>

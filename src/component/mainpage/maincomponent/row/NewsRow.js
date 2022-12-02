@@ -11,9 +11,9 @@ import React from "react";
                 <ul>
                 <div style={{display: 'flex'}}>
                 <div>
-                    <img src= {thumbnail== null? "../../img/ka_noimage.png": thumbnail} style={{float: 'left', width: '200px', height: '150px', marginTop: '5px'}}></img>
+                    <img src= {thumbnail== null? "../../img/ka_noimage.png": thumbnail} style={{float: 'left', width: '200px', height: '150px', marginTop: '10px'}}></img>
                 </div>
-                <div style={{display: 'column', marginTop: '15px'}}>
+                <div style={{display: 'column', marginTop: '0px'}}>
                     <ul>
                     <span style={{color: 'white'}}>{title}</span>
                         <div style={{alignSelf: 'flex-start', marginTop: '10px', fontSize: 'small'}}>

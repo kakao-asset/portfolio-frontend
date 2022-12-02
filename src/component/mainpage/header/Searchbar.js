@@ -80,6 +80,7 @@ export default function Searchbar() {
                 left: '65rem',
                 bottom: '5px',
                 color: 'white',
+                visibility: modalIsOpen? 'hidden' : 'visible'
             }}></input>
             
             {/* 검색바 클릭 시 하단에 생성되는 검색 모달 */}
@@ -123,7 +124,8 @@ export default function Searchbar() {
                         color: 'white',
                         top: '5px',
                         left: '10px',
-                        right: '10px'
+                        right: '10px',
+                        paddingLeft: '10px'
                     }}></input>
                     <div style={{paddingTop: '30px'}}>
                     {searchList != '' && search != '' && searchList.map((searchStock)=>
