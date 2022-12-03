@@ -1,7 +1,9 @@
-import styles from "./css/Portfolio.module.css"
+import styles from "./css/Portfolio.module.css";
 import PieChart from "./chart/PieChart";
 import PieAnchor from "./chart/PieAnchor";
 import React, { useCallback,useState, useEffect } from "react";
+import { AiFillEdit } from "react-icons/ai";
+import Modal from 'react-modal';
 
 export default function Portfolio({stockHold, budget, cash}){
 
@@ -18,6 +20,7 @@ export default function Portfolio({stockHold, budget, cash}){
   
     var totalPurchase = 0;
     var totalAsset = 0;
+    
     for (var i=0; i<stockHold.length; i++){
         totalPurchase += stockHold[i].value * stockHold[i].avgPrice;
     }
@@ -53,13 +56,13 @@ export default function Portfolio({stockHold, budget, cash}){
                     <p style={{marginLeft: '30px', color: "white", paddingTop: '5px', width: '70px'}}>매수금액</p>
                     <h3 style={{marginLeft: '5%', color: "white", width: '150px', textAlign: 'right'}}>{totalPurchase.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</h3>
                     <p style={{marginLeft: '100px', color: "white", paddingTop: '5px', width: '70px'}}>보유현금</p>
-                    <h3 style={{marginLeft: '5%', color: "white", width: '150px', textAlign: 'right'}}>{cash.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</h3>
+                    <h3 style={{marginLeft: '5%', color: "white", width: '150px', textAlign: 'right'}}>{Number(cash).toLocaleString('ko-KR')}원</h3>
                 </div>
                 <div style={{display: "flex"}}>
                     <p style={{marginLeft: '30px', color: "white", paddingTop: '5px', width: '70px'}}>투자금액</p>
                     <h3 style={{marginLeft: '5%', color: "white", width: '150px',textAlign: 'right'}}>{totalAsset == "" || totalAsset == undefined? '(계산중)' :totalAsset.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</h3>
                     <p style={{marginLeft: '100px', color: "white", paddingTop: '5px',  width: '70px'}}>총 자산</p>
-                    <h3 style={{marginLeft: '5%', color: "white",  width: '150px',textAlign: 'right'}}>{(totalAsset+cash).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</h3>
+                    <h3 style={{marginLeft: '5%', color: "white",  width: '150px',textAlign: 'right'}}>{Number(totalAsset+cash).toLocaleString('ko-KR')}원</h3>
                     <p style={{color: totalSum>0? '#57C083':'#DD6C87', paddingTop: '8px', marginLeft: '10px'}}>( {Number((totalSum)*100).toFixed(2)}% )</p>
                 </div>
             </div>

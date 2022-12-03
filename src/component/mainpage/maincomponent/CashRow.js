@@ -12,7 +12,6 @@ export default function CashRow() {
         else {
             var userId = JSON.parse(localStorage.getItem("userData")).userId;
             var userCash = document.getElementById("cash").value;
-            window.alert(userCash);
 
             axios({
                 

@@ -7,6 +7,7 @@ import { AiFillQuestionCircle } from "react-icons/ai";
 export default function MainEmpty() {
     var userId = JSON.parse(localStorage.getItem("userData")).userId;
     const [cash, setCash] = useState("");
+    
 
     const [cashIsFill, setCashIsFill] = useState(false);
 
@@ -16,14 +17,15 @@ export default function MainEmpty() {
     })
     .then((res) => {
         var resData = res.data.data;
-        console.log(resData.cash);
+
         setCash(resData.cash);
-
+        
+        
         console.log(cash);
-
-        if ( cash != null || cash != []) {
-            setCashIsFill(true);
-        } else (setCashIsFill(false));
+        
+        if ( cash == null || cash == [] || cash == undefined) {
+            setCashIsFill(false);
+        } else (setCashIsFill(true));
         
         
     }).catch((err) => {
@@ -32,7 +34,7 @@ export default function MainEmpty() {
 
 useEffect(() => {
     getUserCash();
-}, []);
+}, [cash]);
 
     return (
         <div>
