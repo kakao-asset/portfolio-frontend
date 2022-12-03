@@ -113,6 +113,8 @@ import { ko } from 'date-fns/esm/locale';
             }
              else if ( buyPrice*buyValue > cash){
                 window.alert("보유 현금 잔액이 부족합니다");
+            } else if (cash ==null || cash == [] || cash == "" || cash == undefined){
+                window.alert("보유 현금이 없습니다");
             }
             else {
                 var userId = JSON.parse(localStorage.getItem("userData")).userId;
@@ -172,7 +174,7 @@ import { ko } from 'date-fns/esm/locale';
     
         useEffect(() => {
             getUserCash();
-        }, []);
+        }, [cash]);
     
 
         return (
