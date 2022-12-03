@@ -4,9 +4,9 @@ import Login from './component/loginpage/Login';
 import Main from './component/mainpage/Main';
 import MainSearch from './component/searchpage/MainSearch';
 import KakaoOauth from './component/loginpage/KakaoOauth';
-import AdminPage from './component/mainpage/AdminPage';
-import TestPage from './component/TestPage';
-import Admin from './component/Adminpage/Admin';
+// import AdminPage from './component/mainpage/AdminPage';
+// import TestPage from './component/TestPage';
+// import Admin from './component/Adminpage/Admin';
 // import SearchStore from './store/SearchStore';
 
 function App() {
@@ -19,8 +19,8 @@ function App() {
         <Route path="/main" element={<Main />} />
         <Route path="/detail" element={<MainSearch/>}/>
         <Route path="/oauth/kakao" element={<KakaoOauth/>}/>
-        <Route path="/admin" element={<Admin/>}/>
-        <Route path="/test" element={<TestPage></TestPage>}></Route>
+        {/* <Route path="/admin" element={<Admin/>}/> */}
+        {/* <Route path="/test" element={<TestPage></TestPage>}></Route> */}
       </Routes>
     {/* </SearchStore> */}
     </BrowserRouter>
