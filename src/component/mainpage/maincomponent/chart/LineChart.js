@@ -125,6 +125,7 @@ function LineChart(){
     var stockData1 =  {
       series: [
       {
+        name: "현재가",
         data: chartData
       }]
     }
