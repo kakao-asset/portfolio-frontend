@@ -23,15 +23,19 @@ export default function Portfolio({stockHold, budget, cash}){
     
     for (var i=0; i<stockHold.length; i++){
         totalPurchase += stockHold[i].value * stockHold[i].avgPrice;
+        console.log(totalPurchase);
+        console.log(stockHold[i].avgPrice);
     }
 
     for (var i=0; i<budget.length; i++){
         // console.log(budget[i].currentPrice);
         totalAsset += budget[i].value * budget[i].currentPrice;
+        console.log(budget[i].currentPrice);
     }
 
     var totalSum = (totalAsset+cash)/(totalPurchase+cash);
-    // console.log(totalAsset);
+     console.log(totalSum);
+     console.log(Number((totalSum)*100-100).toFixed(2));
 
     return (
         <div>
@@ -63,7 +67,7 @@ export default function Portfolio({stockHold, budget, cash}){
                     <h3 style={{marginLeft: '5%', color: "white", width: '150px',textAlign: 'right'}}>{totalAsset == "" || totalAsset == undefined? '(계산중)' :totalAsset.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</h3>
                     <p style={{marginLeft: '100px', color: "white", paddingTop: '5px',  width: '70px'}}>총 자산</p>
                     <h3 style={{marginLeft: '5%', color: "white",  width: '150px',textAlign: 'right'}}>{Number(totalAsset+cash).toLocaleString('ko-KR')}원</h3>
-                    <p style={{color: totalSum>0? '#57C083':'#DD6C87', paddingTop: '8px', marginLeft: '10px'}}>( {Number((totalSum)*100).toFixed(2)}% )</p>
+                    <p style={{color: totalSum>1? '#57C083':'#DD6C87', paddingTop: '8px', marginLeft: '10px'}}>( {Number((totalSum)*100-100).toFixed(2)}% )</p>
                 </div>
             </div>
         </div>

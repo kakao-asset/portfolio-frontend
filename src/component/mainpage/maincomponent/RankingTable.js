@@ -23,37 +23,37 @@ const columns = [
       headerAlign: 'center',
       headerName: '현재가',
       field: 'tradePrice',
-      width: '100'
+      width: '150'
   },
   {
       headerAlign: 'center',
       headerName: '등락률',
       field: 'prevAccTradeVolumeChangeRate',
-      width: '200'
+      width: '100'
   },
   {
       headerAlign: 'center',
       headerName: '거래량',
       field: 'accTradeVolume',
-      width: '250'
+      width: '150'
   },
   {
       headerAlign: 'center',
       headerName: '거래대금',
       field: 'accTradePrice',
-      width: '250'
+      width: '200'
   },
   {
       headerAlign: 'center',
       headerName: '시가총액',
       field: 'marketCap',
-      width: '250'
+      width: '200'
   },
   {
       headerAlign: 'center',
       headerName: '외국인',
       field: 'foreignRatio',
-      width: '200'
+      width: '100'
   }
 ];
 
@@ -82,7 +82,7 @@ export default function RankingTable({rankingColumn,rankingData, sectorCode}) {
             marketCap : Number(x.marketCap).toLocaleString('ko-KR')+"원",
             name : x.name,
             prevAccTradeVolumeChangeRate : Number(x.prevAccTradeVolumeChangeRate).toFixed(2),
-            tradePrice: Number(x.tradePrice).toLocaleString('ko-KR')+"원"
+            tradePrice: Number(x.tradePrice).toLocaleString('ko-KR')+"원",
 
           }) );
         console.log(result);
@@ -110,7 +110,7 @@ useEffect(()=>{
 
 
 return (
-  <div style={{ height: '800px', width: '80rem', marginBottom: '100px' }}>
+  <div style={{ height: '800px', width: '70rem', marginBottom: '100px' }}>
     <DataGrid rows={rankData} initialState={{columns: {columnVisibilityModel: {id: false}}}}
     columns={columns} style={{color: 'white', textAlign: 'center', }}>
     </DataGrid>

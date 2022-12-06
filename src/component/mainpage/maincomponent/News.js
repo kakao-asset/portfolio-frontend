@@ -15,6 +15,7 @@ export default function News({stockCode}) {
             responseEncoding: 'binary'
         })
         .then((res) => {
+            
             setArticles(res.data);
         }).catch((err) => {
             console.log("데이터 받아오기 에러", err);
@@ -25,6 +26,7 @@ export default function News({stockCode}) {
         getNews();
     }, [stockCode]);
 
+    console.log(articles);
 
     return (
         <div className={styles.box}>
