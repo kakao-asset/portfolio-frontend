@@ -12,8 +12,6 @@ import { VscNoNewline } from "react-icons/vsc";
     export default function BudgetRow  ({budget, cash})  {
 
 
-        console.log(budget);
-
         let now = new Date();
 
         // 지금은 보유 주식 정보로 띄우는데 보유 주식 이름(코드?)으로 쿼리 날려서 실시간 가격 가져와야함 

@@ -7,6 +7,7 @@ import Modal from 'react-modal';
 import { useState, useEffect } from "react";
 import MyBudgetRow from "./maincomponent/row/MyBudgetRow";
 import axios from "axios";
+import StockHistory from "./maincomponent/StockHistory";
 
 
 export default function MainPortfolio({stockHold, budgetData, profit, stockHistory}) {
@@ -84,8 +85,8 @@ useEffect(() => {
         <div text-align="center">
             <div style={{display: 'inline-block'}}>
         <div style={{marginLeft: '2rem', marginRight: '2rem', textAlign: 'left', }}>
-            <div style={{marginTop: '1rem'}}>
-                <h3 style={{color: 'white', paddingTop: '1rem', marginLeft:'2rem'}}>자산</h3>
+            <div style={{marginTop: '1rem', display: 'flex'}}>
+                <h3 style={{color: 'white', paddingTop: '1rem', marginLeft:'2rem'}}> 내 자산</h3>
             </div>
         <div style={{display: "flex"}}>
             {/* 포트폴리오(차트 및 보유 주식, 자산) 영역 */}
@@ -95,16 +96,14 @@ useEffect(() => {
             {<Budget stockHold={stockHold} budgetData={budgetData}></Budget>}
         </div>
         <div style={{marginTop: '1rem', display: 'flex'}}>
-            <h3 style={{color: 'white', paddingTop: '1rem', marginLeft:'2rem'}}>나의 자산동향</h3>
-            <h3 style={{color: 'white', paddingTop: '1rem', marginLeft:'52rem'}}>뉴스</h3>
+            <h3 style={{color: 'white', paddingTop: '1rem', marginLeft:'2rem'}}>내 자산 보유 동향</h3>
+            <h3 style={{color: 'white', paddingTop: '1rem', marginLeft:'51rem'}}>내 자산 변동 내역</h3>
         </div>
         <div style={{display: "flex"}}>
          
             <ProfitLoss stockHold={stockHold} profit={profit}></ProfitLoss>
+            <StockHistory></StockHistory>
         
-
-            {/* 보유 주식 관련 뉴스 영역 */}
-            {<News stockCode={newsStockCode}></News>}
         </div>
             <div style={{display: 'flex'}}>
                 {/* 업종별 랭킹 관련 선택 주식이 없을 시 보유 주식 수가 가장 많은 주식과 관련된 업종을 디폴트로 보여줌 */}
@@ -152,10 +151,12 @@ useEffect(() => {
                     ))}
                 </Modal>
             </div>
-
+                
             {/* 업종별 랭킹 영역 */}
             {/* Ranking 컴포넌트에 업종별 랭킹 란 현재 선택된 주식 이름 props로 넘겨주기 */}
             <div style={{}}>
+                            {/* 보유 주식 관련 뉴스 영역 */}
+                {<News stockCode={newsStockCode}></News>}
                 <Ranking selectedRankingStock={selectedRankingStock}></Ranking>       
             </div>
         </div>

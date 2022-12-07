@@ -19,7 +19,8 @@ export default function PieChart({stockHold}){
 
     var fillStock = stockHold.map((x) => ({match: {id: x.name}}));
 
-    var chartColor = ["#f47560", "#f1e15b","#af97e3","#c1f460","#e8a838","#61cdbb","#97e3d5","#af97e3","#cbe397"];
+    var chartColor = ["#d9ed92","#b5e48c","#99d98c","#76c893","#52b69a","#34a0a4","#168aad","#1a759f",
+    "#1e6091","#184e77"];
 
     return (
 

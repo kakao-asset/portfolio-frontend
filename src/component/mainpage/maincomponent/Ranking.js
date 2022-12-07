@@ -28,8 +28,8 @@ export default function Ranking({selectedRankingStock}){
     return(
         <div className={styles.box} style={{marginTop: '20px'}}>
             <div style={{display: 'flex'}}> 
-            <h3 style={{color: 'white', paddingTop: '40px', paddingLeft: '100px'}}>{selectedSetorName}</h3>
-            <p style={{color: 'white', paddingTop: '45px', paddingLeft:'5px'}}>에 속한 다른 주식들은 지금...</p>
+            <h3 style={{color: 'white', paddingTop: '40px', paddingLeft: '100px', fontSize: '30px'}}>{selectedSetorName}</h3>
+            <p style={{color: 'white', paddingTop: '61px', paddingLeft:'5px', fontSize: '20px'}}>에 속한 다른 종목들은 지금...</p>
             </div>
             <div style={{display: 'flex', paddingTop: '20px', paddingLeft: '150px'}}>
             <RankingTable rankingColumn={rankingColumn} rankingData={rankingData} sectorCode={selectedSectorCode}></RankingTable>

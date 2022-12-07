@@ -72,7 +72,7 @@ export default function Main() {
             getRealtimeData(resStockData);
             const interval = setInterval(()=>{
                 getRealtimeData(resStockData);
-            }, 5000)
+            }, 60000)
 
             console.log(stockHold);
 

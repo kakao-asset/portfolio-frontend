@@ -15,10 +15,7 @@ export default function Budget({stockHold, budgetData}) {
     })
     .then((res) => {
         var resData = res.data.data;
-        console.log(resData.cash);
         setCash(resData.cash);
-
-        console.log(cash);
 
         
     }).catch((err) => {

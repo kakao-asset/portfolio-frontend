@@ -1,8 +1,6 @@
 import { ResponsiveBar } from '@nivo/bar';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { keyboardImplementationWrapper } from '@testing-library/user-event/dist/keyboard';
-import { BsArrowCounterclockwise } from 'react-icons/bs';
 
 
 export default function BarChart({stockHold}) {
@@ -15,7 +13,8 @@ export default function BarChart({stockHold}) {
 
     var indexData = [];
 
-    var chartColor = ["#f47560", "#f1e15b","#af97e3","#c1f460","#e8a838","#61cdbb","#97e3d5","#af97e3","#cbe397"];
+    var chartColor = ["#d9ed92","#b5e48c","#99d98c","#76c893","#52b69a","#34a0a4","#168aad","#1a759f",
+    "#1e6091","#184e77"];
 
     var keyResult = [];
 
@@ -89,8 +88,6 @@ export default function BarChart({stockHold}) {
         getStockTrend();
     }, []);
 
-    console.log(resultData)
-    console.log(keyResult)
 
     return (
         <div style={{width: '950px', height: '400px'}}>
@@ -201,8 +198,8 @@ export default function BarChart({stockHold}) {
                 <strong>
                     {id}: {value}주
                 </strong>
-                <br />
-                <span>Look, I'm custom :)</span>
+                {/* <br />
+                <span>Look, I'm custom :)</span> */}
                 
                 
             </div>
