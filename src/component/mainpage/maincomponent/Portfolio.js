@@ -29,7 +29,7 @@ export default function Portfolio({stockHold, budget, cash}){
         totalAsset += budget[i].value * budget[i].currentPrice;
     }
 
-    var totalSum = Number(((totalAsset+cash)/cash)*100-100).toFixed(2);
+    var totalSum = Number(((totalAsset+cash)/(totalPurchase+cash)*100-100).toFixed(2));
     
     
 
