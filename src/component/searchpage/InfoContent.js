@@ -8,7 +8,7 @@ import { ko } from 'date-fns/esm/locale';
 
 
     export default function InfoContent  ({budget, stockInfo})  {
-        let now = new Date();
+        var now = new Date();
 
         const stockName = stockInfo.name;
         const stockSymbolCode = stockInfo.symbolCode;
@@ -70,7 +70,7 @@ import { ko } from 'date-fns/esm/locale';
             console.log("sellValue ==== ", sellValue);
             console.log("stockName ==== ", stockName);
         
-            if(sellPrice < 0 || sellValue < 0 || sellPrice == "" || sellValue == "") {
+            if(sellPrice < 0 || sellValue < 0 || sellPrice == "" || sellValue == "" || isNaN(sellPrice) || isNaN(sellValue)) {
                 window.alert("삭제 수량과 금액을 확인해주세요");
             } else if (sellDate == "" || document.getElementById("sellTime").value == "" ){
                 window.alert("삭제 일자와 시간을 확인해주세요");
@@ -106,7 +106,7 @@ import { ko } from 'date-fns/esm/locale';
         const setBuyMemberStock = () => {
             //buyValue = buyValue == ""? 100 : buyValue;
             console.log(buyPrice, buyValue );
-            if(buyPrice < 0 || buyValue < 0 || buyPrice == "" || buyValue == "") {
+            if(buyPrice < 0 || buyValue < 0 || buyPrice == "" || buyValue == "" || isNaN(buyPrice) || isNaN(buyValue)) {
                 window.alert("추가 수량과 금액을 확인해주세요");
             } else if (buyDate == "" || document.getElementById("buyTime").value == "" ){
                 window.alert("추가 일자와 시간을 확인해주세요");
@@ -238,7 +238,7 @@ import { ko } from 'date-fns/esm/locale';
                                             </div>
                                         </ul>
                                         <ul>
-                                            <DatePicker locale={ko} selected={sellDate} onChange={date => setSellDate(date)} ></DatePicker>
+                                            <DatePicker maxDate={now} locale={ko} selected={sellDate} onChange={date => setSellDate(date)} ></DatePicker>
                                         </ul>
                                         <ul>
                                             <input id='sellTime' type="time" style={{marginLeft: '40px'}}></input>
@@ -301,7 +301,7 @@ import { ko } from 'date-fns/esm/locale';
                                             </div>
                                         </ul>
                                         <ul>
-                                            <DatePicker locale={ko} selected={buyDate} onChange={date => setBuyDate(date)} ></DatePicker>
+                                            <DatePicker maxDate={now} locale={ko} selected={buyDate} onChange={date => setBuyDate(date)} ></DatePicker>
                                         </ul>
                                         <ul>
                                             <input id='buyTime' type="time" style={{marginLeft: '40px'}}></input>

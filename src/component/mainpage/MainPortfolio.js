@@ -131,8 +131,8 @@ useEffect(() => {
                     },
                     content: {
                         position: 'relative',
-                        top: '93rem',
-                        left: '-42rem',
+                        top: '94rem',
+                        left: '-44rem',
                         margin: 'auto',
                         overflow: 'auto',
                         borderRadius: '4px',

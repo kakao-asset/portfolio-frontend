@@ -12,7 +12,7 @@ import { VscNoNewline } from "react-icons/vsc";
     export default function BudgetRow  ({budget, cash})  {
 
 
-        let now = new Date();
+        var now = new Date();
 
         // 지금은 보유 주식 정보로 띄우는데 보유 주식 이름(코드?)으로 쿼리 날려서 실시간 가격 가져와야함 
         const stockName = budget.name;
@@ -73,7 +73,7 @@ import { VscNoNewline } from "react-icons/vsc";
             console.log("sellValue ==== ", sellValue);
             console.log("stockName ==== ", stockName);
     
-            if(sellPrice < 0 || sellValue < 0 || sellPrice == "" || sellValue == "") {
+            if(sellPrice < 0 || sellValue < 0 || sellPrice == "" || sellValue == "" || isNaN(sellPrice) || isNaN(sellValue)) {
                 window.alert("삭제 수량과 금액을 확인해주세요");
             } else if (sellDate == "" || document.getElementById("sellTime").value == "" ){
                 window.alert("삭제 일자와 시간을 확인해주세요");
@@ -96,9 +96,9 @@ import { VscNoNewline } from "react-icons/vsc";
                     window.alert(res.data.message);
                 }).catch((err, res) => {
                     console.log(res.data.message)
-                    console.log("매도 실패", err);
-                    console.log("매도 실패", res);
-                    window.alert("매도 실패");
+                    console.log("삭제 실패", err);
+                    console.log("삭제 실패", res);
+                    window.alert("삭제 실패");
                 })
             }
             
@@ -110,7 +110,7 @@ import { VscNoNewline } from "react-icons/vsc";
            
             console.log(stockName , "stockName  : : :: ")
             
-            if(buyPrice < 0 || buyValue < 0 || buyPrice == "" || buyValue == "") {
+            if(buyPrice < 0 || buyValue < 0 || buyPrice == "" || buyValue == "" || isNaN(buyPrice) || isNaN(buyValue)) {
                 window.alert("추가 수량과 금액을 확인해주세요");
             } else if (buyDate == "" || document.getElementById("buyTime").value == "" ){
                 window.alert("추가 일자와 시간을 확인해주세요");
@@ -139,7 +139,7 @@ import { VscNoNewline } from "react-icons/vsc";
                     window.alert(res.data.message);
                 }).catch((err, res) => {
                     console.log("추가 실패", err);
-                    console.log("매수 실패", res);
+                    console.log("추가 실패", res);
                     window.alert("추가 실패");
                 })
                 setBuyPopIsOpen(false);
@@ -209,7 +209,7 @@ import { VscNoNewline } from "react-icons/vsc";
                                             </div>
                                         </ul>
                                         <ul>
-                                            <DatePicker locale={ko} selected={sellDate} onChange={date => setSellDate(date)} ></DatePicker>
+                                            <DatePicker maxDate={now} locale={ko} selected={sellDate} onChange={date => setSellDate(date)} ></DatePicker>
                                         </ul>
                                         <ul>
                                             <input id='sellTime' type="time" style={{marginLeft: '40px'}}></input>
@@ -270,7 +270,7 @@ import { VscNoNewline } from "react-icons/vsc";
                                             </div>
                                         </ul>
                                         <ul>
-                                            <DatePicker locale={ko} selected={buyDate} onChange={date => setBuyDate(date)} ></DatePicker>
+                                            <DatePicker maxDate={now} locale={ko} selected={buyDate} onChange={date => setBuyDate(date)} ></DatePicker>
                                         </ul>
                                         <ul>
                                             <input id='buyTime' type="time" style={{marginLeft: '40px'}}></input>

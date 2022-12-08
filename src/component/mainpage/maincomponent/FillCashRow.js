@@ -30,9 +30,9 @@ export default function FillCashRow({cash}) {
                 console.log(res.data.data); 
                 window.alert(res.data.message);
             }).catch((err, res) => {
-                console.log("등록 실패", err);
-                console.log("등록 실패", res);
-                window.alert("등록 실패");
+                console.log("수정 실패", err);
+                console.log("수정 실패", res);
+                window.alert("수정 실패");
             })
             setModalIsOpen(false);
             window.location.reload(); 
