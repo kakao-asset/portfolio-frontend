@@ -12,7 +12,7 @@ import React from "react";
                 <ul>
                 <div style={{display: 'flex'}}>
                 <div>
-                    <img src= {thumbnail== null? "../../img/ka_noimage.png": thumbnail} style={{float: 'left', width: '400px', height: '250px', marginTop: '10px'}}></img>
+                    <img src= {thumbnail== null? "img/ka_noimage.png": thumbnail} style={{float: 'left', width: '400px', height: '250px', marginTop: '10px'}}></img>
                 </div>
                 <div style={{display: 'column', marginTop: '20px'}}>
                     <ul>
