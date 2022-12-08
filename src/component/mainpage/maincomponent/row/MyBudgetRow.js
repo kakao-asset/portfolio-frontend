@@ -19,7 +19,7 @@ import React from "react";
                             width: 'fit-content',
                             backgroundColor: '#1F1F1F',
                             border: 'none',
-                            fontSize: '18px'
+                            fontSize: '25px'
                             }}>{stockName}</button>
                 </div>
              </div>

@@ -2,18 +2,23 @@ import { AiFillEdit } from "react-icons/ai";
 import Modal from 'react-modal';
 import axios from "axios";
 import { useState } from 'react';
+import Swal from "sweetalert2";
 
 export default function FillCashRow({cash}) {
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
     const setMemberCash = () => {
         if(document.getElementById("cash").value == "" || isNaN(document.getElementById("cash").value)) {
-            window.alert("수정할 현금을 확인해주세요");
+            Swal.fire({
+                icon: "warning",
+                text: "수정할 현금을 확인해주세요",
+                showConfirmButton: false,
+                timer: '1000'
+            });
         } 
         else {
             var userId = JSON.parse(localStorage.getItem("userData")).userId;
             var userCash = document.getElementById("cash").value;
-            console.log("수정!!!");
 
             axios({
                 
@@ -27,15 +32,28 @@ export default function FillCashRow({cash}) {
                 responseType: "json" // [응답 데이터 : stream , json]
             })
             .then((res) => {
-                console.log(res.data.data); 
-                window.alert(res.data.message);
+                console.log(res.data.data);
+                Swal.fire({
+                    icon: "success",
+                    title: "수정 완료",
+                    text: "보유 현금을 수정했습니다",
+                    showConfirmButton: false,
+                    timer: '1000'
+                });
+                window.location.reload(); 
             }).catch((err, res) => {
                 console.log("수정 실패", err);
                 console.log("수정 실패", res);
-                window.alert("수정 실패");
+                Swal.fire({
+                    icon: "error",
+                    title: "수정 실패",
+                    text: "잠시 후 다시 시도해주세요",
+                    showConfirmButton: false,
+                    timer: '1000'
+                });
             })
             setModalIsOpen(false);
-            window.location.reload(); 
+            
         }
     }
     return(

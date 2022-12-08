@@ -1,13 +1,19 @@
 import Modal from 'react-modal';
 import axios from "axios";
 import { useState } from 'react';
+import Swal from 'sweetalert2';
 
 export default function CashRow() {
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
     const setMemberCash = () => {
         if(document.getElementById("cash").value == "" || isNaN(document.getElementById("cash").value)) {
-            window.alert("등록될 현금을 확인해주세요");
+            Swal.fire({
+                icon: "warning",
+                text: "등록될 현금을 확인해주세요",
+                showConfirmButton: false,
+                timer: '1000'
+            });
         } 
         else {
             var userId = JSON.parse(localStorage.getItem("userData")).userId;
@@ -26,33 +32,49 @@ export default function CashRow() {
             })
             .then((res) => {
                 console.log(res.data.data); 
-                window.alert(res.data.message);
+                Swal.fire({
+                    icon: "success",
+                    title: "등록 성공",
+                    text: "현금을 등록했습니다",
+                    showConfirmButton: false,
+                    timer: '1000'
+                });
+                window.location.reload(); 
+                
             }).catch((err, res) => {
                 console.log("등록 실패", err);
                 console.log("등록 실패", res);
-                window.alert("등록 실패");
+                Swal.fire({
+                    icon: "error",
+                    title: "등록 실패",
+                    text: "잠시 후 다시 시도해주세요",
+                    showConfirmButton: false,
+                    timer: '1000'
+                });
+                
             })
             setModalIsOpen(false);
-            window.location.reload(); 
+            
         }
     }
 
     return (
         <div>
-            <img src="img/ka_plus_cash.png" style={{width: '5rem', paddingTop: '5rem', paddingBottom: '1rem'}}></img>
+            <img src="img/ka_plus_cash.png" style={{width: '10rem', paddingTop: '5rem', paddingBottom: '1rem'}}></img>
             <br></br>
             <button style={{
                 backgroundColor: '#366cc2',
                 borderColor: '#366cc2',
                 width: 'fit-content',
-                height: '40px',
+                height: '60px',
                 borderRadius: '4px',
                 paddingLeft: '70px',
                 paddingRight: '70px',
                 textAlign: 'center',
                 paddingTop: '5px',
                 paddingBottom: '10px',
-                color: 'white'
+                color: 'white',
+                fontSize: '20px'
             }} onClick={()=> setModalIsOpen(true)}>내 현금 등록하기</button>
 
             <Modal isOpen={modalIsOpen} ariaHideApp={false} onRequestClose={() => {setModalIsOpen(false);} }

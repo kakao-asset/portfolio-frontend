@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import { ko } from 'date-fns/esm/locale';
+import Swal from "sweetalert2";
 
 
     export default function InfoContent  ({budget, stockInfo})  {
@@ -71,9 +72,21 @@ import { ko } from 'date-fns/esm/locale';
             console.log("stockName ==== ", stockName);
         
             if(sellPrice < 0 || sellValue < 0 || sellPrice == "" || sellValue == "" || isNaN(sellPrice) || isNaN(sellValue)) {
-                window.alert("삭제 수량과 금액을 확인해주세요");
+                Swal.fire({
+                    icon: "warning",
+                    text: "삭제 수량과 금액을 확인해주세요",
+                    showConfirmButton: false,
+                    timer: '1000'
+                });
+                // window.alert("삭제 수량과 금액을 확인해주세요");
             } else if (sellDate == "" || document.getElementById("sellTime").value == "" ){
-                window.alert("삭제 일자와 시간을 확인해주세요");
+                Swal.fire({
+                    icon: "warning",
+                    text: "삭제 일자와 시간을 확인해주세요",
+                    showConfirmButton: false,
+                    timer: '1000'
+                });
+                // window.alert("삭제 일자와 시간을 확인해주세요");
             }
             else {
                 axios({
@@ -90,31 +103,65 @@ import { ko } from 'date-fns/esm/locale';
                 .then((res) => {
                     console.log(res); 
                     console.log(res);
-                    window.alert(res.data.message);
+                    Swal.fire({
+                        icon: "success",
+                        title: "삭제 완료",
+                        showConfirmButton: false,
+                        timer: '1000'
+                    });
+
+                    window.location.reload();
+                    // window.alert(res.data.message);
                 }).catch((err, res) => {
                     console.log(res.data.message)
                     console.log("삭제 실패", err);
                     console.log("삭제 실패", res);
-                    window.alert("삭제 실패");
+                    Swal.fire({
+                        icon: "error",
+                        title: "삭제 실패",
+                        text: "잠시 후 다시 시도해주세요.",
+                        showConfirmButton: false,
+                        timer: '1000'
+                    });
                 })
             }
             
             setSellPopIsOpen(false);
-            window.location.reload();
+            
         }
 
         const setBuyMemberStock = () => {
             //buyValue = buyValue == ""? 100 : buyValue;
             console.log(buyPrice, buyValue );
             if(buyPrice < 0 || buyValue < 0 || buyPrice == "" || buyValue == "" || isNaN(buyPrice) || isNaN(buyValue)) {
-                window.alert("추가 수량과 금액을 확인해주세요");
+                Swal.fire({
+                    icon: "warning",
+                    text: "추가 수량과 금액을 확인해주세요",
+                    showConfirmButton: false,
+                    timer: '1000'
+                });
             } else if (buyDate == "" || document.getElementById("buyTime").value == "" ){
-                window.alert("추가 일자와 시간을 확인해주세요");
+                Swal.fire({
+                    icon: "warning",
+                    text: "추가 일자와 시간을 확인해주세요",
+                    showConfirmButton: false,
+                    timer: '1000'
+                });
             }
              else if ( buyPrice*buyValue > cash){
-                window.alert("보유 현금 잔액이 부족합니다");
+                Swal.fire({
+                    icon: "warning",
+                    text: "보유 현금 잔액이 부족합니다",
+                    showConfirmButton: false,
+                    timer: '1000'
+                });
             } else if (cash ==null || cash == [] || cash == "" || cash == undefined){
-                window.alert("보유 현금이 없습니다");
+                Swal.fire({
+                    icon: "warning",
+                    text: "보유 현금이 없습니다",
+                    showConfirmButton: false,
+                    timer: '1000'
+                });
             }
             else {
                 var userId = JSON.parse(localStorage.getItem("userData")).userId;
@@ -133,14 +180,26 @@ import { ko } from 'date-fns/esm/locale';
                 .then((res) => {
                     console.log(res.data.data); 
                     // {avgPrice: 554, quantity: 40, stockCode: '뉴트리'}
-                    window.alert(res.data.message);
+                    Swal.fire({
+                        icon: "success",
+                        title: "추가 성공",
+                        showConfirmButton: false,
+                        timer: '1000'
+                    });
+
+                    window.location.reload();
                 }).catch((err, res) => {
                     console.log("추가 실패", err);
                     console.log("추가 실패", res);
-                    window.alert("추가 실패");
+                    Swal.fire({
+                        icon: "error",
+                        title: "추가 실패",
+                        text: "잠시 후 다시 시도해주세요.",
+                        showConfirmButton: false,
+                        timer: '1000'
+                    });
                 })
                 setBuyPopIsOpen(false);
-                window.location.reload(); 
             }
         }
 
@@ -188,6 +247,8 @@ import { ko } from 'date-fns/esm/locale';
                 </div>
                 <button className={styles.buyButton} onClick={()=>setBuyPopIsOpen(true)}>자산 추가</button>
                 <button className={styles.sellButton} onClick={()=>setSellPopIsOpen(true)}>자산 삭제</button>
+                <span style={{color: 'white', paddingLeft: '28.5rem', display: 'block', width: '200px', opacity: '0.7', fontSize: '17px', paddingTop: '50px'}}>
+                    {stockInfo.datetime} 기준</span>
                 
                 <Modal isOpen={SellPopIsOpen} onRequestClose={()=>setSellPopIsOpen(false)} ariaHideApp={false}
                                                         style={{

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { AiOutlinePoweroff } from "react-icons/ai";
+import Swal from 'sweetalert2';
 
 const LogoutButton = () => {
 
@@ -15,7 +16,13 @@ const LogoutButton = () => {
     
         }).catch((err, res) => {
             console.log("로그아웃 에러", res);
-            window.alert("로그아웃에 실패하였습니다.");
+            Swal.fire({
+                icon: "error",
+                title: "로그아웃 실패",
+                text: "잠시 후 다시 시도해주세요",
+                showConfirmButton: false,
+                timer: '1000'
+            });
     
             document.location.href = "/main" 
         })

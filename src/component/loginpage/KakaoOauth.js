@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 export default function KakaoOauth(){
     let code = new URL(window.location.href).searchParams.get('code');
@@ -25,7 +26,13 @@ export default function KakaoOauth(){
 
     }).catch((err) => {
         console.log("소셜로그인 에러", err);
-        window.alert("로그인에 실패하였습니다.");
+        Swal.fire({
+            icon: "error",
+            title: "로그인 실패",
+            text: "잠시 후 다시 시도해주세요",
+            showConfirmButton: false,
+            timer: '1000'
+        });
 
         document.location.href = "/" // 로그인 실패하면 로그인화면으로 돌려보냄
     })

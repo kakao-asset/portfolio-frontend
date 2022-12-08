@@ -12,12 +12,12 @@ import React from "react";
                 <ul>
                 <div style={{display: 'flex'}}>
                 <div>
-                    <img src= {thumbnail== null? "img/ka_noimage.png": thumbnail} style={{float: 'left', width: '400px', height: '250px', marginTop: '10px'}}></img>
+                    <img src= {thumbnail== null? "img/ka_noimage.png": thumbnail} style={{float: 'left', width: '350px', height: '200px', marginTop: '10px'}}></img>
                 </div>
                 <div style={{display: 'column', marginTop: '20px'}}>
                     <ul>
-                    <span style={{color: 'white', fontSize: '30px'}}>{title}</span>
-                        <div style={{alignSelf: 'flex-start', marginTop: '10px', fontSize: '20px'}}>
+                    <span style={{color: 'white', fontSize: '25px',}}>{title}</span>
+                        <div style={{alignSelf: 'flex-start', marginTop: '10px', fontSize: '15px'}}>
                             <span style={{color: 'white'}}>{desc}</span>
                             
                         </div>

@@ -84,9 +84,14 @@ useEffect(() => {
     return (
         <div text-align="center">
             <div style={{display: 'inline-block'}}>
+                <div style={{textAlign: 'center'}}> 
+                    <img alt="ui_title" src="img/ui_title_1.png" style={{width: '30rem', marginTop: '1.5rem', }}></img>
+                </div>
         <div style={{marginLeft: '2rem', marginRight: '2rem', textAlign: 'left', }}>
             <div style={{marginTop: '1rem', display: 'flex'}}>
-                <h3 style={{color: 'white', paddingTop: '1rem', marginLeft:'2rem'}}> 내 자산</h3>
+                <img alt="ui_my_asset" src="img/ui_my_asset.png" style={{width: '9rem', marginLeft: '1rem', marginBottom: '0.5rem'}}></img>
+                <img alt="ui_current_price" src="img/ui_current_price.png" style={{width: '220px', height: '42px', marginLeft: '51rem', marginBottom: '0.5rem'}}></img>
+                {/* <h3 style={{color: 'white', paddingTop: '1rem', marginLeft:'2rem'}}> 내 자산</h3> */}
             </div>
         <div style={{display: "flex"}}>
             {/* 포트폴리오(차트 및 보유 주식, 자산) 영역 */}
@@ -96,18 +101,40 @@ useEffect(() => {
             {<Budget stockHold={stockHold} budgetData={budgetData}></Budget>}
         </div>
         <div style={{marginTop: '1rem', display: 'flex'}}>
-            <h3 style={{color: 'white', paddingTop: '1rem', marginLeft:'2rem'}}>내 자산 보유 동향</h3>
-            <h3 style={{color: 'white', paddingTop: '1rem', marginLeft:'51rem'}}>내 자산 변동 내역</h3>
+                <img alt="ui_week_asset" src="img/ui_week_asset.png" style={{width: '240px', height: '42px', marginLeft: '1rem',paddingTop: '2rem', marginBottom: '0.5rem'}}></img>
+                <img alt="ui_trade_history" src="img/ui_trade_history.png" style={{width: '200px', height: '42px', marginLeft: '45rem',
+            paddingTop: '2rem', marginBottom: '0.5rem'}}></img>
+            {/* <h3 style={{color: 'white', paddingTop: '1rem', marginLeft:'2rem'}}>내 자산 보유 동향</h3>
+            <h3 style={{color: 'white', paddingTop: '1rem', marginLeft:'51rem'}}>내 자산 변동 내역</h3> */}
         </div>
-        <div style={{display: "flex"}}>
+        <div style={{display: "flex", }}>
          
             <ProfitLoss stockHold={stockHold} profit={profit}></ProfitLoss>
             <StockHistory></StockHistory>
         
         </div>
+        <div style={{  marginRight: '1.5rem', width: '100rem', height: '5rem',
+                borderBottom: '0.5px solid', color: "#d2d2d2", marginLeft: '1.5rem'}}></div>
+                
+        <div style={{display: 'flex', marginTop: '2rem'}}> 
+                <button id="rankingButton" onClick={()=>setModalIsOpen(!modalIsOpen)}style={
+                    {color: 'white', 
+                    backgroundColor: '#1F1F1F',  
+                    marginLeft: '30rem', 
+                    borderColor: '#1F1F1F',
+                    border: '0px',
+                    fontSize: '40px',
+                    borderBottom: '0.5px solid', 
+                    color: "#fff",
+                    height: '70px',
+                    marginTop: '15px'
+                             
+                    }}>{selectedRankingStock.name}</button>
+                    <img alt="ui_title_2" src="img/ui_title_2.png" style={{width: '30rem'  }}></img>
+                </div>
             <div style={{display: 'flex'}}>
                 {/* 업종별 랭킹 관련 선택 주식이 없을 시 보유 주식 수가 가장 많은 주식과 관련된 업종을 디폴트로 보여줌 */}
-                <button id="rankingButton" onClick={()=>setModalIsOpen(!modalIsOpen)}style={
+                {/* <button id="rankingButton" onClick={()=>setModalIsOpen(!modalIsOpen)}style={
                     {color: 'white', 
                     backgroundColor: '#1F1F1F',  
                     marginLeft: '2rem', 
@@ -118,7 +145,7 @@ useEffect(() => {
                     borderBottom: '0.5px solid', 
                     color: "#d2d2d2"  
                     }}>{selectedRankingStock.name}</button>
-                <h3 style={{color: 'white', paddingTop: '1rem', marginLeft:'1rem', marginTop: '3rem'}}>관련된 업종</h3>
+                <h3 style={{color: 'white', paddingTop: '1rem', marginLeft:'1rem', marginTop: '3rem'}}>관련된 업종</h3> */}
 
                 {/* 업종별 랭킹 란 보유 주식 선택 모달 */}
                 <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)} ariaHideApp={false}
@@ -131,8 +158,8 @@ useEffect(() => {
                     },
                     content: {
                         position: 'relative',
-                        top: '94rem',
-                        left: '-44rem',
+                        top: '106rem',
+                        left: '-16rem',
                         margin: 'auto',
                         overflow: 'auto',
                         borderRadius: '4px',
@@ -151,7 +178,6 @@ useEffect(() => {
                     ))}
                 </Modal>
             </div>
-                
             {/* 업종별 랭킹 영역 */}
             {/* Ranking 컴포넌트에 업종별 랭킹 란 현재 선택된 주식 이름 props로 넘겨주기 */}
             <div style={{}}>

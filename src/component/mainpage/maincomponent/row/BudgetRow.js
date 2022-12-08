@@ -7,6 +7,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from 'date-fns/esm/locale';
 import { VscNoNewline } from "react-icons/vsc";
+import Swal from "sweetalert2";
 
 
     export default function BudgetRow  ({budget, cash})  {
@@ -74,9 +75,19 @@ import { VscNoNewline } from "react-icons/vsc";
             console.log("stockName ==== ", stockName);
     
             if(sellPrice < 0 || sellValue < 0 || sellPrice == "" || sellValue == "" || isNaN(sellPrice) || isNaN(sellValue)) {
-                window.alert("삭제 수량과 금액을 확인해주세요");
+                Swal.fire({
+                    icon: "warning",
+                    text: "삭제 수량과 금액을 확인해주세요",
+                    showConfirmButton: false,
+                    timer: '1000'
+                });
             } else if (sellDate == "" || document.getElementById("sellTime").value == "" ){
-                window.alert("삭제 일자와 시간을 확인해주세요");
+                Swal.fire({
+                    icon: "warning",
+                    text: "삭제 일자와 시간을 확인해주세요",
+                    showConfirmButton: false,
+                    timer: '1000'
+                });
             }
             else {
                 axios({
@@ -93,17 +104,31 @@ import { VscNoNewline } from "react-icons/vsc";
                 .then((res) => {
                     console.log(res); 
                     console.log(res);
-                    window.alert(res.data.message);
+                    Swal.fire({
+                        icon: "success",
+                        title: "삭제 성공",
+                        showConfirmButton: false,
+                        timer: '1000'
+                    });
+                    window.location.reload();
+
                 }).catch((err, res) => {
                     console.log(res.data.message)
                     console.log("삭제 실패", err);
                     console.log("삭제 실패", res);
-                    window.alert("삭제 실패");
+                    Swal.fire({
+                        icon: "error",
+                        title: "삭제 실패",
+                        text: "잠시 후 다시 시도해주세요",
+                        showConfirmButton: false,
+                        timer: '1000'
+                    });
+                    
                 })
             }
             
             setSellPopIsOpen(false);
-            window.location.reload();
+            
         }
 
         const setBuyMemberStock = () => {
@@ -111,11 +136,27 @@ import { VscNoNewline } from "react-icons/vsc";
             console.log(stockName , "stockName  : : :: ")
             
             if(buyPrice < 0 || buyValue < 0 || buyPrice == "" || buyValue == "" || isNaN(buyPrice) || isNaN(buyValue)) {
-                window.alert("추가 수량과 금액을 확인해주세요");
+                Swal.fire({
+                    icon: "warning",
+                    text: "추가 수량과 금액을 확인해주세요",
+                    showConfirmButton: false,
+                    timer: '1000'
+                });
             } else if (buyDate == "" || document.getElementById("buyTime").value == "" ){
-                window.alert("추가 일자와 시간을 확인해주세요");
+                Swal.fire({
+                    icon: "warning",
+                    text: "추가 일자와 시간을 확인해주세요",
+                    showConfirmButton: false,
+                    timer: '1000'
+                });
             } else if ( buyPrice*buyValue > cash){
-                window.alert("보유 현금 잔액이 부족합니다");
+                Swal.fire({
+                    icon: "warning",
+                    title: "잔액 부족",
+                    text: "보유 현금 잔액이 부족합니다",
+                    showConfirmButton: false,
+                    timer: '1000'
+                });
             }
             else {
                 var userId = JSON.parse(localStorage.getItem("userData")).userId;
@@ -136,14 +177,27 @@ import { VscNoNewline } from "react-icons/vsc";
                 .then((res) => {
                     console.log(res.data.data); 
                     // {avgPrice: 554, quantity: 40, stockCode: '뉴트리'}
-                    window.alert(res.data.message);
+                    Swal.fire({
+                        icon: "success",
+                        title: "추가 성공",
+                        showConfirmButton: false,
+                        timer: '1000'
+                    });
+
+                    window.location.reload(); 
                 }).catch((err, res) => {
                     console.log("추가 실패", err);
                     console.log("추가 실패", res);
-                    window.alert("추가 실패");
+                    Swal.fire({
+                        icon: "error",
+                        title: "추가 실패",
+                        text: "잠시 후 다시 시도해주세요",
+                        showConfirmButton: false,
+                        timer: '1000'
+                    });
+                    
                 })
                 setBuyPopIsOpen(false);
-                window.location.reload(); 
             }
         }
 

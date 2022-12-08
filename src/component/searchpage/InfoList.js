@@ -104,11 +104,11 @@ export default function InfoList  ({stockInfo}) {
                 </div>
                 <div style={{marginLeft: '30px'}}>
                     <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>EPS/PER</span>
-                    <span style={{paddingLeft: '20px', display: 'block', fontSize: '20px', color: 'white',width: '100px'}}>{eps}/{per}</span>
+                    <span style={{paddingLeft: '20px', display: 'block', fontSize: '20px', color: 'white',width: '100px'}}>{Number(eps).toLocaleString('ko-KR')}/{per}</span>
                 </div>
                 <div style={{marginLeft: '30px'}}>
                     <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>BPS/PBR</span>
-                    <span style={{paddingLeft: '20px', display: 'block', fontSize: '20px', color: 'white', width: '100px'}}>{bps}/{pbr}</span>
+                    <span style={{paddingLeft: '20px', display: 'block', fontSize: '20px', color: 'white', width: '100px'}}>{Number(bps).toLocaleString('ko-KR')}/{pbr}</span>
                 </div>
              </div>
             </div>
