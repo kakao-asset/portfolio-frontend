@@ -3,10 +3,6 @@
 	height: 750px;
     top: 10rem;
     left: 20rem;
-
-
-
-    /* transform: translate(-50%,-50%); */
     background-color: #9B51E0;
 }
 
@@ -15,7 +11,5 @@
 	height: 750px;
     top: 10rem;
     left: 70rem;
- 
-    /* transform: translate(-50%,-50%); */
     background-color: #FFFFFF;
 }
