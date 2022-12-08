@@ -1,7 +1,7 @@
 import ControllerChart from "./ControllerChart";
 import SearchKewordChart from "./SearchKewordChart";
 import TimesLoginChart from "./TimesLoginChart";
-import WeekLoginChart from "./WeekLoginChart";
+import WeeksLoginChart from "./WeeksLoginChart";
 
 export default function Admin() {
     return(
@@ -12,7 +12,7 @@ export default function Admin() {
                     <h3 style={{color: 'white', paddingTop: '1rem', marginLeft:'44rem'}}>시간대별 사용자 추이</h3>
                 </div>
                 <div style={{display: 'flex'}}>
-                <WeekLoginChart></WeekLoginChart>
+                <WeeksLoginChart></WeeksLoginChart>
                 <TimesLoginChart></TimesLoginChart>
                 </div>
                 <div style={{ display: 'flex', marginTop: '2rem'}}>
