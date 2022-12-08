@@ -4,6 +4,7 @@ import axios from "axios";
 import { useEffect, useState, useContext } from "react";
 import SearchEmpty from "./SearchEmpty";
 import Footer from "../mainpage/header/Footer";
+import Swal from "sweetalert2";
 // import { SearchContext } from "../../store/SearchStore";
 
 
@@ -36,7 +37,12 @@ export default function MainSearch(){
                 console.log(result);
 
                 if (result == "") {
-                    window.alert("KOSPI 종목이 아닙니다.");
+                    Swal.fire({
+                        icon: "warning",
+                        text: "KOSPI 종목이 아닙니다",
+                        showConfirmButton: false,
+                        timer: '1000'
+                    });
                     document.location.href = "/main";
                 }
                 var len = result.length == 0? 0 : result.length-1;
