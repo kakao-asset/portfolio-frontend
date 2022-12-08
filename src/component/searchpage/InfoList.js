@@ -53,24 +53,24 @@ export default function InfoList  ({stockInfo}) {
             <div style={{paddingBottom: '7rem'}}>
             <div style={{marginTop: '4rem', marginBotton: '2rem', display: 'flex'}}>
                 <div style={{marginLeft: '2rem'}}>
-                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>전일 종가</span>
-                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', fontSize: '20px', width: '100px'}}>{oldPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
+                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '120px', opacity: '0.7'}}>전일 종가</span>
+                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', fontSize: '20px', width: 'fit-content'}}>{Number(Math.floor(oldPrice)).toLocaleString('ko-KR')}원</span>
                 </div>
                 <div style={{marginLeft: '30px'}}>
-                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>개장가</span>
-                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', fontSize: '20px', width: '100px'}}>{startPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
+                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '120px', opacity: '0.7'}}>개장가</span>
+                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', fontSize: '20px', width: 'fit-content'}}>{Number(Math.floor(startPrice)).toLocaleString('ko-KR')}원</span>
                 </div>
                 <div style={{marginLeft: '30px'}}>
-                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>거래량</span>
-                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', fontSize: '20px', whiteSpace: 'nowrap', width: '100px'}}>{stockQuantity.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
+                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '120px', opacity: '0.7'}}>거래량</span>
+                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', fontSize: '20px', whiteSpace: 'nowrap', width: 'fit-content'}}>{Number(Math.floor(stockQuantity)).toLocaleString('ko-KR')}원</span>
                 </div>
                 <div style={{marginLeft: '30px'}}>
-                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>최저가</span>
-                    <span style={{paddingLeft: '20px', display: 'block', fontSize: '20px', color: '#E35277', width: '100px'}}>{lowPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
+                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '120px', opacity: '0.7'}}>최저가</span>
+                    <span style={{paddingLeft: '20px', display: 'block', fontSize: '20px', color: '#E35277', width: 'fit-content'}}>{Number(Math.floor(lowPrice)).toLocaleString('ko-KR')}원</span>
                 </div>
                 <div style={{marginLeft: '30px'}}>
-                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>최고가</span>
-                    <span style={{paddingLeft: '20px', display: 'block', fontSize: '20px', color: '#57C083', width: '100px'}}>{highPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
+                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '120px', opacity: '0.7'}}>최고가</span>
+                    <span style={{paddingLeft: '20px', display: 'block', fontSize: '20px', color: '#57C083', width: 'fit-content'}}>{Number(Math.floor(highPrice)).toLocaleString('ko-KR')}원</span>
                 </div>
                 <div style={{marginLeft: '30px'}}>
                     <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '150px', opacity: '0.7'}}>거래대금</span>
@@ -83,32 +83,32 @@ export default function InfoList  ({stockInfo}) {
              </div>
              <div style={{marginTop: '40px', marginBotton: '20px', display: 'flex'}}>
                 <div style={{marginLeft: '30px'}}>
-                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>외국인 비율</span>
-                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', fontSize: '20px', width: '100px'}}>{foreignRatio}%</span>
+                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '120px', opacity: '0.7'}}>외국인 비율</span>
+                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', fontSize: '20px', width: 'fit-content'}}>{foreignRatio}%</span>
                 </div>
                 <div style={{marginLeft: '30px'}}>
-                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>상한가</span>
-                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', fontSize: '20px', width: '100px'}}>{upperLimitPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
+                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '120px', opacity: '0.7'}}>상한가</span>
+                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', fontSize: '20px', width: 'fit-content'}}>{Number(Math.floor(upperLimitPrice)).toLocaleString('ko-KR')}원</span>
                 </div>
                 <div style={{marginLeft: '30px'}}>
-                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>하한가</span>
-                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', fontSize: '20px', width: '100px'}}>{lowerLimitPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
+                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '120px', opacity: '0.7'}}>하한가</span>
+                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', fontSize: '20px', width: 'fit-content'}}>{Number(Math.floor(lowerLimitPrice)).toLocaleString('ko-KR')}원</span>
                 </div>
                 <div style={{marginLeft: '30px'}}>
-                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>52주 최저가</span>
-                    <span style={{paddingLeft: '20px', display: 'block', fontSize: '20px', color: 'white', width: '100px'}}>{low52wPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
+                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '120px', opacity: '0.7'}}>52주 최저가</span>
+                    <span style={{paddingLeft: '20px', display: 'block', fontSize: '20px', color: 'white', width: 'fit-content'}}>{Number(Math.floor(low52wPrice)).toLocaleString('ko-KR')}원</span>
                 </div>
                 <div style={{marginLeft: '30px'}}>
-                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>52주 최고가</span>
-                    <span style={{paddingLeft: '20px', display: 'block', fontSize: '20px', color: 'white', width: '100px'}}>{high52wPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
+                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '120px', opacity: '0.7'}}>52주 최고가</span>
+                    <span style={{paddingLeft: '20px', display: 'block', fontSize: '20px', color: 'white', width: 'fit-content'}}>{Number(Math.floor(high52wPrice)).toLocaleString('ko-KR')}원</span>
                 </div>
                 <div style={{marginLeft: '30px'}}>
-                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>EPS/PER</span>
-                    <span style={{paddingLeft: '20px', display: 'block', fontSize: '20px', color: 'white',width: '100px'}}>{Number(eps).toLocaleString('ko-KR')}/{per}</span>
+                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '120px', opacity: '0.7'}}>EPS/PER</span>
+                    <span style={{paddingLeft: '20px', display: 'block', fontSize: '20px', color: 'white',width: 'fit-content'}}>{Number(eps).toLocaleString('ko-KR')}/{per}</span>
                 </div>
                 <div style={{marginLeft: '30px'}}>
-                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '100px', opacity: '0.7'}}>BPS/PBR</span>
-                    <span style={{paddingLeft: '20px', display: 'block', fontSize: '20px', color: 'white', width: '100px'}}>{Number(bps).toLocaleString('ko-KR')}/{pbr}</span>
+                    <span style={{color: 'white', paddingLeft: '20px', display: 'block', width: '120px', opacity: '0.7'}}>BPS/PBR</span>
+                    <span style={{paddingLeft: '20px', display: 'block', fontSize: '20px', color: 'white', width: 'fit-content'}}>{Number(bps).toLocaleString('ko-KR')}/{pbr}</span>
                 </div>
              </div>
             </div>
