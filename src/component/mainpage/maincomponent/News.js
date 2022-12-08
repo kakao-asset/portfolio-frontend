@@ -14,8 +14,12 @@ export default function News({stockCode}) {
             headers: {"Access-Control-Allow-Origin": "*"},
             responseEncoding: 'binary'
         })
-        .then((res) => {            
-            setArticles(res.data);
+        .then((res) => {
+            if (res.data.error == 'No Index') {
+                setArticles([]);
+            } else {
+                setArticles(res.data);
+            }        
         }).catch((err) => {
             console.log("데이터 받아오기 에러", err);
         })
