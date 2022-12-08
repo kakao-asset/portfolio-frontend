@@ -45,7 +45,7 @@ jobs:
 
     - name: Edit Front Deploy menifest
       run: |
-        sed -i "19 c\        image: ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}" front-deploy.yaml
+        sed -i "20 c\        image: ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}" front-deploy.yaml
         git config --global user.email "dbfl9711@gmail.com"
         git config --global user.name "ur2e"
         git add .
