@@ -1,6 +1,7 @@
 import { ResponsiveBar } from '@nivo/bar';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import NodataRow from '../row/NodataRow';
 
 
 export default function BarChart({stockHold}) {
@@ -91,8 +92,9 @@ export default function BarChart({stockHold}) {
 
     return (
         <div style={{width: '950px', height: '400px'}}>
-            {console.log(stockTrend)};
-            {console.log(stockMenu)};
+            {console.log(stockTrend)}
+            {stockTrend.length==0? 
+            <NodataRow></NodataRow>:
         <ResponsiveBar
         data={stockTrend}
         keys={stockMenu}
@@ -231,7 +233,7 @@ export default function BarChart({stockHold}) {
         role="application"
         ariaLabel="Nivo bar chart demo"
         barAriaLabel={function(e){return e.id+": "+e.formattedValue+" in date: "+e.indexValue}}
-    />
+    />}
     </div>
     );
 };
