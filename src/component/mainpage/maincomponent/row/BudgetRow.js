@@ -208,7 +208,7 @@ import Swal from "sweetalert2";
                 <div style={{display: 'flex', marginLeft: '1.5rem', position: 'relative'}}>
                     <BsCart4 size='20px' style={{color: '#D9D9D9', display: 'block', paddingTop: '12px'}}></BsCart4>
                     <span id='stockName' style={{color: 'white', paddingLeft: '30px', display: 'block', width: '100px', paddingTop: '10px'}}>{stockName}</span>
-                    <span id='stockCurrentPrice' style={{color: 'white', paddingLeft: '4rem', display: 'block', paddingTop: '10px', width: '90px', textAlign: 'right'}}>{stockCurrentPrice !== undefined? (stockCurrentPrice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : 0}원</span>
+                    <span id='stockCurrentPrice' style={{color: 'white', paddingLeft: '4rem', display: 'block', paddingTop: '10px', width: '90px', textAlign: 'right'}}>{stockCurrentPrice !== undefined? (Number(Math.floor(stockCurrentPrice))).toLocaleString('ko-KR') : 0}원</span>
                     
                     <button id="buyButton" className={styles.buyButton} onClick={()=>setBuyPopIsOpen(true)}>추가</button>
                     <button id="sellButton" className={styles.sellButton} onClick={()=>setSellPopIsOpen(true)}>삭제</button>
