@@ -44,7 +44,7 @@ useEffect(() => {
             <div text-align='center'>
             <div style={{display: 'inline-block', marginTop: '2rem'}}>
             <div style={{display: 'flex'}}>
-                <p style={{color: '#366cc2'}}>사용 가이드</p><AiFillQuestionCircle size='20px' color="#366cc2" style={{paddingTop: '19px', paddingLeft: '5px'}}></AiFillQuestionCircle><p></p>
+                {/* <p style={{color: '#366cc2'}}>사용 가이드</p><AiFillQuestionCircle size='20px' color="#366cc2" style={{paddingTop: '19px', paddingLeft: '5px'}}></AiFillQuestionCircle> */}
             </div>
             </div>
             </div>

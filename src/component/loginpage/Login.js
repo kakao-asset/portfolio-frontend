@@ -10,7 +10,12 @@ export default function Login() {
     const navigate = useNavigate();
 
     const navigateToAdmin = () => {
-        navigate("/admin");
+        if (document.getElementById("admin_pw").value == "kasset"){
+            navigate("/admin");
+        }
+        else {
+            window.alert("관리자 비밀번호를 확인해주세요");
+        }
     }
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
