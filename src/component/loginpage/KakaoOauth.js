@@ -30,11 +30,13 @@ export default function KakaoOauth(){
             icon: "error",
             title: "로그인 실패",
             text: "잠시 후 다시 시도해주세요",
-            showConfirmButton: false,
-            timer: '1000'
-        });
-
-        document.location.href = "/" // 로그인 실패하면 로그인화면으로 돌려보냄
+            showConfirmButton: true,
+            
+        }).then(result => {
+            if (result.isConfirmed){
+                document.location.href = "/";
+            }
+        });;
     })
     return(<></>);
 }

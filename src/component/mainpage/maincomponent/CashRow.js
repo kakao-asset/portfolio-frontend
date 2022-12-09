@@ -12,7 +12,7 @@ export default function CashRow() {
                 icon: "warning",
                 text: "등록될 현금을 확인해주세요",
                 showConfirmButton: false,
-                timer: '1000'
+                timer: '1500'
             });
         } 
         else {
@@ -36,10 +36,13 @@ export default function CashRow() {
                     icon: "success",
                     title: "등록 성공",
                     text: "현금을 등록했습니다",
-                    showConfirmButton: false,
-                    timer: '1000'
-                });
-                window.location.reload(); 
+                    showConfirmButton: true,
+                    
+                }).then(result => {
+                    if (result.isConfirmed){
+                        window.location.reload();
+                    }
+                }); 
                 
             }).catch((err, res) => {
                 console.log("등록 실패", err);
@@ -49,7 +52,7 @@ export default function CashRow() {
                     title: "등록 실패",
                     text: "잠시 후 다시 시도해주세요",
                     showConfirmButton: false,
-                    timer: '1000'
+                    timer: '1500'
                 });
                 
             })

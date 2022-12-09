@@ -18,8 +18,12 @@ export default function Login() {
             Swal.fire({
                 icon: "error",
                 text: "관리자 비밀번호를 확인해주세요",
-                showConfirmButton: false,
-                timer: '1000'
+                showConfirmButton: true,
+                
+            }).then(result => {
+                if (result.isConfirmed){
+                    document.location.href = "/";
+                }
             });
         }
     }

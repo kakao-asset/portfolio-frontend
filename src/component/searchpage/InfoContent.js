@@ -76,7 +76,7 @@ import Swal from "sweetalert2";
                     icon: "warning",
                     text: "삭제 수량과 금액을 확인해주세요",
                     showConfirmButton: false,
-                    timer: '1000'
+                    timer: '1500'
                 });
                 // window.alert("삭제 수량과 금액을 확인해주세요");
             } else if (sellDate == "" || document.getElementById("sellTime").value == "" ){
@@ -84,7 +84,7 @@ import Swal from "sweetalert2";
                     icon: "warning",
                     text: "삭제 일자와 시간을 확인해주세요",
                     showConfirmButton: false,
-                    timer: '1000'
+                    timer: '1500'
                 });
                 // window.alert("삭제 일자와 시간을 확인해주세요");
             }
@@ -106,12 +106,13 @@ import Swal from "sweetalert2";
                     Swal.fire({
                         icon: "success",
                         title: "삭제 완료",
-                        showConfirmButton: false,
-                        timer: '1000'
+                        showConfirmButton: true,
+                        
+                    }).then(result => {
+                        if (result.isConfirmed){
+                            window.location.reload();
+                        }
                     });
-
-                    window.location.reload();
-                    // window.alert(res.data.message);
                 }).catch((err, res) => {
                     console.log(res.data.message)
                     console.log("삭제 실패", err);
@@ -121,7 +122,7 @@ import Swal from "sweetalert2";
                         title: "삭제 실패",
                         text: "잠시 후 다시 시도해주세요.",
                         showConfirmButton: false,
-                        timer: '1000'
+                        timer: '1500'
                     });
                 })
             }
@@ -138,14 +139,14 @@ import Swal from "sweetalert2";
                     icon: "warning",
                     text: "추가 수량과 금액을 확인해주세요",
                     showConfirmButton: false,
-                    timer: '1000'
+                    timer: '1500'
                 });
             } else if (buyDate == "" || document.getElementById("buyTime").value == "" ){
                 Swal.fire({
                     icon: "warning",
                     text: "추가 일자와 시간을 확인해주세요",
                     showConfirmButton: false,
-                    timer: '1000'
+                    timer: '1500'
                 });
             }
              else if ( buyPrice*buyValue > cash){
@@ -153,14 +154,14 @@ import Swal from "sweetalert2";
                     icon: "warning",
                     text: "보유 현금 잔액이 부족합니다",
                     showConfirmButton: false,
-                    timer: '1000'
+                    timer: '1500'
                 });
             } else if (cash ==null || cash == [] || cash == "" || cash == undefined){
                 Swal.fire({
                     icon: "warning",
                     text: "보유 현금이 없습니다",
                     showConfirmButton: false,
-                    timer: '1000'
+                    timer: '1500'
                 });
             }
             else {
@@ -183,11 +184,14 @@ import Swal from "sweetalert2";
                     Swal.fire({
                         icon: "success",
                         title: "추가 성공",
-                        showConfirmButton: false,
-                        timer: '1000'
+                        showConfirmButton: true,
+                        
+                    }).then(result => {
+                        if (result.isConfirmed){
+                            window.location.reload();
+                        }
                     });
 
-                    window.location.reload();
                 }).catch((err, res) => {
                     console.log("추가 실패", err);
                     console.log("추가 실패", res);
@@ -196,7 +200,7 @@ import Swal from "sweetalert2";
                         title: "추가 실패",
                         text: "잠시 후 다시 시도해주세요.",
                         showConfirmButton: false,
-                        timer: '1000'
+                        timer: '1500'
                     });
                 })
                 setBuyPopIsOpen(false);

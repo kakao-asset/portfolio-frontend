@@ -77,7 +77,7 @@ function getStockHistory(){
         var result = resData.sort(function (a,b){
             var dateA = (new Date(a.tradeDate+" "+a.tradeTime+":00"));
             var dateB = (new Date(b.tradeDate+" "+b.tradeTime+":00"));
-            return dateA - dateB;
+            return dateB - dateA;
         })
         console.log(result);
         setStockHistory(result);

@@ -13,7 +13,7 @@ export default function FillCashRow({cash}) {
                 icon: "warning",
                 text: "수정할 현금을 확인해주세요",
                 showConfirmButton: false,
-                timer: '1000'
+                timer: '1500'
             });
         } 
         else {
@@ -37,10 +37,12 @@ export default function FillCashRow({cash}) {
                     icon: "success",
                     title: "수정 완료",
                     text: "보유 현금을 수정했습니다",
-                    showConfirmButton: false,
-                    timer: '1000'
+                    showConfirmButton: true,
+                }).then(result => {
+                    if (result.isConfirmed){
+                        window.location.reload();
+                    }
                 });
-                window.location.reload(); 
             }).catch((err, res) => {
                 console.log("수정 실패", err);
                 console.log("수정 실패", res);
@@ -49,7 +51,7 @@ export default function FillCashRow({cash}) {
                     title: "수정 실패",
                     text: "잠시 후 다시 시도해주세요",
                     showConfirmButton: false,
-                    timer: '1000'
+                    timer: '1500'
                 });
             })
             setModalIsOpen(false);

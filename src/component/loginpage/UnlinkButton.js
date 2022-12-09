@@ -14,10 +14,14 @@ const UnlinkButton = () => {
                 icon: "success",
                 title: "회원 탈퇴 성공",
                 text: "다음에 다시 만나요~",
-                showConfirmButton: false,
-                timer: '1000'
-            });
-            document.location.href = "/"
+                showConfirmButton: true,
+            }).then(result => {
+                if (result.isConfirmed){
+                    document.location.href = "/";
+                }
+            })
+            ;
+            
     
         }).catch((err, res) => {
             console.log("회원 탈퇴 에러", res);
@@ -25,10 +29,14 @@ const UnlinkButton = () => {
                 icon: "error",
                 title: "회원 탈퇴 실패",
                 text: "잠시 후 다시 시도해주세요",
-                showConfirmButton: false,
-                timer: '1000'
+                showConfirmButton: true,
+                
+            }).then(result => {
+                if (result.isConfirmed){
+                    document.location.href = "/main";
+                }
             });
-            document.location.href = "/main" 
+            
         })
     }
     
