@@ -15,7 +15,7 @@ const LogoutButton = () => {
             document.location.href = "/"
     
         }).catch((err, res) => {
-            console.log("로그아웃 에러", res);
+
             Swal.fire({
                 icon: "error",
                 title: "로그아웃 실패",

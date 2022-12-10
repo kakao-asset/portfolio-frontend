@@ -1,21 +1,8 @@
 import { ResponsivePie } from '@nivo/pie'
-import { VscHorizontalRule } from 'react-icons/vsc';
 
 export default function PieChart({stockHold}){
 
-    // 넘어온 stockHold -> PieChart 에 넣을 data로 가공
-    // id : stockHold.name
-    // label : [ "stockHold.name", " stockHold.value"]
-    // value : stockHold.value
-    // console.log(stockHold);
-    // var stockData = stockHold.map((name, value, avgPrice) => ({name: name, value: value, avgPrice: avgPrice}))
-    // const obj = JSON.parse(stockHold);
-    // console.log(obj)
-
-
     var stockData = stockHold.map((x) => ({id: x.name, label:[x.name+"\t"+"\t", x.value+"주"], value: x.value*x.avgPrice, price: x.avgPrice}));
-    // console.log(stockData);
-    
 
     var fillStock = stockHold.map((x) => ({match: {id: x.name}}));
 

@@ -1,11 +1,8 @@
 .container {
     width: 400px;
     height: fit-content;
-
     z-index: 999;
-
     position: absolute;
-
     background-color: 'white';
 }
 
@@ -20,7 +17,7 @@
     background-color: #1F1F1F;
 }
 
-.modal > section {
+.modal>section {
     width: 90%;
     max-width: 400px;
     border-radius: 0.3rem;
@@ -38,6 +35,7 @@
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -47,6 +45,7 @@
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
