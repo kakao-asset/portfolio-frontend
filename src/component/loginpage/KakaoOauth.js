@@ -13,9 +13,17 @@ export default function KakaoOauth(){
         
         console.log(res);
         if(res.data.data.code == 401) {
-            window.alert("회원 가입시 이메일 수집에 동의해주세요.");
-            console.log("이메일 동의 안해서 로그인 실패");
-            document.location.href = "/";
+            Swal.fire({
+                icon: "error",
+                title: "회원 가입 실패",
+                text: "회원 가입시 이메일 수집에 동의해주세요.",
+                showConfirmButton: true,
+                
+            }).then(result => {
+                if (result.isConfirmed){
+                    document.location.href = "/";
+                }
+            });
         } else {
             const tokenData = res.data.data.accessToken;
             const userData = JSON.stringify(res.data.data);
