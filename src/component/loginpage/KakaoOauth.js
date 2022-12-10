@@ -12,18 +12,23 @@ export default function KakaoOauth(){
         console.log(res); // 토큰이 넘어올 것임
         
         console.log(res);
-        console.log(res.data);
-        const tokenData = res.data.data.accessToken;
-        const userData = JSON.stringify(res.data.data);
-        const userId = userData.userId;
+        if(res.data.data.code == 401) {
+            window.alert("회원 가입시 이메일 수집에 동의해주세요.");
+            console.log("이메일 동의 안해서 로그인 실패");
+            document.location.href = "/";
+        } else {
+            const tokenData = res.data.data.accessToken;
+            const userData = JSON.stringify(res.data.data);
+            const userId = userData.userId;
+            
+            localStorage.setItem("token", tokenData);    //예시로 로컬에 저장함 
+            localStorage.setItem("userData", userData); 
+            localStorage.setItem("userId", userId); 
+            console.log("로그인 성공");
+            document.location.href = "/main"
+        }
         
-        localStorage.setItem("token", tokenData);    //예시로 로컬에 저장함 
-        localStorage.setItem("userData", userData); 
-        localStorage.setItem("userId", userId); 
-        console.log("로그인 성공")
         //history.replace("/main") // 토큰 받았았고 로그인됐으니 화면 전환시켜줌(메인으로)
-        document.location.href = "/main"
-
     }).catch((err) => {
         console.log("소셜로그인 에러", err);
         Swal.fire({
