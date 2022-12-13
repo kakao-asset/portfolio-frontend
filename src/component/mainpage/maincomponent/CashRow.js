@@ -7,10 +7,10 @@ export default function CashRow() {
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
     const setMemberCash = () => {
-        if (document.getElementById("cash").value == "" || isNaN(document.getElementById("cash").value || Number(document.getElementById("cash").value) < 0)) {
+        if (document.getElementById("cash").value == "" || isNaN(document.getElementById("cash").value || Number(document.getElementById("cash").value) < 0 || Number(document.getElementById("cash").value) > 10000000000)) {
             Swal.fire({
                 icon: "warning",
-                text: "등록될 현금을 확인해주세요",
+                text: "등록될 현금을 확인해주세요 (최대 100억)",
                 showConfirmButton: false,
                 timer: '1500'
             });
