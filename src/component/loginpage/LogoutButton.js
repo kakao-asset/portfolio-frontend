@@ -29,7 +29,17 @@ const LogoutButton = () => {
     }
     
     return(
-    <button onClick={logout} style={{
+    <button onClick={() => {
+        Swal.fire({
+            icon: "question",
+            text: "로그아웃 하시겠습니까?",
+            showConfirmButton: true,
+        }).then(result => {
+            if (result.isConfirmed) {
+                logout();
+            }
+        });
+    }} style={{
         color: 'white', 
         backgroundColor: '#1F1F1F', 
         border: '0px', 

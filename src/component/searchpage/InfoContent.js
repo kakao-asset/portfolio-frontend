@@ -59,7 +59,7 @@ export default function InfoContent({ budget, stockInfo }) {
         var userId = JSON.parse(localStorage.getItem("userData")).userId;
         var sellTime = document.getElementById("sellTime").value;
 
-        if (sellPrice < 0 || sellValue < 0 || sellPrice == "" || sellValue == "" || isNaN(sellPrice) || isNaN(sellValue)) {
+        if (sellPrice < 0 || sellValue < 0 || sellPrice == "" || sellValue == "" || sellValue > stockValue || isNaN(sellPrice) || isNaN(sellValue) || sellPrice > 10000000000) {
             Swal.fire({
                 icon: "warning",
                 text: "삭제 수량과 금액을 확인해주세요",
@@ -112,10 +112,10 @@ export default function InfoContent({ budget, stockInfo }) {
     }
 
     const setBuyMemberStock = () => {
-        if (buyPrice < 0 || buyValue < 0 || buyPrice == "" || buyValue == "" || isNaN(buyPrice) || isNaN(buyValue)) {
+        if (buyPrice < 100 || buyValue < 0 || buyPrice == "" || buyValue == "" || isNaN(buyPrice) || isNaN(buyValue)) {
             Swal.fire({
                 icon: "warning",
-                text: "추가 수량과 금액을 확인해주세요",
+                text: "추가 수량과 금액을 확인해주세요(100원 이상 거래 가능)",
                 showConfirmButton: false,
                 timer: '1500'
             });

@@ -8,10 +8,17 @@ export default function FillCashRow({ cash }) {
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
     const setMemberCash = () => {
-        if (document.getElementById("cash").value == "" || isNaN(document.getElementById("cash").value)) {
+        if (document.getElementById("cash").value == "" || isNaN(document.getElementById("cash").value || Number(document.getElementById("cash").value) < 0)) {
             Swal.fire({
                 icon: "warning",
                 text: "수정할 현금을 확인해주세요",
+                showConfirmButton: false,
+                timer: '1500'
+            });
+        } else if (Number(document.getElementById("cash").value) > 10000000000 ) {
+            Swal.fire({
+                icon: "warning",
+                text: "21억 이하로 등록해주세요",
                 showConfirmButton: false,
                 timer: '1500'
             });
@@ -58,7 +65,8 @@ export default function FillCashRow({ cash }) {
     return (
         <div text-align='center'>
             <div style={{ display: 'inline-block', marginTop: '2rem' }}>
-                <img alt="ka_plus_cash_3" src="img/ka_plus_cash_4.png"></img>
+                <img alt="ka_plus_cash_3" src="img/ka_plus_cash_4.png" style={{}}></img>
+                <img alt="ka_help" src="img/ka_help_text.png" style={{position: 'absolute', width: '300px', paddingLeft: '220px' }}></img>
                 <div style={{ display: 'flex' }}>
 
                     <h3 style={{ color: 'white', paddingTop: '1rem', paddingRight: '1rem' }}>등록된 현금:  {Number(cash).toLocaleString('ko-KR')}원</h3>
