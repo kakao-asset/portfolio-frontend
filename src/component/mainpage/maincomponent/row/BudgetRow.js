@@ -64,7 +64,7 @@ export default function BudgetRow({ budget, cash }) {
         var userId = JSON.parse(localStorage.getItem("userData")).userId;
         var sellTime = document.getElementById("sellTime").value;
 
-        if (sellPrice < 0 || sellValue < 0 || sellPrice == "" || sellValue == "" || sellValue > stockValue || isNaN(sellPrice) || isNaN(sellValue) || sellPrice > 10000000000) {
+        if (sellPrice < 0 || sellValue < 0 || sellPrice == "" || sellValue == "" || sellValue > stockValue || isNaN(sellPrice) || isNaN(sellValue)) {
             Swal.fire({
                 icon: "warning",
                 text: "삭제 수량과 금액을 확인해주세요",
