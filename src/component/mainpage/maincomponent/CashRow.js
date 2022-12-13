@@ -14,13 +14,6 @@ export default function CashRow() {
                 showConfirmButton: false,
                 timer: '1500'
             });
-        } else if (Number(document.getElementById("cash").value) > 10000000000 ) {
-            Swal.fire({
-                icon: "warning",
-                text: "21억 이하로 등록해주세요",
-                showConfirmButton: false,
-                timer: '1500'
-            });
         }
         else {
             var userId = JSON.parse(localStorage.getItem("userData")).userId;
